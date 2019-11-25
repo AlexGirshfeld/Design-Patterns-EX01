@@ -1,0 +1,12 @@
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.csprojAssemblyReference.cache
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.FormInfluencerToolkit.resources
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.Properties.Resources.resources
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.csproj.GenerateResource.cache
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\bin\Debug\InfluencerToolkit.exe.config
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\bin\Debug\InfluencerToolkit.exe
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\bin\Debug\InfluencerToolkit.pdb
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\bin\Debug\Facebook.dll
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\bin\Debug\FbGraphApiWrapper.dll
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.csproj.CopyComplete
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.exe
+U:\Documents\C#course\Exercises\EX01\InfluencerToolkit\InfluencerToolkit\obj\Debug\InfluencerToolkit.pdb
