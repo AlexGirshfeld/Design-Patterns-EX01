@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Facebook;
@@ -62,25 +63,11 @@ namespace InfluencerToolkit
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(m_AppSettings.LastAccesToken))
-            {
-                m_LoginResult = FacebookService.Connect(m_AppSettings.LastAccesToken);
-            }
-            else
-            {
-
-               m_LoginResult = FacebookService.Login(getInfluencerAppID(),
-                    "public_profile",
-                    "user_photos",
-                    "user_albums",
-                    "publish_actions",
-                    "user_events",
-                    "user_posts",
-                    "user_friends",
-                    "user_status");
-            }
-            populateUI();
-
+            var loginThread = new Thread(loginAndInit);
+            loginThread.SetApartmentState(ApartmentState.STA);
+           /* startProgressBar();*/
+            loginThread.Start();
+    
         }
 
         private void populateUI()
@@ -109,6 +96,49 @@ namespace InfluencerToolkit
             }
         }
 
+
+        private void loginAndInit()
+        {
+            if (!String.IsNullOrEmpty(m_AppSettings.LastAccesToken))
+            {
+                m_LoginResult = FacebookService.Connect(m_AppSettings.LastAccesToken);
+            }
+            else
+            {
+                m_LoginResult = FacebookService.Login(getInfluencerAppID(),
+                     "public_profile",
+                     "user_photos",
+                     "user_albums",
+                     "publish_actions",
+                     "user_events",
+            `         "user_posts",
+                     "user_friends",
+                     "user_status");
+            }
+            m_AppSettings.LastAccesToken = m_LoginResult.AccessToken;
+            populateUI();
+            /*var result = FacebookService.Login(
+                getInfluencerAppID,
+                "public_profile",
+                "publish_actions",
+                "user_events",
+                "user_posts",
+                "user_friends",
+                "user_status");
+
+            if (!string.IsNullOrEmpty(result.AccessToken))
+            {
+                // Load data from service
+                m_LoggedInUser = result.LoggedInUser;
+                retrievePostScores();
+                retrieveAccountActivity();
+                m_PictureUrl = m_LoggedInUser.PictureNormalURL;
+                m_Events = m_LoggedInUser.Events;
+                m_Friends = m_LoggedInUser.Friends;
+                m_Posts = m_LoggedInUser.Posts;
+                m_Checkins = m_LoggedInUser.Checkins;*/
+        }
+            
 
     }
 }

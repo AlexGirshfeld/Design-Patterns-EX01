@@ -42,7 +42,7 @@ namespace InfluencerToolkit
             AppSettings storedAppSettings = new AppSettings();
             using (Stream stream = new FileStream(@"C:\InfluencerAppSettings.xml",FileMode.Open))
             {
-                XmlSerializer serializer = new XmlSerializer(this.GetType());
+                XmlSerializer serializer = new XmlSerializer(storedAppSettings.GetType());
                 storedAppSettings = serializer.Deserialize(stream) as AppSettings;
             }
             return storedAppSettings;
