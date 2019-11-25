@@ -34,6 +34,7 @@
             this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
+            this.listBoxFriends = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,16 +86,25 @@
             // listBoxPosts
             // 
             this.listBoxPosts.FormattingEnabled = true;
-            this.listBoxPosts.Location = new System.Drawing.Point(156, 152);
+            this.listBoxPosts.Location = new System.Drawing.Point(138, 152);
             this.listBoxPosts.Name = "listBoxPosts";
             this.listBoxPosts.Size = new System.Drawing.Size(120, 199);
             this.listBoxPosts.TabIndex = 5;
+            // 
+            // listBoxFriends
+            // 
+            this.listBoxFriends.FormattingEnabled = true;
+            this.listBoxFriends.Location = new System.Drawing.Point(264, 152);
+            this.listBoxFriends.Name = "listBoxFriends";
+            this.listBoxFriends.Size = new System.Drawing.Size(120, 199);
+            this.listBoxFriends.TabIndex = 6;
             // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBoxFriends);
             this.Controls.Add(this.listBoxPosts);
             this.Controls.Add(this.listBoxAlbums);
             this.Controls.Add(this.checkBoxRememberUser);
@@ -112,11 +122,12 @@
         #endregion
 
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBoxRememberUser;
-        private System.Windows.Forms.ListBox listBoxAlbums;
-        private System.Windows.Forms.ListBox listBoxPosts;
+        public System.Windows.Forms.PictureBox pictureBoxProfile;
+        public System.Windows.Forms.ListBox listBoxAlbums;
+        public System.Windows.Forms.ListBox listBoxPosts;
+        public System.Windows.Forms.ListBox listBoxFriends;
     }
 }
 
