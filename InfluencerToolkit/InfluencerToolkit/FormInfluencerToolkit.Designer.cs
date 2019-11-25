@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("User");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Likes");
             this.loginButton = new System.Windows.Forms.Button();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -35,6 +38,11 @@
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
             this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.EnterAccesToken = new System.Windows.Forms.Button();
+            this.textBoxAccesToken = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,11 +107,59 @@
             this.listBoxFriends.Size = new System.Drawing.Size(120, 199);
             this.listBoxFriends.TabIndex = 6;
             // 
+            // EnterAccesToken
+            // 
+            this.EnterAccesToken.Location = new System.Drawing.Point(17, 108);
+            this.EnterAccesToken.Name = "EnterAccesToken";
+            this.EnterAccesToken.Size = new System.Drawing.Size(109, 32);
+            this.EnterAccesToken.TabIndex = 7;
+            this.EnterAccesToken.Text = "ManualAccesToken";
+            this.EnterAccesToken.UseVisualStyleBackColor = true;
+            this.EnterAccesToken.Click += new System.EventHandler(this.EnterAccesToken_Click);
+            // 
+            // textBoxAccesToken
+            // 
+            this.textBoxAccesToken.Location = new System.Drawing.Point(138, 115);
+            this.textBoxAccesToken.Name = "textBoxAccesToken";
+            this.textBoxAccesToken.Size = new System.Drawing.Size(246, 20);
+            this.textBoxAccesToken.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(399, 44);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(138, 55);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Show people who like my content";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.listView1.Location = new System.Drawing.Point(399, 135);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(170, 216);
+            this.listView1.TabIndex = 10;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxAccesToken);
+            this.Controls.Add(this.EnterAccesToken);
             this.Controls.Add(this.listBoxFriends);
             this.Controls.Add(this.listBoxPosts);
             this.Controls.Add(this.listBoxAlbums);
@@ -128,6 +184,11 @@
         public System.Windows.Forms.ListBox listBoxAlbums;
         public System.Windows.Forms.ListBox listBoxPosts;
         public System.Windows.Forms.ListBox listBoxFriends;
+        private System.Windows.Forms.Button EnterAccesToken;
+        private System.Windows.Forms.TextBox textBoxAccesToken;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

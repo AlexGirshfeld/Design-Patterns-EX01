@@ -42,17 +42,6 @@ namespace InfluencerToolkit
         {
             base.OnFormClosing(e);
         }
-
-
-        /*private void initializeUserProfilePicture()
-                {
-                    m_ConnectedUserProfilePictureURL = getUserProfilePictureURL();
-                    if (m_ConnectedUserProfilePictureURL != null)
-                    {
-                        m_PictureBox_ProfilePicture.LoadAsync(m_ConnectedUserProfilePictureURL);
-                    }
-                }*/
-
         private string getInfluencerAppID()
         {
             return "588982305240916";
@@ -60,7 +49,7 @@ namespace InfluencerToolkit
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            var loginThread = new Thread(loginAndInit);
+            var loginThread = new Thread(loginAndInitUserUI);
             loginThread.SetApartmentState(ApartmentState.STA);
             /* startProgressBar();*/
             loginThread.Start();
@@ -69,6 +58,15 @@ namespace InfluencerToolkit
 
         private void loginAndInitUserUI()
         {
+            String[] permissions = {"public_profile",
+                     "user_photos",
+                     "user_albums",
+                     "publish_actions",
+                      "user_events",
+                     "user_posts",
+                     "user_friends",
+                     "user_status"};
+
             UIDataPopulator = new UIPopulator(this);
             if (!String.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
             {
@@ -76,18 +74,15 @@ namespace InfluencerToolkit
             }
             else
             {
-                LoginResult = FacebookService.Login(getInfluencerAppID(),
-                     "public_profile",
-                     "user_photos",
-                     "user_albums",
-                     "publish_actions",
-                      "user_events",
-                     "user_posts",
-                     "user_friends",
-                     "user_status");
+                LoginResult = FacebookService.Login(getInfluencerAppID(), permissions);
             }
             CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
             UIDataPopulator.PopulateUI();
+        }
+
+        private void EnterAccesToken_Click(object sender, EventArgs e)
+        {
+            this.CurrentAppSettings.LastAccesToken = this.textBoxAccesToken.Text; 
         }
     }
 }
