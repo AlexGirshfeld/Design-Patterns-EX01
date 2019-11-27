@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Facebook;
 using FacebookWrapper;
+using FacebookWrapper.ObjectModel;
+
+
 
 namespace InfluencerToolkit
 {
@@ -20,6 +23,14 @@ namespace InfluencerToolkit
         public AppSettings CurrentAppSettings { get; set; }
         public LoginResult LoginResult { get; set; }
         public UIPopulator UIDataPopulator { get; set; }
+        public string AppID
+        {
+            get
+            {
+                return "588982305240916";
+            }
+        }
+
 
         public FormInfluencerToolkit()
         {
@@ -41,10 +52,6 @@ namespace InfluencerToolkit
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-        }
-        private string getInfluencerAppID()
-        {
-            return "588982305240916";
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -74,15 +81,29 @@ namespace InfluencerToolkit
             }
             else
             {
-                LoginResult = FacebookService.Login(getInfluencerAppID(), permissions);
+                LoginResult = FacebookService.Login(AppID, permissions);
             }
             CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
             UIDataPopulator.PopulateUI();
         }
 
-        private void EnterAccesToken_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.CurrentAppSettings.LastAccesToken = this.textBoxAccesToken.Text; 
+
+        }
+
+        private void SortUserLikesButton_Click(object sender, EventArgs e)
+        {
+            int likes = 5;
+            string userName;
+            SortedPerUserLikesList sortedsetRecivedFromDataAggregator = new SortedPerUserLikesList();
+            foreach (Tuple<User, int> userLikesTuple in sortedsetRecivedFromDataAggregator)
+            {
+                ListViewItem item = new ListViewItem(userName);
+                item.SubItems.Add(likes.ToString());
+
+            }
+            
         }
     }
 }

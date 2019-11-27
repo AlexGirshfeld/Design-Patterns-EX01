@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LikesComparer.cs" />
+    <Compile Include="SortedPerUserLikesList.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FormInfluencerToolkit.cs">
