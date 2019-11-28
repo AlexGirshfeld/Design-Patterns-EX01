@@ -113,7 +113,7 @@ namespace InfluencerToolkit
         }
         private void UserNameLikesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            UIDataPopulator.SetPreviewUserOutOfSortedListByNames(UserNameLikesListView.SelectedItems.ToString());
         }
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)

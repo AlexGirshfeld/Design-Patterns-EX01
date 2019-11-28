@@ -26,7 +26,6 @@ namespace InfluencerToolkit
             m_InfluenceAnalyzer = new PostInfluenceAnalyzer();
         }
 
-
         public void PopulateUI()
         {
             try
@@ -41,16 +40,20 @@ namespace InfluencerToolkit
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
             }
         }
+        public void SetPreviewUserOutOfSortedListByNames(string i_Username)
+        {
+
+        }
+
         public void SetAndPreviewPostToAnalyze(string i_postName)
         {
-            Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchPostByName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
+            Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyzeByPostName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
             if (postToPreviewAndAnalyze == null)
             {
-                throw new Exception("Couldn't find the desired post");
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing the post:{0}", e.Message));
             }
             else
             {
-                m_InfluenceAnalyzer.CurrentPostToAnalyze = postToPreviewAndAnalyze;
                 displayPostToPreview(postToPreviewAndAnalyze);
             }
         }
