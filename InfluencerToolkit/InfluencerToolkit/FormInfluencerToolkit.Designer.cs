@@ -41,7 +41,12 @@
             this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LikesColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.AnalyzePostInfluenceExpansionButton = new System.Windows.Forms.Button();
+            this.pictureBoxUserPreview = new System.Windows.Forms.PictureBox();
+            this.AnalyzePostInfluencePreservationButton = new System.Windows.Forms.Button();
+            this.textBoxPostAnalyzerPreview = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
@@ -96,6 +101,7 @@
             this.listBoxPosts.Name = "listBoxPosts";
             this.listBoxPosts.Size = new System.Drawing.Size(120, 199);
             this.listBoxPosts.TabIndex = 5;
+            this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
             // 
             // listBoxFriends
             // 
@@ -127,6 +133,7 @@
             this.UserNameLikesListView.TabIndex = 10;
             this.UserNameLikesListView.UseCompatibleStateImageBehavior = false;
             this.UserNameLikesListView.View = System.Windows.Forms.View.Details;
+            this.UserNameLikesListView.SelectedIndexChanged += new System.EventHandler(this.UserNameLikesListView_SelectedIndexChanged);
             // 
             // NameColumn
             // 
@@ -143,11 +150,52 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // AnalyzePostInfluenceExpansionButton
+            // 
+            this.AnalyzePostInfluenceExpansionButton.Location = new System.Drawing.Point(12, 339);
+            this.AnalyzePostInfluenceExpansionButton.Name = "AnalyzePostInfluenceExpansionButton";
+            this.AnalyzePostInfluenceExpansionButton.Size = new System.Drawing.Size(138, 40);
+            this.AnalyzePostInfluenceExpansionButton.TabIndex = 11;
+            this.AnalyzePostInfluenceExpansionButton.Text = "Analyze selected post influence expansion";
+            this.AnalyzePostInfluenceExpansionButton.UseVisualStyleBackColor = true;
+            this.AnalyzePostInfluenceExpansionButton.Click += new System.EventHandler(this.AnalyzePostInfluenceExpansionButton_Click);
+            // 
+            // pictureBoxUserPreview
+            // 
+            this.pictureBoxUserPreview.Location = new System.Drawing.Point(692, 63);
+            this.pictureBoxUserPreview.Name = "pictureBoxUserPreview";
+            this.pictureBoxUserPreview.Size = new System.Drawing.Size(150, 96);
+            this.pictureBoxUserPreview.TabIndex = 12;
+            this.pictureBoxUserPreview.TabStop = false;
+            // 
+            // AnalyzePostInfluencePreservationButton
+            // 
+            this.AnalyzePostInfluencePreservationButton.Location = new System.Drawing.Point(12, 395);
+            this.AnalyzePostInfluencePreservationButton.Name = "AnalyzePostInfluencePreservationButton";
+            this.AnalyzePostInfluencePreservationButton.Size = new System.Drawing.Size(138, 40);
+            this.AnalyzePostInfluencePreservationButton.TabIndex = 13;
+            this.AnalyzePostInfluencePreservationButton.Text = "Analyze selected post influence preservation";
+            this.AnalyzePostInfluencePreservationButton.UseVisualStyleBackColor = true;
+            this.AnalyzePostInfluencePreservationButton.Click += new System.EventHandler(this.AnalyzePostInfluencePreservationButton_Click);
+            // 
+            // textBoxPostAnalyzerPreview
+            // 
+            this.textBoxPostAnalyzerPreview.Location = new System.Drawing.Point(171, 339);
+            this.textBoxPostAnalyzerPreview.Multiline = true;
+            this.textBoxPostAnalyzerPreview.Name = "textBoxPostAnalyzerPreview";
+            this.textBoxPostAnalyzerPreview.Size = new System.Drawing.Size(366, 96);
+            this.textBoxPostAnalyzerPreview.TabIndex = 15;
+            this.textBoxPostAnalyzerPreview.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 570);
+            this.ClientSize = new System.Drawing.Size(882, 570);
+            this.Controls.Add(this.textBoxPostAnalyzerPreview);
+            this.Controls.Add(this.AnalyzePostInfluencePreservationButton);
+            this.Controls.Add(this.pictureBoxUserPreview);
+            this.Controls.Add(this.AnalyzePostInfluenceExpansionButton);
             this.Controls.Add(this.UserNameLikesListView);
             this.Controls.Add(this.SortUserLikesButton);
             this.Controls.Add(this.listBoxFriends);
@@ -159,7 +207,9 @@
             this.Controls.Add(this.loginButton);
             this.Name = "FormInfluencerToolkit";
             this.Text = "Influencers Toolkit";
+            this.Load += new System.EventHandler(this.FormInfluencerToolkit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +229,10 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader LikesColumn;
+        private System.Windows.Forms.Button AnalyzePostInfluenceExpansionButton;
+        private System.Windows.Forms.PictureBox pictureBoxUserPreview;
+        private System.Windows.Forms.Button AnalyzePostInfluencePreservationButton;
+        public System.Windows.Forms.TextBox textBoxPostAnalyzerPreview;
     }
 }
 

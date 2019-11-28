@@ -10,24 +10,63 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Facebook;
 using FacebookWrapper;
-
+using FacebookWrapper.ObjectModel;
 namespace InfluencerToolkit
 {
     public class UIPopulator
     {
-        FormInfluencerToolkit m_FormToPopulate;
+        private FormInfluencerToolkit m_FormToPopulate;
+        private User SelectedUserToDisplayPreviewPicture;
+        private PostInfluenceAnalyzer InfluenceAnalyzer;
+       
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
         }
 
-      public void PopulateUI()
+
+        public void PopulateUI()
         {
-            fetchAvatarAndTitle();
-            fetchAlbums();
-            fetchFriends();
-            fetchPosts();
+            try
+            {
+                fetchAvatarAndTitle();
+                fetchAlbums();
+                fetchFriends();
+                fetchPosts();
+            }
+            catch (Exception e)
+            {
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message);
+            }
+        }
+        public void SetAndPreviewPostToAnalyze(string i_postName)
+        {
+            Post postToPreviewAndAnalyze = InfluenceAnalyzer.fetchPostByName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
+            if (postToPreviewAndAnalyze == null)
+            {
+                throw new Exception("Couldn't find the desired post");
+            }
+            else
+            {
+                InfluenceAnalyzer.CurrentPostToAnalyze = postToPreviewAndAnalyze;
+                displayPostToPreview(postToPreviewAndAnalyze);
+            }
+        }
+
+        private void displayPostToPreview(Post i_Post)
+        {
+            try
+            {
+                m_FormToPopulate.textBoxPostAnalyzerPreview.Text = string.Format(@"POSTED AT:{0}{1}CONTENT:{2}",
+                                    i_Post?.CreatedTime?.ToString(),
+                                    System.Environment.NewLine,
+                                    i_Post?.Message);
+            }
+            catch(Exception e)
+            {
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post:{0}",e.Message);
+            }
         }
 
         private void fetchAlbums()

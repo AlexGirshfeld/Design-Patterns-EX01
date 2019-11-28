@@ -32,6 +32,7 @@ namespace InfluencerToolkit
         }
 
 
+
         public FormInfluencerToolkit()
         {
             CurrentAppSettings = new AppSettings();
@@ -87,11 +88,6 @@ namespace InfluencerToolkit
             UIDataPopulator.PopulateUI();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SortUserLikesButton_Click(object sender, EventArgs e)
         {
             int likes = 5;
@@ -105,5 +101,37 @@ namespace InfluencerToolkit
             }
             
         }
+
+        private void AnalyzePostInfluenceExpansionButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AnalyzePostInfluencePreservationButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void UserNameLikesListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UI
+        }
+
+        private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            UIDataPopulator.SetAndPreviewPostToAnalyze(listBoxPosts.SelectedItem.ToString());
+        }
+
+        private void FormInfluencerToolkit_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
