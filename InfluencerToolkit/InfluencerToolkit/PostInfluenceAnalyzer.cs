@@ -16,9 +16,9 @@ namespace InfluencerToolkit
         {
             CurrentPostToAnalyze = null;  
         }
-        public void SetCurrentPostToAnalyzeByPostName(string i_PostName)
+        public void SetCurrentPostToAnalyzeByPostName(string i_PostName, User i_User)
         {
-            asdgad;
+            CurrentPostToAnalyze = fetchPostByName(i_PostName, i_User);
         }
         public Post fetchPostByName(string i_PostName, User i_User)
         {

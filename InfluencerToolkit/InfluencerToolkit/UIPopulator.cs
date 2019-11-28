@@ -17,12 +17,13 @@ namespace InfluencerToolkit
     {
         private FormInfluencerToolkit m_FormToPopulate;
         private User SelectedUserToDisplayPreviewPicture;
-        private PostInfluenceAnalyzer InfluenceAnalyzer;
+        private PostInfluenceAnalyzer m_InfluenceAnalyzer;
        
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
+            m_InfluenceAnalyzer = new PostInfluenceAnalyzer();
         }
 
 
@@ -37,19 +38,19 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message);
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
             }
         }
         public void SetAndPreviewPostToAnalyze(string i_postName)
         {
-            Post postToPreviewAndAnalyze = InfluenceAnalyzer.fetchPostByName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
+            Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchPostByName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
             if (postToPreviewAndAnalyze == null)
             {
                 throw new Exception("Couldn't find the desired post");
             }
             else
             {
-                InfluenceAnalyzer.CurrentPostToAnalyze = postToPreviewAndAnalyze;
+                m_InfluenceAnalyzer.CurrentPostToAnalyze = postToPreviewAndAnalyze;
                 displayPostToPreview(postToPreviewAndAnalyze);
             }
         }
@@ -65,13 +66,13 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post:{0}",e.Message);
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post:{0}",e.Message));
             }
         }
 
         private void fetchAlbums()
         {
-            foreach (FacebookWrapper.ObjectModel.Album album in m_FormToPopulate.LoginResult.LoggedInUser.Albums)
+            foreach (Album album in m_FormToPopulate.LoginResult.LoggedInUser.Albums)
             {
                 m_FormToPopulate.listBoxAlbums.Items.Add(album.Name);
             }
@@ -79,7 +80,7 @@ namespace InfluencerToolkit
 
         private void fetchPosts()
         {
-            foreach (FacebookWrapper.ObjectModel.Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
+            foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
             {
                 m_FormToPopulate.listBoxPosts.Items.Add(post.Name);
             }
@@ -87,7 +88,7 @@ namespace InfluencerToolkit
 
         private void fetchFriends()
         {
-            foreach(FacebookWrapper.ObjectModel.User friend in m_FormToPopulate.LoginResult.LoggedInUser.Friends)
+            foreach(User friend in m_FormToPopulate.LoginResult.LoggedInUser.Friends)
             {
                 m_FormToPopulate.listBoxPosts.Items.Add(friend.Name);
             }
