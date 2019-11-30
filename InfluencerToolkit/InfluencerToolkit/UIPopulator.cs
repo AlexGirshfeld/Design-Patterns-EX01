@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Facebook;
-using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 namespace InfluencerToolkit
 {
     public class UIPopulator
     {
         private FormInfluencerToolkit m_FormToPopulate;
-        private User SelectedUserToDisplayPreviewPicture;
         private PostInfluenceAnalyzer m_InfluenceAnalyzer;
        
 

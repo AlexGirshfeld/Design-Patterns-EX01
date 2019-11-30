@@ -85,6 +85,7 @@
             this.checkBoxRememberUser.TabIndex = 3;
             this.checkBoxRememberUser.Text = "Remember me";
             this.checkBoxRememberUser.UseVisualStyleBackColor = true;
+            this.checkBoxRememberUser.CheckedChanged += new System.EventHandler(this.checkBoxRememberUser_CheckedChanged);
             // 
             // listBoxAlbums
             // 
@@ -208,6 +209,7 @@
             this.Name = "FormInfluencerToolkit";
             this.Text = "Influencers Toolkit";
             this.Load += new System.EventHandler(this.FormInfluencerToolkit_Load);
+            this.ResizeEnd += new System.EventHandler(this.FormInfluencerToolkit_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).EndInit();
             this.ResumeLayout(false);

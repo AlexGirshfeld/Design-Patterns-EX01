@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Facebook;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
@@ -18,8 +10,6 @@ namespace InfluencerToolkit
 {
     public partial class FormInfluencerToolkit : Form
     {
-        //private FacebookObjectCollection<Post> m_RecentPosts = null;
-        //public FacebookWrapper.ObjectModel.User LoggedInUser { get; set; }
         public AppSettings CurrentAppSettings { get; set; }
         public LoginResult LoginResult { get; set; }
         public UIPopulator UIDataPopulator { get; set; }
@@ -27,13 +17,13 @@ namespace InfluencerToolkit
         {
             get
             {
-                return "588982305240916";
+                return "787802105015306";
             }
         }
 
         public FormInfluencerToolkit()
         {
-            CurrentAppSettings = new AppSettings();
+            CurrentAppSettings = AppSettings.LoadFromFileOrInit();
             InitializeComponent();
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
@@ -51,13 +41,13 @@ namespace InfluencerToolkit
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+            CurrentAppSettings.SaveToFile();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
             var loginThread = new Thread(loginAndInitUserUI);
             loginThread.SetApartmentState(ApartmentState.STA);
-            /* startProgressBar();*/
             loginThread.Start();
 
         }
@@ -124,16 +114,24 @@ namespace InfluencerToolkit
             UIDataPopulator.SetAndPreviewPostToAnalyze(listBoxPosts.SelectedItem.ToString());
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
+        {
+            CurrentAppSettings.RememberUser = checkBoxRememberUser.Checked;
+        }
+
         private void FormInfluencerToolkit_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void FormInfluencerToolkit_ResizeEnd(object sender, EventArgs e)
         {
-
+            CurrentAppSettings.LastWindowSize = this.Size;
+            CurrentAppSettings.LastWindowLocation = this.Location;
         }
-
-
     }
 }
