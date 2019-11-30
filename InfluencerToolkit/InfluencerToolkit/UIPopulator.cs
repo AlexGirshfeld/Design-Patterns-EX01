@@ -40,21 +40,44 @@ namespace InfluencerToolkit
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
             }
         }
-        public void SetPreviewUserOutOfSortedListByNames(string i_Username)
+        public void SetPreviewUserOutOfSortedListByNames(string i_UserName)
         {
+            try
+            {
+                User userToPreview = m_FormToPopulate.LoginResult.LoggedInUser.Friends.Find(x => x.Name == i_UserName);
+                if (userToPreview == null)
+                {
+                    m_FormToPopulate.DisplayErrorDialog("Couldn't find the friend to preview his profile image");
+                }
+                else
+                {
+                    displayPreviewProfilePicture(userToPreview);
+                }
+            }
+            catch(Exception e)
+            {
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture:{0}", e.Message));
+            }
 
         }
 
         public void SetAndPreviewPostToAnalyze(string i_postName)
         {
-            Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyzeByPostName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
-            if (postToPreviewAndAnalyze == null)
+            try
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing the post:{0}", e.Message));
+                Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyzeByPostName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
+                if (postToPreviewAndAnalyze == null)
+                {
+                    m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
+                }
+                else
+                {
+                    displayPostToPreview(postToPreviewAndAnalyze);
+                }
             }
-            else
+            catch(Exception e)
             {
-                displayPostToPreview(postToPreviewAndAnalyze);
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post:{0}", e.Message));
             }
         }
 
@@ -102,7 +125,11 @@ namespace InfluencerToolkit
             m_FormToPopulate.pictureBoxProfile.ImageLocation = m_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
             m_FormToPopulate.pictureBoxProfile.LoadAsync(m_FormToPopulate.pictureBoxProfile.ImageLocation);
             m_FormToPopulate.Text = String.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
-            
+        }
+
+        private void displayPreviewProfilePicture(User i_UserToDisplay)
+        {
+            m_FormToPopulate.pictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
 
     }

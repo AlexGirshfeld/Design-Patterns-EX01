@@ -162,7 +162,7 @@
             // 
             // pictureBoxUserPreview
             // 
-            this.pictureBoxUserPreview.Location = new System.Drawing.Point(692, 63);
+            this.pictureBoxUserPreview.Location = new System.Drawing.Point(686, 95);
             this.pictureBoxUserPreview.Name = "pictureBoxUserPreview";
             this.pictureBoxUserPreview.Size = new System.Drawing.Size(150, 96);
             this.pictureBoxUserPreview.TabIndex = 12;
@@ -230,9 +230,9 @@
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader LikesColumn;
         private System.Windows.Forms.Button AnalyzePostInfluenceExpansionButton;
-        private System.Windows.Forms.PictureBox pictureBoxUserPreview;
         private System.Windows.Forms.Button AnalyzePostInfluencePreservationButton;
         public System.Windows.Forms.TextBox textBoxPostAnalyzerPreview;
+        public System.Windows.Forms.PictureBox pictureBoxUserPreview;
     }
 }
 

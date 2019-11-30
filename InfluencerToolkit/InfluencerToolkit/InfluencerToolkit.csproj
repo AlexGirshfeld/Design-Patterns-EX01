@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LikesComparer.cs" />
+    <Compile Include="PostInfluenceAnalyzer.cs" />
     <Compile Include="SortedPerUserLikesList.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />

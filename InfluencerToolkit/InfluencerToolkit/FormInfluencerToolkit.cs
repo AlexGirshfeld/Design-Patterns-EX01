@@ -31,8 +31,6 @@ namespace InfluencerToolkit
             }
         }
 
-
-
         public FormInfluencerToolkit()
         {
             CurrentAppSettings = new AppSettings();
@@ -87,11 +85,15 @@ namespace InfluencerToolkit
             CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
             UIDataPopulator.PopulateUI();
         }
+        public void DisplayErrorDialog(string i_Message)
+        {
+            MessageBox.Show(i_Message, "Error", MessageBoxButtons.OK);
+        }
 
         private void SortUserLikesButton_Click(object sender, EventArgs e)
         {
             int likes = 5;
-            string userName;
+            string userName ="alex";
             SortedPerUserLikesList sortedsetRecivedFromDataAggregator = new SortedPerUserLikesList();
             foreach (Tuple<User, int> userLikesTuple in sortedsetRecivedFromDataAggregator)
             {
