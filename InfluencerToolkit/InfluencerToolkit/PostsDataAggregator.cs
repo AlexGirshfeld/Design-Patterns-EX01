@@ -46,7 +46,6 @@ namespace InfluencerToolkit
         {
             SortedList<User, int> m_usersSortedByLikes = new SortedList<User, int>();
             Dictionary<User, int> m_dictionaryToSort = AggregateUserLikes();
-            SortedDictionary<int, User> m_reverseDictionaryValues = new SortedDictionary<int, User>();
             m_dictionaryToSort.OrderBy(x => x.Value);
 
             foreach(KeyValuePair<User, int> userLikesCount in m_dictionaryToSort)
