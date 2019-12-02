@@ -62,5 +62,22 @@ namespace InfluencerToolkit
 
             return postInfluenceLevel;
         }
+
+        public int GetPostInfluenceIncrease(Post i_post)
+        {
+            int postInfluenceIncreaseLevel = 0;
+            int counter = this.m_avarageNumberOfLikesPerPost;
+
+            foreach (KeyValuePair<User, int> userLikesPair in this.m_UsersSortedByLikes)
+            {
+                if (i_post.LikedBy.Contains(userLikesPair.Key))
+                {
+                    postInfluenceIncreaseLevel += (userLikesPair.Value / (this.m_avarageNumberOfLikesPerPost + counter)); 
+                }
+                counter--;
+            }
+
+            return postInfluenceIncreaseLevel;
+        }
     }
 }
