@@ -30,13 +30,13 @@ namespace InfluencerToolkit
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
             this.checkBoxRememberUser.Checked = CurrentAppSettings.RememberUser;
-            UIDataPopulator= new UIPopulator(this);
+            UIDataPopulator = new UIPopulator(this);
         }
 
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            if (!String.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
+            if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
                 LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
                 UIDataPopulator.PopulateUI();
@@ -60,7 +60,7 @@ namespace InfluencerToolkit
 
         private void loginUser()
         {
-            String[] permissions = 
+            string[] permissions = 
                 {
                 "public_profile",
                 "user_birthday",
@@ -80,7 +80,7 @@ namespace InfluencerToolkit
                 "publish_to_groups",
                 "groups_access_member_info"
                 };
-            if (!String.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
+            if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
             {
                 LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
             }
@@ -112,14 +112,14 @@ namespace InfluencerToolkit
 
         private void AnalyzePostInfluenceExpansionButton_Click(object sender, EventArgs e)
         {
-            //InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
-            //int postInfluenceLevel = influenceAnalyser.GetPostInfluenceLevel();
+            // InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
+            // int postInfluenceLevel = influenceAnalyser.GetPostInfluenceLevel();
         }
 
         private void AnalyzePostInfluencePreservationButton_Click(object sender, EventArgs e)
         {
-            //InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
-            //int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving();
+            // InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
+            // int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving();
         }
 
         private void UserNameLikesListView_SelectedIndexChanged(object sender, EventArgs e)

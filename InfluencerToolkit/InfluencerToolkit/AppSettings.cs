@@ -26,6 +26,21 @@ namespace InfluencerToolkit
             LastAccesToken = null;
         }
 
+        public static AppSettings LoadFromFileOrInit()
+        {
+            AppSettings storedAppSettings = new AppSettings();
+            if (File.Exists(m_SettingsFilePath))
+            {
+                using (Stream stream = new FileStream(m_SettingsFilePath, FileMode.Open))
+                {
+                    XmlSerializer serializer = new XmlSerializer(storedAppSettings.GetType());
+                    storedAppSettings = serializer.Deserialize(stream) as AppSettings;
+                }
+            }
+
+            return storedAppSettings;
+        }
+
         public void SaveToFile()
         {
             FileIOPermission fileIOPerm = new FileIOPermission(FileIOPermissionAccess.Write, m_SettingsFilePath);
@@ -47,19 +62,6 @@ namespace InfluencerToolkit
             }
         }
 
-        public static AppSettings LoadFromFileOrInit()
-        {
-            AppSettings storedAppSettings = new AppSettings();
-            if (File.Exists(m_SettingsFilePath))
-            {
-                using (Stream stream = new FileStream(m_SettingsFilePath, FileMode.Open))
-                {
-                    XmlSerializer serializer = new XmlSerializer(storedAppSettings.GetType());
-                    storedAppSettings = serializer.Deserialize(stream) as AppSettings;
-                }
-            }
 
-            return storedAppSettings;
-        }
     }
 }

@@ -5,7 +5,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
-    class SortedPerUserLikesList : SortedSet <Tuple<User, int>>
+    public class SortedPerUserLikesList : SortedSet <Tuple<User, int>>
     {
     }
 }

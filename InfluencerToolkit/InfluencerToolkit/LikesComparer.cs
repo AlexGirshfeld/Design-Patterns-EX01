@@ -5,7 +5,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
-    class LikesComparer : IComparer<Tuple<User, int>>
+    public class LikesComparer : IComparer<Tuple<User, int>>
     {
         public int Compare(Tuple<User, int> i_SetmemberA, Tuple<User, int> i_SetMemberB)
         {
