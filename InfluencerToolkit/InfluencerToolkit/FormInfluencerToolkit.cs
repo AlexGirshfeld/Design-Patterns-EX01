@@ -17,7 +17,7 @@ namespace InfluencerToolkit
         {
             get
             {
-                return "787802105015306";
+                return "3287703227971417";
             }
         }
 
@@ -28,6 +28,7 @@ namespace InfluencerToolkit
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
             this.checkBoxRememberUser.Checked = CurrentAppSettings.RememberUser;
+            UIDataPopulator= new UIPopulator(this);
         }
         protected override void OnShown(EventArgs e)
         {
@@ -46,24 +47,33 @@ namespace InfluencerToolkit
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            var loginThread = new Thread(loginAndInitUserUI);
+            var loginThread = new Thread(loginUser);
             loginThread.SetApartmentState(ApartmentState.STA);
             loginThread.Start();
-
+            UIDataPopulator.PopulateUI();
         }
 
-        private void loginAndInitUserUI()
+        private void loginUser()
         {
             String[] permissions = {"public_profile",
-                     "user_photos",
-                     "user_albums",
-                     "publish_actions",
-                      "user_events",
-                     "user_posts",
-                     "user_friends",
-                     "user_status"};
+                "user_birthday",
+                "user_friends",
+                "user_events",
+                "user_posts",
+                "user_likes",
+                "user_photos",
+                "user_posts",
+                "user_gender",
+                "email",
+                "publish_to_groups",
+                "user_age_range",
+                "user_link",
+                "user_tagged_places",
+                "user_videos",
+                "publish_to_groups",
+                "groups_access_member_info"};
 
-            UIDataPopulator = new UIPopulator(this);
+            
             if (!String.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
             {
                 LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
@@ -73,8 +83,10 @@ namespace InfluencerToolkit
                 LoginResult = FacebookService.Login(AppID, permissions);
             }
             CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
-            UIDataPopulator.PopulateUI();
+            
         }
+
+
         public void DisplayErrorDialog(string i_Message)
         {
             MessageBox.Show(i_Message, "Error", MessageBoxButtons.OK);
@@ -123,10 +135,6 @@ namespace InfluencerToolkit
             CurrentAppSettings.RememberUser = checkBoxRememberUser.Checked;
         }
 
-        private void FormInfluencerToolkit_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void FormInfluencerToolkit_ResizeEnd(object sender, EventArgs e)
         {

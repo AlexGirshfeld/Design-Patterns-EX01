@@ -208,7 +208,6 @@
             this.Controls.Add(this.loginButton);
             this.Name = "FormInfluencerToolkit";
             this.Text = "Influencers Toolkit";
-            this.Load += new System.EventHandler(this.FormInfluencerToolkit_Load);
             this.ResizeEnd += new System.EventHandler(this.FormInfluencerToolkit_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).EndInit();

@@ -41,7 +41,6 @@ namespace InfluencerToolkit
                      serializer.Serialize(stream, this);
                  }
             }
-
         }
 
         public static AppSettings LoadFromFileOrInit()

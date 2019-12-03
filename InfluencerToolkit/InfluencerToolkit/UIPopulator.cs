@@ -44,7 +44,7 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture \n Advanced:{0}", e.Message));
             }
 
         }
@@ -65,7 +65,7 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post\n Advanced:{0}", e.Message));
             }
         }
 
@@ -80,7 +80,7 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post:{0}",e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}",e.Message));
             }
         }
 
@@ -94,10 +94,18 @@ namespace InfluencerToolkit
 
         private void fetchPosts()
         {
-            foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
+            try
             {
-                m_FormToPopulate.listBoxPosts.Items.Add(post.Name);
+                foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
+                {
+                    m_FormToPopulate.listBoxPosts.Items.Add(post.Name);
+                }
             }
+            catch(ArgumentNullException nullException)
+            {
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Facebook API dosent allow posts so we cannot show posts \n Advanced:{0}", nullException.Message));
+            }
+
         }
 
         private void fetchFriends()
