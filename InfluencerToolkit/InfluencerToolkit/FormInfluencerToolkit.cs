@@ -102,6 +102,7 @@ namespace InfluencerToolkit
             {
                 ListViewItem item = new ListViewItem(userName);
                 item.SubItems.Add(likes.ToString());
+                UserNameLikesListView.Items.Add(item);
             }
             
         }

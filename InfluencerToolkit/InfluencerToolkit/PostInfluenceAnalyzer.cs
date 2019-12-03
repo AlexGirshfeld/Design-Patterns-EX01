@@ -21,8 +21,9 @@ namespace InfluencerToolkit
             Post postToReturn = i_User.Posts.Find(x => x.Name == i_PostName);
             CurrentPostToAnalyze = postToReturn;
             return postToReturn;
-
         }
+
+
 
     }
 }
