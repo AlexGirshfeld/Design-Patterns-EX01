@@ -49,11 +49,11 @@ namespace InfluencerToolkit
 
         }
 
-        public void SetAndPreviewPostToAnalyze(string i_postName)
+        public void SetAndPreviewPostToAnalyze(string i_PostMessage)
         {
             try
             {
-                Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyzeByPostName(i_postName, m_FormToPopulate.LoginResult.LoggedInUser);
+                Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyzeByPostName(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
                 if (postToPreviewAndAnalyze == null)
                 {
                     m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
@@ -99,17 +99,9 @@ namespace InfluencerToolkit
                 foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
                 {
                     if (post.Message != null)
-                    {
+                    { 
                         m_FormToPopulate.listBoxPosts.Items.Add(post.Message);
                     }
-                    else if (post.Caption != null)
-                        {
-                        m_FormToPopulate.listBoxPosts.Items.Add(post.Caption);
-                        }
-                        else
-                        {
-                        m_FormToPopulate.listBoxPosts.Items.Add($"[{post.Type}]");
-                        }
                 }
             }
             catch(ArgumentNullException nullException)

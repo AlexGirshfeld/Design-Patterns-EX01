@@ -16,9 +16,9 @@ namespace InfluencerToolkit
         {
             CurrentPostToAnalyze = null;  
         }
-        public Post FetchSetCurrentPostToAnalyzeByPostName(string i_PostName, User i_User)
+        public Post FetchSetCurrentPostToAnalyzeByPostName(string i_PostMessage, User i_User)
         {
-            Post postToReturn = i_User.Posts.Find(x => x.Name == i_PostName);
+            Post postToReturn = i_User.Posts.Find(x => x.Message == i_PostMessage);
             CurrentPostToAnalyze = postToReturn;
             return postToReturn;
         }
