@@ -53,7 +53,7 @@ namespace InfluencerToolkit
         {
             try
             {
-                Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyzeByPostName(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
+                Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyze(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
                 if (postToPreviewAndAnalyze == null)
                 {
                     m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
