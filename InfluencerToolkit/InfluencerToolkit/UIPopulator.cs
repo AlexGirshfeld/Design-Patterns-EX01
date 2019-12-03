@@ -1,13 +1,12 @@
 ﻿using System;
 using FacebookWrapper.ObjectModel;
-
 namespace InfluencerToolkit
 {
     public class UIPopulator
     {
         private FormInfluencerToolkit m_FormToPopulate;
         private PostInfluenceAnalyzer m_InfluenceAnalyzer;
-       
+
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
@@ -28,7 +27,6 @@ namespace InfluencerToolkit
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
             }
         }
-
         public void SetPreviewUserOutOfSortedListByNames(string i_UserName)
         {
             try
@@ -43,10 +41,11 @@ namespace InfluencerToolkit
                     displayPreviewProfilePicture(userToPreview);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture \n Advanced:{0}", e.Message));
             }
+
         }
 
         public void SetAndPreviewPostToAnalyze(string i_PostMessage)
@@ -54,21 +53,23 @@ namespace InfluencerToolkit
             try
             {
                 Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyze(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
-
                 if (postToPreviewAndAnalyze == null)
                 {
                     m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
                 }
                 else
                 {
+                    getPostToAnalyse = postToPreviewAndAnalyze;
                     displayPostToPreview(postToPreviewAndAnalyze);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post\n Advanced:{0}", e.Message));
             }
         }
+
+        public Post getPostToAnalyse { get; private set; }
 
         private void displayPostToPreview(Post i_Post)
         {
@@ -81,7 +82,7 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}",e.Message));
             }
         }
 
@@ -102,6 +103,7 @@ namespace InfluencerToolkit
                     if (post.Message != null)
                     { 
                         m_FormToPopulate.listBoxPosts.Items.Add(post.Message);
+                        
                     }
                 }
             }
@@ -109,6 +111,7 @@ namespace InfluencerToolkit
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your posts \n Advanced:{0}", nullException.Message));
             }
+
         }
 
         private void fetchFriends()
@@ -123,12 +126,13 @@ namespace InfluencerToolkit
         {
             m_FormToPopulate.pictureBoxProfile.ImageLocation = m_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
             m_FormToPopulate.pictureBoxProfile.LoadAsync(m_FormToPopulate.pictureBoxProfile.ImageLocation);
-            m_FormToPopulate.Text = string.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
+            m_FormToPopulate.Text = String.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
         }
 
         private void displayPreviewProfilePicture(User i_UserToDisplay)
         {
             m_FormToPopulate.pictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
+
     }
 }
