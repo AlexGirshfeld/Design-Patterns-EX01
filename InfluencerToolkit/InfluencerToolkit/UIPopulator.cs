@@ -98,12 +98,23 @@ namespace InfluencerToolkit
             {
                 foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
                 {
-                    m_FormToPopulate.listBoxPosts.Items.Add(post.Name);
+                    if (post.Message != null)
+                    {
+                        m_FormToPopulate.listBoxPosts.Items.Add(post.Message);
+                    }
+                    else if (post.Caption != null)
+                        {
+                        m_FormToPopulate.listBoxPosts.Items.Add(post.Caption);
+                        }
+                        else
+                        {
+                        m_FormToPopulate.listBoxPosts.Items.Add($"[{post.Type}]");
+                        }
                 }
             }
             catch(ArgumentNullException nullException)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Facebook API dosent allow posts so we cannot show posts \n Advanced:{0}", nullException.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your posts \n Advanced:{0}", nullException.Message));
             }
 
         }

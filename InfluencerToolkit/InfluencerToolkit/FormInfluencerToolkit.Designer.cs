@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.loginButton = new System.Windows.Forms.Button();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
@@ -45,6 +44,8 @@
             this.pictureBoxUserPreview = new System.Windows.Forms.PictureBox();
             this.AnalyzePostInfluencePreservationButton = new System.Windows.Forms.Button();
             this.textBoxPostAnalyzerPreview = new System.Windows.Forms.TextBox();
+            this.GradeLabel = new System.Windows.Forms.Label();
+            this.gradeTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.loginButton.Location = new System.Drawing.Point(12, 12);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(108, 26);
+            this.loginButton.Size = new System.Drawing.Size(108, 55);
             this.loginButton.TabIndex = 0;
             this.loginButton.Text = "Login to Facbook";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -66,15 +67,6 @@
             this.pictureBoxProfile.Size = new System.Drawing.Size(93, 82);
             this.pictureBoxProfile.TabIndex = 1;
             this.pictureBoxProfile.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 24);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Logout";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // checkBoxRememberUser
             // 
@@ -188,11 +180,29 @@
             this.textBoxPostAnalyzerPreview.TabIndex = 15;
             this.textBoxPostAnalyzerPreview.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
+            // GradeLabel
+            // 
+            this.GradeLabel.AutoSize = true;
+            this.GradeLabel.Location = new System.Drawing.Point(543, 339);
+            this.GradeLabel.Name = "GradeLabel";
+            this.GradeLabel.Size = new System.Drawing.Size(83, 13);
+            this.GradeLabel.TabIndex = 16;
+            this.GradeLabel.Text = "InfluenceGrade:";
+            // 
+            // gradeTextBox
+            // 
+            this.gradeTextBox.Location = new System.Drawing.Point(543, 359);
+            this.gradeTextBox.Name = "gradeTextBox";
+            this.gradeTextBox.Size = new System.Drawing.Size(120, 20);
+            this.gradeTextBox.TabIndex = 17;
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 570);
+            this.Controls.Add(this.gradeTextBox);
+            this.Controls.Add(this.GradeLabel);
             this.Controls.Add(this.textBoxPostAnalyzerPreview);
             this.Controls.Add(this.AnalyzePostInfluencePreservationButton);
             this.Controls.Add(this.pictureBoxUserPreview);
@@ -203,7 +213,6 @@
             this.Controls.Add(this.listBoxPosts);
             this.Controls.Add(this.listBoxAlbums);
             this.Controls.Add(this.checkBoxRememberUser);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBoxProfile);
             this.Controls.Add(this.loginButton);
             this.Name = "FormInfluencerToolkit";
@@ -219,7 +228,6 @@
         #endregion
 
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBoxRememberUser;
         public System.Windows.Forms.PictureBox pictureBoxProfile;
         public System.Windows.Forms.ListBox listBoxAlbums;
@@ -234,6 +242,8 @@
         private System.Windows.Forms.Button AnalyzePostInfluencePreservationButton;
         public System.Windows.Forms.TextBox textBoxPostAnalyzerPreview;
         public System.Windows.Forms.PictureBox pictureBoxUserPreview;
+        private System.Windows.Forms.Label GradeLabel;
+        private System.Windows.Forms.TextBox gradeTextBox;
     }
 }
 

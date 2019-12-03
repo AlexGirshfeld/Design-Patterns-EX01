@@ -50,6 +50,7 @@ namespace InfluencerToolkit
             var loginThread = new Thread(loginUser);
             loginThread.SetApartmentState(ApartmentState.STA);
             loginThread.Start();
+            loginThread.Join();
             UIDataPopulator.PopulateUI();
         }
 
@@ -101,7 +102,6 @@ namespace InfluencerToolkit
             {
                 ListViewItem item = new ListViewItem(userName);
                 item.SubItems.Add(likes.ToString());
-
             }
             
         }
