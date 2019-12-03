@@ -9,9 +9,13 @@ namespace InfluencerToolkit
     public class AppSettings
     {
         public static string m_SettingsFilePath = @"C:\Users\Public\InfluencerAppSettings.xml";
+        
         public Point LastWindowLocation { get; set; }
+        
         public Size LastWindowSize { get; set; }
+        
         public bool RememberUser { get; set; }
+        
         public string LastAccesToken { get; set; }
 
         private AppSettings()
@@ -54,9 +58,8 @@ namespace InfluencerToolkit
                     storedAppSettings = serializer.Deserialize(stream) as AppSettings;
                 }
             }
+
             return storedAppSettings;
-
         }
-
     }
 }

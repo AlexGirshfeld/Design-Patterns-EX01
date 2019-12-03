@@ -7,8 +7,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
-    
-    class PostInfluenceAnalyzer
+    public class PostInfluenceAnalyzer
     {
         public Post CurrentPostToAnalyze { get; set; }
 
@@ -16,14 +15,12 @@ namespace InfluencerToolkit
         {
             CurrentPostToAnalyze = null;  
         }
-        public Post FetchSetCurrentPostToAnalyzeByPostName(string i_PostMessage, User i_User)
+
+        public Post FetchSetCurrentPostToAnalyze(string i_PostMessage, User i_User)
         {
             Post postToReturn = i_User.Posts.Find(x => x.Message == i_PostMessage);
             CurrentPostToAnalyze = postToReturn;
             return postToReturn;
         }
-
-
-
     }
 }

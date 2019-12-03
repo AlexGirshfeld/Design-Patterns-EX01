@@ -1,5 +1,6 @@
 ﻿using System;
 using FacebookWrapper.ObjectModel;
+
 namespace InfluencerToolkit
 {
     public class UIPopulator
@@ -7,7 +8,6 @@ namespace InfluencerToolkit
         private FormInfluencerToolkit m_FormToPopulate;
         private PostInfluenceAnalyzer m_InfluenceAnalyzer;
        
-
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
@@ -28,6 +28,7 @@ namespace InfluencerToolkit
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
             }
         }
+
         public void SetPreviewUserOutOfSortedListByNames(string i_UserName)
         {
             try
@@ -46,7 +47,6 @@ namespace InfluencerToolkit
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture \n Advanced:{0}", e.Message));
             }
-
         }
 
         public void SetAndPreviewPostToAnalyze(string i_PostMessage)
@@ -54,6 +54,7 @@ namespace InfluencerToolkit
             try
             {
                 Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyze(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
+
                 if (postToPreviewAndAnalyze == null)
                 {
                     m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
@@ -108,7 +109,6 @@ namespace InfluencerToolkit
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your posts \n Advanced:{0}", nullException.Message));
             }
-
         }
 
         private void fetchFriends()
@@ -130,6 +130,5 @@ namespace InfluencerToolkit
         {
             m_FormToPopulate.pictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
-
     }
 }

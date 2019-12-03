@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using FacebookWrapper.ObjectModel;
 using System.Linq;
 
-
 namespace InfluencerToolkit
 {
     public class PostsDataAggregator
@@ -12,7 +11,6 @@ namespace InfluencerToolkit
         private User m_user;
         private FacebookObjectCollection<Post> m_currentUserPostsCollection;
         private int m_avargeCountOfLikesPerPost;
-
 
         public PostsDataAggregator(User i_user)
         {
@@ -31,13 +29,16 @@ namespace InfluencerToolkit
                     if(m_usersLikesCount.ContainsKey(user))
                     {
                         m_usersLikesCount[user]++;
-                    } else
+                    } 
+                    else
                     {
                         m_usersLikesCount.Add(user, 1);
                     }
                 }
+
                 m_avargeCountOfLikesPerPost += post.LikedBy.Count;
             }
+
             m_avargeCountOfLikesPerPost /= m_currentUserPostsCollection.Count;
             return m_usersLikesCount;
         }
@@ -58,15 +59,16 @@ namespace InfluencerToolkit
 
         public int AvarageCountOfLikesPerPost
         {
-            get { AggregateUserLikes();
-                  return m_avargeCountOfLikesPerPost; }
+            get 
+            { 
+                AggregateUserLikes();
+                return m_avargeCountOfLikesPerPost;
+            }
         }
 
         public SortedList<User, int> UsersSortedByLikes()
         {
             return SortUsersByLikesCount();
         }
-
-
     }
 }
