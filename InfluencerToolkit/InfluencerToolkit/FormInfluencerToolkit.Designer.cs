@@ -31,28 +31,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.loginButton = new System.Windows.Forms.Button();
-            this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
+            this.PictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
-            this.listBoxAlbums = new System.Windows.Forms.ListBox();
-            this.listBoxPosts = new System.Windows.Forms.ListBox();
-            this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.ListBoxAlbums = new System.Windows.Forms.ListBox();
+            this.ListBoxPosts = new System.Windows.Forms.ListBox();
+            this.ListBoxFriends = new System.Windows.Forms.ListBox();
             this.SortUserLikesButton = new System.Windows.Forms.Button();
             this.UserNameLikesListView = new System.Windows.Forms.ListView();
             this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LikesColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.AnalyzePostInfluenceExpansionButton = new System.Windows.Forms.Button();
-            this.pictureBoxUserPreview = new System.Windows.Forms.PictureBox();
+            this.PictureBoxUserPreview = new System.Windows.Forms.PictureBox();
             this.AnalyzePostInfluencePreservationButton = new System.Windows.Forms.Button();
-            this.textBoxPostAnalyzerPreview = new System.Windows.Forms.TextBox();
+            this.TextBoxPostAnalyzerPreview = new System.Windows.Forms.TextBox();
             this.GradeLabel = new System.Windows.Forms.Label();
             this.gradeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // loginButton
@@ -65,13 +65,13 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
-            // pictureBoxProfile
+            // PictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(126, 12);
-            this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(93, 82);
-            this.pictureBoxProfile.TabIndex = 1;
-            this.pictureBoxProfile.TabStop = false;
+            this.PictureBoxProfile.Location = new System.Drawing.Point(126, 12);
+            this.PictureBoxProfile.Name = "PictureBoxProfile";
+            this.PictureBoxProfile.Size = new System.Drawing.Size(93, 82);
+            this.PictureBoxProfile.TabIndex = 1;
+            this.PictureBoxProfile.TabStop = false;
             // 
             // checkBoxRememberUser
             // 
@@ -84,30 +84,30 @@
             this.checkBoxRememberUser.UseVisualStyleBackColor = true;
             this.checkBoxRememberUser.CheckedChanged += new System.EventHandler(this.checkBoxRememberUser_CheckedChanged);
             // 
-            // listBoxAlbums
+            // ListBoxAlbums
             // 
-            this.listBoxAlbums.FormattingEnabled = true;
-            this.listBoxAlbums.Location = new System.Drawing.Point(12, 131);
-            this.listBoxAlbums.Name = "listBoxAlbums";
-            this.listBoxAlbums.Size = new System.Drawing.Size(120, 199);
-            this.listBoxAlbums.TabIndex = 4;
+            this.ListBoxAlbums.FormattingEnabled = true;
+            this.ListBoxAlbums.Location = new System.Drawing.Point(12, 131);
+            this.ListBoxAlbums.Name = "ListBoxAlbums";
+            this.ListBoxAlbums.Size = new System.Drawing.Size(120, 199);
+            this.ListBoxAlbums.TabIndex = 4;
             // 
-            // listBoxPosts
+            // ListBoxPosts
             // 
-            this.listBoxPosts.FormattingEnabled = true;
-            this.listBoxPosts.Location = new System.Drawing.Point(138, 131);
-            this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(120, 199);
-            this.listBoxPosts.TabIndex = 5;
-            this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
+            this.ListBoxPosts.FormattingEnabled = true;
+            this.ListBoxPosts.Location = new System.Drawing.Point(138, 131);
+            this.ListBoxPosts.Name = "ListBoxPosts";
+            this.ListBoxPosts.Size = new System.Drawing.Size(120, 199);
+            this.ListBoxPosts.TabIndex = 5;
+            this.ListBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
             // 
-            // listBoxFriends
+            // ListBoxFriends
             // 
-            this.listBoxFriends.FormattingEnabled = true;
-            this.listBoxFriends.Location = new System.Drawing.Point(264, 131);
-            this.listBoxFriends.Name = "listBoxFriends";
-            this.listBoxFriends.Size = new System.Drawing.Size(120, 199);
-            this.listBoxFriends.TabIndex = 6;
+            this.ListBoxFriends.FormattingEnabled = true;
+            this.ListBoxFriends.Location = new System.Drawing.Point(264, 131);
+            this.ListBoxFriends.Name = "ListBoxFriends";
+            this.ListBoxFriends.Size = new System.Drawing.Size(120, 199);
+            this.ListBoxFriends.TabIndex = 6;
             // 
             // SortUserLikesButton
             // 
@@ -158,13 +158,13 @@
             this.AnalyzePostInfluenceExpansionButton.UseVisualStyleBackColor = true;
             this.AnalyzePostInfluenceExpansionButton.Click += new System.EventHandler(this.AnalyzePostInfluenceExpansionButton_Click);
             // 
-            // pictureBoxUserPreview
+            // PictureBoxUserPreview
             // 
-            this.pictureBoxUserPreview.Location = new System.Drawing.Point(669, 131);
-            this.pictureBoxUserPreview.Name = "pictureBoxUserPreview";
-            this.pictureBoxUserPreview.Size = new System.Drawing.Size(150, 96);
-            this.pictureBoxUserPreview.TabIndex = 12;
-            this.pictureBoxUserPreview.TabStop = false;
+            this.PictureBoxUserPreview.Location = new System.Drawing.Point(669, 131);
+            this.PictureBoxUserPreview.Name = "PictureBoxUserPreview";
+            this.PictureBoxUserPreview.Size = new System.Drawing.Size(150, 96);
+            this.PictureBoxUserPreview.TabIndex = 12;
+            this.PictureBoxUserPreview.TabStop = false;
             // 
             // AnalyzePostInfluencePreservationButton
             // 
@@ -176,13 +176,13 @@
             this.AnalyzePostInfluencePreservationButton.UseVisualStyleBackColor = true;
             this.AnalyzePostInfluencePreservationButton.Click += new System.EventHandler(this.AnalyzePostInfluencePreservationButton_Click);
             // 
-            // textBoxPostAnalyzerPreview
+            // TextBoxPostAnalyzerPreview
             // 
-            this.textBoxPostAnalyzerPreview.Location = new System.Drawing.Point(171, 339);
-            this.textBoxPostAnalyzerPreview.Multiline = true;
-            this.textBoxPostAnalyzerPreview.Name = "textBoxPostAnalyzerPreview";
-            this.textBoxPostAnalyzerPreview.Size = new System.Drawing.Size(366, 96);
-            this.textBoxPostAnalyzerPreview.TabIndex = 15;
+            this.TextBoxPostAnalyzerPreview.Location = new System.Drawing.Point(171, 339);
+            this.TextBoxPostAnalyzerPreview.Multiline = true;
+            this.TextBoxPostAnalyzerPreview.Name = "TextBoxPostAnalyzerPreview";
+            this.TextBoxPostAnalyzerPreview.Size = new System.Drawing.Size(366, 96);
+            this.TextBoxPostAnalyzerPreview.TabIndex = 15;
             // 
             // GradeLabel
             // 
@@ -248,23 +248,23 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gradeTextBox);
             this.Controls.Add(this.GradeLabel);
-            this.Controls.Add(this.textBoxPostAnalyzerPreview);
+            this.Controls.Add(this.TextBoxPostAnalyzerPreview);
             this.Controls.Add(this.AnalyzePostInfluencePreservationButton);
-            this.Controls.Add(this.pictureBoxUserPreview);
+            this.Controls.Add(this.PictureBoxUserPreview);
             this.Controls.Add(this.AnalyzePostInfluenceExpansionButton);
             this.Controls.Add(this.UserNameLikesListView);
             this.Controls.Add(this.SortUserLikesButton);
-            this.Controls.Add(this.listBoxFriends);
-            this.Controls.Add(this.listBoxPosts);
-            this.Controls.Add(this.listBoxAlbums);
+            this.Controls.Add(this.ListBoxFriends);
+            this.Controls.Add(this.ListBoxPosts);
+            this.Controls.Add(this.ListBoxAlbums);
             this.Controls.Add(this.checkBoxRememberUser);
-            this.Controls.Add(this.pictureBoxProfile);
+            this.Controls.Add(this.PictureBoxProfile);
             this.Controls.Add(this.loginButton);
             this.Name = "FormInfluencerToolkit";
             this.Text = "Influencers Toolkit";
             this.ResizeEnd += new System.EventHandler(this.FormInfluencerToolkit_ResizeEnd);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,10 +274,10 @@
 
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.CheckBox checkBoxRememberUser;
-        public System.Windows.Forms.PictureBox pictureBoxProfile;
-        public System.Windows.Forms.ListBox listBoxAlbums;
-        public System.Windows.Forms.ListBox listBoxPosts;
-        public System.Windows.Forms.ListBox listBoxFriends;
+        public System.Windows.Forms.PictureBox PictureBoxProfile;
+        public System.Windows.Forms.ListBox ListBoxAlbums;
+        public System.Windows.Forms.ListBox ListBoxPosts;
+        public System.Windows.Forms.ListBox ListBoxFriends;
         private System.Windows.Forms.Button SortUserLikesButton;
         private System.Windows.Forms.ListView UserNameLikesListView;
         private System.Windows.Forms.ImageList imageList1;
@@ -285,8 +285,8 @@
         private System.Windows.Forms.ColumnHeader LikesColumn;
         private System.Windows.Forms.Button AnalyzePostInfluenceExpansionButton;
         private System.Windows.Forms.Button AnalyzePostInfluencePreservationButton;
-        public System.Windows.Forms.TextBox textBoxPostAnalyzerPreview;
-        public System.Windows.Forms.PictureBox pictureBoxUserPreview;
+        public System.Windows.Forms.TextBox TextBoxPostAnalyzerPreview;
+        public System.Windows.Forms.PictureBox PictureBoxUserPreview;
         private System.Windows.Forms.Label GradeLabel;
         private System.Windows.Forms.TextBox gradeTextBox;
         private System.Windows.Forms.Label label1;

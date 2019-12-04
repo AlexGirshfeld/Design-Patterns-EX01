@@ -130,7 +130,7 @@ namespace InfluencerToolkit
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UIDataPopulator.SetAndPreviewPostToAnalyze(listBoxPosts.SelectedItem.ToString());
+            UIDataPopulator.SetAndPreviewPostToAnalyze(ListBoxPosts.SelectedItem.ToString());
         }
 
         private void checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)

@@ -76,7 +76,7 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_FormToPopulate.textBoxPostAnalyzerPreview.Text = string.Format(
+                m_FormToPopulate.TextBoxPostAnalyzerPreview.Text = string.Format(
                                     @"POSTED AT:{0}{1}CONTENT:{2}",
                                     i_Post?.CreatedTime?.ToString(),
                                     System.Environment.NewLine,
@@ -92,7 +92,7 @@ namespace InfluencerToolkit
         {
             foreach (Album album in m_FormToPopulate.LoginResult.LoggedInUser.Albums)
             {
-                m_FormToPopulate.listBoxAlbums.Items.Add(album.Name);
+                m_FormToPopulate.ListBoxAlbums.Items.Add(album.Name);
             }
         }
 
@@ -104,7 +104,7 @@ namespace InfluencerToolkit
                 {
                     if (post.Message != null)
                     { 
-                        m_FormToPopulate.listBoxPosts.Items.Add(post.Message);
+                        m_FormToPopulate.ListBoxPosts.Items.Add(post.Message);
                     }
                 }
             }
@@ -118,20 +118,20 @@ namespace InfluencerToolkit
         {
             foreach(User friend in m_FormToPopulate.LoginResult.LoggedInUser.Friends)
             {
-                m_FormToPopulate.listBoxPosts.Items.Add(friend.Name);
+                m_FormToPopulate.ListBoxPosts.Items.Add(friend.Name);
             }
         }
 
         private void fetchAvatarAndTitle()
         {
-            m_FormToPopulate.pictureBoxProfile.ImageLocation = m_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
-            m_FormToPopulate.pictureBoxProfile.LoadAsync(m_FormToPopulate.pictureBoxProfile.ImageLocation);
+            m_FormToPopulate.PictureBoxProfile.ImageLocation = m_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
+            m_FormToPopulate.PictureBoxProfile.LoadAsync(m_FormToPopulate.PictureBoxProfile.ImageLocation);
             m_FormToPopulate.Text = string.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
         }
 
         private void displayPreviewProfilePicture(User i_UserToDisplay)
         {
-            m_FormToPopulate.pictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
+            m_FormToPopulate.PictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
     }
 }
