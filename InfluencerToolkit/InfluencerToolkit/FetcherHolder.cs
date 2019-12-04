@@ -11,23 +11,20 @@ namespace InfluencerToolkit
     {
         private readonly FormInfluencerToolkit m_FormToPopulate;
 
-        public Post CurrentPostToAnalyze { get; set; }
-
         public FetcherHolder(FormInfluencerToolkit i_Form)
         {
             m_FormToPopulate = i_Form;
-            CurrentPostToAnalyze = null;  
         }
 
         public Post FetchSetCurrentPostToAnalyze(string i_PostMessage, User i_User)
         {
             Post postToReturn = i_User.Posts.Find(x => x.Message == i_PostMessage);
-            CurrentPostToAnalyze = postToReturn;
             return postToReturn;
         }
 
         public void FetchAlbums()
         {
+            m_FormToPopulate.ListBoxAlbums.Items.Clear();
             foreach (Album album in m_FormToPopulate.LoginResult.LoggedInUser.Albums)
             {
                 m_FormToPopulate.ListBoxAlbums.Items.Add(album.Name);
@@ -36,6 +33,7 @@ namespace InfluencerToolkit
 
        public void FetchPosts()
         {
+            m_FormToPopulate.ListBoxPosts.Items.Clear();
             try
             {
                 foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
@@ -54,6 +52,7 @@ namespace InfluencerToolkit
 
         public void FetchFriends()
         {
+            m_FormToPopulate.ListBoxPosts.Items.Clear();
             foreach (User friend in m_FormToPopulate.LoginResult.LoggedInUser.Friends)
             {
                 m_FormToPopulate.ListBoxPosts.Items.Add(friend.Name);

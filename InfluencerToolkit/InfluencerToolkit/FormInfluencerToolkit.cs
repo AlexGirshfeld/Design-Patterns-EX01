@@ -46,7 +46,15 @@ namespace InfluencerToolkit
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            CurrentAppSettings.SaveToFile();
+            if (checkBoxRememberUser.Checked)
+            {
+                CurrentAppSettings.SaveToFile();
+            }
+            else
+            {
+                CurrentAppSettings = AppSettings.GetDefaultSettings(); 
+                CurrentAppSettings.SaveToFile();
+            }
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -58,9 +66,9 @@ namespace InfluencerToolkit
         }
 
         private void loginUser()
-        {
+        { 
             string[] permissions = 
-                {
+                    {
                 "public_profile",
                 "user_birthday",
                 "user_friends",
@@ -78,17 +86,24 @@ namespace InfluencerToolkit
                 "user_videos",
                 "publish_to_groups",
                 "groups_access_member_info"
-            };
-            if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
+                };
+            try
             {
-                LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
-            }
-            else
-            {
-                LoginResult = FacebookService.Login(AppID, permissions);
-            }
+                if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
+                {
+                    LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
+                }
+                else
+                {
+                    LoginResult = FacebookService.Login(AppID, permissions);
+                }
 
-            CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
+                CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
+            }
+            catch(Exception e)
+            {
+                DisplayErrorDialog(string.Format("Something went wrong in the login process, please try again {0}Advanced:{1}", Environment.NewLine, e.Message));
+            }
         }
 
         public void DisplayErrorDialog(string i_Message)
@@ -110,7 +125,7 @@ namespace InfluencerToolkit
         {
             UIDataPopulator.ShowInfluencePreservationGrade();
             InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
-            int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.getPostToAnalyse);
+            int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.PostToAnalyse);
             GradeTextBox.Text = postInfluenceLevel.ToString();
         }
 

@@ -9,13 +9,15 @@ namespace InfluencerToolkit
     {
         private FormInfluencerToolkit m_FormToPopulate;
         private FetcherHolder m_FetcherHolder;
+        private InfluenceAnalyser m_influenceAnalyser;
 
-        public Post getPostToAnalyse { get; private set; }
+        public Post PostToAnalyse { get; private set; }
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
             m_FetcherHolder = new FetcherHolder(this.m_FormToPopulate);
+            m_influenceAnalyser = null; 
         }
 
         public void PopulateUI()
@@ -67,16 +69,16 @@ namespace InfluencerToolkit
 
         public void ShowInfluenceExpansionGrade()
         {
-            InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
-            int postInfluenceLevel = influenceAnalyser.GetPostInfluenceLevel(getPostToAnalyse);
-            this.m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+            m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+            int postInfluenceLevel = m_influenceAnalyser.GetPostInfluenceLevel(PostToAnalyse);
+            m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
         }
 
         public void ShowInfluencePreservationGrade()
         {
-                InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
-                int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(getPostToAnalyse);
-                m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+            m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+            int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(PostToAnalyse);
+            m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
         }
 
         public void SetAndPreviewPostToAnalyze(string i_PostMessage)
@@ -90,7 +92,7 @@ namespace InfluencerToolkit
                 }
                 else
                 {
-                    getPostToAnalyse = postToPreviewAndAnalyze;
+                    PostToAnalyse = postToPreviewAndAnalyze;
                     displayPostToPreview(postToPreviewAndAnalyze);
                 }
             }

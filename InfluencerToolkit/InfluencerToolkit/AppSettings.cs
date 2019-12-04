@@ -21,7 +21,7 @@ namespace InfluencerToolkit
         private AppSettings()
         {
             LastWindowLocation = new Point(30, 80);
-            LastWindowSize = new Size(500, 800);
+            LastWindowSize = new Size(900, 540);
             RememberUser = false;
             LastAccesToken = null;
         }
@@ -39,6 +39,11 @@ namespace InfluencerToolkit
             }
 
             return storedAppSettings;
+        }
+        
+        public static AppSettings GetDefaultSettings()
+        {
+            return new AppSettings();
         }
 
         public void SaveToFile()
