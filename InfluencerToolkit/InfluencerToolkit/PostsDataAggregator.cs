@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using FacebookWrapper.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
+using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
@@ -89,6 +87,7 @@ namespace InfluencerToolkit
                 return m_AvarageNumberOfLikesGivenToMyPostsPerUser;
             }
         }
+
         public int TotalLikes
         {
             get

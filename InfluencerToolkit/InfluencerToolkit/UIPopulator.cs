@@ -1,5 +1,6 @@
 ﻿using System;
 using FacebookWrapper.ObjectModel;
+
 namespace InfluencerToolkit
 {
     public class UIPopulator
@@ -27,6 +28,7 @@ namespace InfluencerToolkit
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
             }
         }
+
         public void SetPreviewUserOutOfSortedListByNames(string i_UserName)
         {
             try
@@ -45,7 +47,6 @@ namespace InfluencerToolkit
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture \n Advanced:{0}", e.Message));
             }
-
         }
 
         public void SetAndPreviewPostToAnalyze(string i_PostMessage)
@@ -75,14 +76,15 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_FormToPopulate.textBoxPostAnalyzerPreview.Text = string.Format(@"POSTED AT:{0}{1}CONTENT:{2}",
+                m_FormToPopulate.textBoxPostAnalyzerPreview.Text = string.Format(
+                                    @"POSTED AT:{0}{1}CONTENT:{2}",
                                     i_Post?.CreatedTime?.ToString(),
                                     System.Environment.NewLine,
                                     i_Post?.Message);
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}",e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}", e.Message));
             }
         }
 
@@ -103,7 +105,6 @@ namespace InfluencerToolkit
                     if (post.Message != null)
                     { 
                         m_FormToPopulate.listBoxPosts.Items.Add(post.Message);
-                        
                     }
                 }
             }
@@ -111,7 +112,6 @@ namespace InfluencerToolkit
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your posts \n Advanced:{0}", nullException.Message));
             }
-
         }
 
         private void fetchFriends()
@@ -126,13 +126,12 @@ namespace InfluencerToolkit
         {
             m_FormToPopulate.pictureBoxProfile.ImageLocation = m_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
             m_FormToPopulate.pictureBoxProfile.LoadAsync(m_FormToPopulate.pictureBoxProfile.ImageLocation);
-            m_FormToPopulate.Text = String.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
+            m_FormToPopulate.Text = string.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
         }
 
         private void displayPreviewProfilePicture(User i_UserToDisplay)
         {
             m_FormToPopulate.pictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
-
     }
 }

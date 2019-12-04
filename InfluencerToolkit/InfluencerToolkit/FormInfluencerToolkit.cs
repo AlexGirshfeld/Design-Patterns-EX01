@@ -5,15 +5,16 @@ using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
-
-
 namespace InfluencerToolkit
 {
     public partial class FormInfluencerToolkit : Form
     {
         public AppSettings CurrentAppSettings { get; set; }
+
         public LoginResult LoginResult { get; set; }
+
         public UIPopulator UIDataPopulator { get; set; }
+
         public string AppID
         {
             get
@@ -29,17 +30,19 @@ namespace InfluencerToolkit
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
             this.checkBoxRememberUser.Checked = CurrentAppSettings.RememberUser;
-            UIDataPopulator= new UIPopulator(this);
+            UIDataPopulator = new UIPopulator(this);
         }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            if (!String.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
+            if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
                 LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
                 UIDataPopulator.PopulateUI();
             }
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
@@ -56,7 +59,9 @@ namespace InfluencerToolkit
 
         private void loginUser()
         {
-            String[] permissions = {"public_profile",
+            string[] permissions = 
+                {
+                "public_profile",
                 "user_birthday",
                 "user_friends",
                 "user_events",
@@ -72,10 +77,9 @@ namespace InfluencerToolkit
                 "user_tagged_places",
                 "user_videos",
                 "publish_to_groups",
-                "groups_access_member_info"};
-
-            
-            if (!String.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
+                "groups_access_member_info"
+            };
+            if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
             {
                 LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
             }
@@ -83,10 +87,9 @@ namespace InfluencerToolkit
             {
                 LoginResult = FacebookService.Login(AppID, permissions);
             }
-            CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
-            
-        }
 
+            CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
+        }
 
         public void DisplayErrorDialog(string i_Message)
         {
@@ -106,8 +109,6 @@ namespace InfluencerToolkit
             }   
         }
 
-
-
         private void AnalyzePostInfluenceExpansionButton_Click(object sender, EventArgs e)
         {
             InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
@@ -121,6 +122,7 @@ namespace InfluencerToolkit
             int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.getPostToAnalyse);
             gradeTextBox.Text = postInfluenceLevel.ToString();
         }
+
         private void UserNameLikesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             UIDataPopulator.SetPreviewUserOutOfSortedListByNames(UserNameLikesListView.SelectedItems.ToString());
@@ -128,7 +130,6 @@ namespace InfluencerToolkit
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             UIDataPopulator.SetAndPreviewPostToAnalyze(listBoxPosts.SelectedItem.ToString());
         }
 
@@ -136,7 +137,6 @@ namespace InfluencerToolkit
         {
             CurrentAppSettings.RememberUser = checkBoxRememberUser.Checked;
         }
-
 
         private void FormInfluencerToolkit_ResizeEnd(object sender, EventArgs e)
         {

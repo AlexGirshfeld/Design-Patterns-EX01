@@ -1,6 +1,6 @@
 ﻿namespace InfluencerToolkit
 {
-    partial class FormInfluencerToolkit
+    public partial class FormInfluencerToolkit
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
