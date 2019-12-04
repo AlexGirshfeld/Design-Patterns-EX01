@@ -8,24 +8,24 @@ namespace InfluencerToolkit
     public class UIPopulator
     {
         private FormInfluencerToolkit m_FormToPopulate;
-        private PostToAnalyzeHolder m_InfluenceAnalyzer;
+        private FetcherHolder m_FetcherHolder;
 
         public Post getPostToAnalyse { get; private set; }
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
-            m_InfluenceAnalyzer = new PostToAnalyzeHolder();
+            m_FetcherHolder = new FetcherHolder(this.m_FormToPopulate);
         }
 
         public void PopulateUI()
         {
             try
             {
-                fetchAvatarAndTitle();
-                fetchAlbums();
-                fetchFriends();
-                fetchPosts();
+                m_FetcherHolder.FetchAvatarAndTitle();
+                m_FetcherHolder.FetchAlbums();
+                m_FetcherHolder.FetchFriends();
+                m_FetcherHolder.FetchPosts();
             }
             catch (Exception e)
             {
@@ -44,7 +44,7 @@ namespace InfluencerToolkit
                 }
                 else
                 {
-                    displayPreviewProfilePicture(userToPreview);
+                    m_FetcherHolder.DisplayPreviewProfilePicture(userToPreview);
                 }
             }
             catch (Exception e)
@@ -83,7 +83,7 @@ namespace InfluencerToolkit
         {
             try
             {
-                Post postToPreviewAndAnalyze = m_InfluenceAnalyzer.FetchSetCurrentPostToAnalyze(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
+                Post postToPreviewAndAnalyze = m_FetcherHolder.FetchSetCurrentPostToAnalyze(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
                 if (postToPreviewAndAnalyze == null)
                 {
                     m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
@@ -114,52 +114,6 @@ namespace InfluencerToolkit
             {
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}", e.Message));
             }
-        }
-
-        private void fetchAlbums()
-        {
-            foreach (Album album in m_FormToPopulate.LoginResult.LoggedInUser.Albums)
-            {
-                m_FormToPopulate.ListBoxAlbums.Items.Add(album.Name);
-            }
-        }
-
-        private void fetchPosts()
-        {
-            try
-            {
-                foreach (Post post in m_FormToPopulate.LoginResult.LoggedInUser.Posts)
-                {
-                    if (post.Message != null)
-                    { 
-                        m_FormToPopulate.ListBoxPosts.Items.Add(post.Message);
-                    }
-                }
-            }
-            catch(ArgumentNullException nullException)
-            {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your posts \n Advanced:{0}", nullException.Message));
-            }
-        }
-
-        private void fetchFriends()
-        {
-            foreach(User friend in m_FormToPopulate.LoginResult.LoggedInUser.Friends)
-            {
-                m_FormToPopulate.ListBoxPosts.Items.Add(friend.Name);
-            }
-        }
-
-        private void fetchAvatarAndTitle()
-        {
-            m_FormToPopulate.PictureBoxProfile.ImageLocation = m_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
-            m_FormToPopulate.PictureBoxProfile.LoadAsync(m_FormToPopulate.PictureBoxProfile.ImageLocation);
-            m_FormToPopulate.Text = string.Format("Welcome {0} {1}", m_FormToPopulate.LoginResult.LoggedInUser.FirstName, m_FormToPopulate.LoginResult.LoggedInUser.LastName);
-        }
-
-        private void displayPreviewProfilePicture(User i_UserToDisplay)
-        {
-            m_FormToPopulate.PictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
     }
 }
