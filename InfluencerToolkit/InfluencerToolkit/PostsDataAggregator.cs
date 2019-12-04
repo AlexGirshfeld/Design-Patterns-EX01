@@ -11,6 +11,8 @@ namespace InfluencerToolkit
         private User m_user;
         private FacebookObjectCollection<Post> m_currentUserPostsCollection;
         private int m_avargeCountOfLikesPerPost;
+        private int m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+        private int m_TotalNumberOfLikesRecievedInAllPosts;
 
         public PostsDataAggregator(User i_user)
         {
@@ -21,12 +23,14 @@ namespace InfluencerToolkit
         private Dictionary<User, int> AggregateUserLikes()
         {
             Dictionary<User, int> m_usersLikesCount = new Dictionary<User, int>();
+            m_TotalNumberOfLikesRecievedInAllPosts = 0;
 
             foreach(Post post in this.m_currentUserPostsCollection)
             {
                 foreach(User user in post.LikedBy)
                 {
-                    if(m_usersLikesCount.ContainsKey(user))
+                    m_TotalNumberOfLikesRecievedInAllPosts++;
+                    if (m_usersLikesCount.ContainsKey(user))
                     {
                         m_usersLikesCount[user]++;
                     } 
@@ -38,9 +42,20 @@ namespace InfluencerToolkit
 
                 m_avargeCountOfLikesPerPost += post.LikedBy.Count;
             }
-
+            
             m_avargeCountOfLikesPerPost /= m_currentUserPostsCollection.Count;
             return m_usersLikesCount;
+        }
+
+        private int calculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
+        {
+            int avarageLikes = 0;
+            foreach(KeyValuePair<User, int> userLikesPair in i_UserLikesDict)
+            {
+                avarageLikes += userLikesPair.Value;
+            }
+
+            return avarageLikes / i_UserLikesDict.Count;
         }
 
         private SortedList<User, int> SortUsersByLikesCount()
@@ -63,6 +78,23 @@ namespace InfluencerToolkit
             { 
                 AggregateUserLikes();
                 return m_avargeCountOfLikesPerPost;
+            }
+        }
+
+        public int AvarageCountOfLikesPerFriend
+        {
+            get
+            {
+                m_AvarageNumberOfLikesGivenToMyPostsPerUser = calculateAvarageNumberOfLikesGivenPerFriend(AggregateUserLikes());
+                return m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+            }
+        }
+        public int TotalLikes
+        {
+            get
+            {
+                AggregateUserLikes();
+                return m_TotalNumberOfLikesRecievedInAllPosts;
             }
         }
 

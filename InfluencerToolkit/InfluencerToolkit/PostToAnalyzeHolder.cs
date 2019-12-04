@@ -8,11 +8,11 @@ using FacebookWrapper.ObjectModel;
 namespace InfluencerToolkit
 {
     
-    class PostInfluenceAnalyzer
+    class PostToAnalyzeHolder
     {
         public Post CurrentPostToAnalyze { get; set; }
 
-        public PostInfluenceAnalyzer()
+        public PostToAnalyzeHolder()
         {
             CurrentPostToAnalyze = null;  
         }

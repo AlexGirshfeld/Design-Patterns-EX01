@@ -49,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserPreview)).BeginInit();
             this.SuspendLayout();
@@ -181,7 +182,6 @@
             this.textBoxPostAnalyzerPreview.Name = "textBoxPostAnalyzerPreview";
             this.textBoxPostAnalyzerPreview.Size = new System.Drawing.Size(366, 96);
             this.textBoxPostAnalyzerPreview.TabIndex = 15;
-            this.textBoxPostAnalyzerPreview.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // GradeLabel
             // 
@@ -226,11 +226,22 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Albums:";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(669, 108);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Photo preview:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 570);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -280,5 +291,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

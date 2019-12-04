@@ -132,10 +132,6 @@ namespace InfluencerToolkit
             UIDataPopulator.SetAndPreviewPostToAnalyze(listBoxPosts.SelectedItem.ToString());
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
         {
             CurrentAppSettings.RememberUser = checkBoxRememberUser.Checked;

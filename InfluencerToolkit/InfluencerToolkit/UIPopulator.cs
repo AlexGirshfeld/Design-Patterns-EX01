@@ -5,12 +5,12 @@ namespace InfluencerToolkit
     public class UIPopulator
     {
         private FormInfluencerToolkit m_FormToPopulate;
-        private PostInfluenceAnalyzer m_InfluenceAnalyzer;
+        private PostToAnalyzeHolder m_InfluenceAnalyzer;
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             m_FormToPopulate = i_Topopulate;
-            m_InfluenceAnalyzer = new PostInfluenceAnalyzer();
+            m_InfluenceAnalyzer = new PostToAnalyzeHolder();
         }
 
         public void PopulateUI()
