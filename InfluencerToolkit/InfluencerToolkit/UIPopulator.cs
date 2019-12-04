@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
@@ -7,6 +9,8 @@ namespace InfluencerToolkit
     {
         private FormInfluencerToolkit m_FormToPopulate;
         private PostToAnalyzeHolder m_InfluenceAnalyzer;
+
+        public Post getPostToAnalyse { get; private set; }
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
@@ -49,6 +53,32 @@ namespace InfluencerToolkit
             }
         }
 
+        public void PopulateSortedUserList()
+        {
+            PostsDataAggregator postsDataAggregator = new PostsDataAggregator(this.m_FormToPopulate.LoginResult.LoggedInUser);
+            SortedList<User, int> sortedListOfUsersByLikes = postsDataAggregator.UsersSortedByLikes();
+            foreach (KeyValuePair<User, int> userLikesPair in sortedListOfUsersByLikes)
+            {
+                ListViewItem item = new ListViewItem(userLikesPair.Key.UserName);
+                item.SubItems.Add(userLikesPair.Value.ToString());
+                this.m_FormToPopulate.UserNameLikesListView.Items.Add(item);
+            }
+        }
+
+        public void ShowInfluenceExpansionGrade()
+        {
+            InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+            int postInfluenceLevel = influenceAnalyser.GetPostInfluenceLevel(getPostToAnalyse);
+            this.m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+        }
+
+        public void ShowInfluencePreservationGrade()
+        {
+                InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+                int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(getPostToAnalyse);
+                m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+        }
+
         public void SetAndPreviewPostToAnalyze(string i_PostMessage)
         {
             try
@@ -69,8 +99,6 @@ namespace InfluencerToolkit
                 m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post\n Advanced:{0}", e.Message));
             }
         }
-
-        public Post getPostToAnalyse { get; private set; }
 
         private void displayPostToPreview(Post i_Post)
         {

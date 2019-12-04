@@ -98,29 +98,20 @@ namespace InfluencerToolkit
 
         private void SortUserLikesButton_Click(object sender, EventArgs e)
         {
-            PostsDataAggregator postsDataAggregator = new PostsDataAggregator(this.LoginResult.LoggedInUser);
-            SortedList<User, int> sortedListOfUsersByLikes = postsDataAggregator.UsersSortedByLikes();                    
-
-            foreach (KeyValuePair<User, int> userLikesPair in sortedListOfUsersByLikes)
-            {
-                ListViewItem item = new ListViewItem(userLikesPair.Key.UserName);
-                item.SubItems.Add(userLikesPair.Value.ToString());
-                UserNameLikesListView.Items.Add(item);
-            }   
+            UIDataPopulator.PopulateSortedUserList(); 
         }
 
         private void AnalyzePostInfluenceExpansionButton_Click(object sender, EventArgs e)
         {
-            InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
-            int postInfluenceLevel = influenceAnalyser.GetPostInfluenceLevel(UIDataPopulator.getPostToAnalyse);
-            gradeTextBox.Text = postInfluenceLevel.ToString();
+            UIDataPopulator.ShowInfluenceExpansionGrade();
         }
 
         private void AnalyzePostInfluencePreservationButton_Click(object sender, EventArgs e)
         {
+            UIDataPopulator.ShowInfluencePreservationGrade();
             InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
             int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.getPostToAnalyse);
-            gradeTextBox.Text = postInfluenceLevel.ToString();
+            GradeTextBox.Text = postInfluenceLevel.ToString();
         }
 
         private void UserNameLikesListView_SelectedIndexChanged(object sender, EventArgs e)

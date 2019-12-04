@@ -46,11 +46,12 @@
             this.AnalyzePostInfluencePreservationButton = new System.Windows.Forms.Button();
             this.TextBoxPostAnalyzerPreview = new System.Windows.Forms.TextBox();
             this.GradeLabel = new System.Windows.Forms.Label();
-            this.gradeTextBox = new System.Windows.Forms.TextBox();
+            this.GradeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).BeginInit();
             this.SuspendLayout();
@@ -150,7 +151,7 @@
             // 
             // AnalyzePostInfluenceExpansionButton
             // 
-            this.AnalyzePostInfluenceExpansionButton.Location = new System.Drawing.Point(12, 339);
+            this.AnalyzePostInfluenceExpansionButton.Location = new System.Drawing.Point(12, 359);
             this.AnalyzePostInfluenceExpansionButton.Name = "AnalyzePostInfluenceExpansionButton";
             this.AnalyzePostInfluenceExpansionButton.Size = new System.Drawing.Size(138, 40);
             this.AnalyzePostInfluenceExpansionButton.TabIndex = 11;
@@ -168,7 +169,7 @@
             // 
             // AnalyzePostInfluencePreservationButton
             // 
-            this.AnalyzePostInfluencePreservationButton.Location = new System.Drawing.Point(12, 395);
+            this.AnalyzePostInfluencePreservationButton.Location = new System.Drawing.Point(12, 415);
             this.AnalyzePostInfluencePreservationButton.Name = "AnalyzePostInfluencePreservationButton";
             this.AnalyzePostInfluencePreservationButton.Size = new System.Drawing.Size(138, 40);
             this.AnalyzePostInfluencePreservationButton.TabIndex = 13;
@@ -178,7 +179,7 @@
             // 
             // TextBoxPostAnalyzerPreview
             // 
-            this.TextBoxPostAnalyzerPreview.Location = new System.Drawing.Point(171, 339);
+            this.TextBoxPostAnalyzerPreview.Location = new System.Drawing.Point(156, 359);
             this.TextBoxPostAnalyzerPreview.Multiline = true;
             this.TextBoxPostAnalyzerPreview.Name = "TextBoxPostAnalyzerPreview";
             this.TextBoxPostAnalyzerPreview.Size = new System.Drawing.Size(366, 96);
@@ -189,16 +190,16 @@
             this.GradeLabel.AutoSize = true;
             this.GradeLabel.Location = new System.Drawing.Point(543, 339);
             this.GradeLabel.Name = "GradeLabel";
-            this.GradeLabel.Size = new System.Drawing.Size(83, 13);
+            this.GradeLabel.Size = new System.Drawing.Size(86, 13);
             this.GradeLabel.TabIndex = 16;
-            this.GradeLabel.Text = "InfluenceGrade:";
+            this.GradeLabel.Text = "Influence Grade:";
             // 
             // gradeTextBox
             // 
-            this.gradeTextBox.Location = new System.Drawing.Point(543, 359);
-            this.gradeTextBox.Name = "gradeTextBox";
-            this.gradeTextBox.Size = new System.Drawing.Size(120, 20);
-            this.gradeTextBox.TabIndex = 17;
+            this.GradeTextBox.Location = new System.Drawing.Point(543, 359);
+            this.GradeTextBox.Name = "gradeTextBox";
+            this.GradeTextBox.Size = new System.Drawing.Size(120, 20);
+            this.GradeTextBox.TabIndex = 17;
             // 
             // label1
             // 
@@ -237,16 +238,26 @@
             this.label4.Text = "Photo preview:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(153, 339);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Post preview:";
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 570);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.gradeTextBox);
+            this.Controls.Add(this.GradeTextBox);
             this.Controls.Add(this.GradeLabel);
             this.Controls.Add(this.TextBoxPostAnalyzerPreview);
             this.Controls.Add(this.AnalyzePostInfluencePreservationButton);
@@ -279,7 +290,6 @@
         public System.Windows.Forms.ListBox ListBoxPosts;
         public System.Windows.Forms.ListBox ListBoxFriends;
         private System.Windows.Forms.Button SortUserLikesButton;
-        private System.Windows.Forms.ListView UserNameLikesListView;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader LikesColumn;
@@ -288,10 +298,12 @@
         public System.Windows.Forms.TextBox TextBoxPostAnalyzerPreview;
         public System.Windows.Forms.PictureBox PictureBoxUserPreview;
         private System.Windows.Forms.Label GradeLabel;
-        private System.Windows.Forms.TextBox gradeTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.ListView UserNameLikesListView;
+        public System.Windows.Forms.TextBox GradeTextBox;
     }
 }
