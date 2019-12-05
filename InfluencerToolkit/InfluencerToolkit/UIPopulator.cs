@@ -31,7 +31,7 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0} Advanced:{1}", Environment.NewLine, e.Message));
             }
         }
 
@@ -51,10 +51,10 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture \n Advanced:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong calculating the influence grade grade {0} Advanced:{1}", Environment.NewLine, e.Message));
             }
         }
-
+     
         public void PopulateSortedUserList()
         {
             PostsDataAggregator postsDataAggregator = new PostsDataAggregator(this.m_FormToPopulate.LoginResult.LoggedInUser);
@@ -69,16 +69,30 @@ namespace InfluencerToolkit
 
         public void ShowInfluenceExpansionGrade()
         {
-            m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
-            int postInfluenceLevel = m_influenceAnalyser.GetPostInfluenceLevel(PostToAnalyse);
-            m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+            try
+            {
+                m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+                int postInfluenceLevel = m_influenceAnalyser.GetPostInfluenceLevel(PostToAnalyse);
+                m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+            }
+            catch (Exception e)
+            {
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong calculating the influence grade grade {0} Advanced:{1}", Environment.NewLine, e.Message));
+            }
         }
 
         public void ShowInfluencePreservationGrade()
         {
-            m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
-            int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(PostToAnalyse);
-            m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+            try
+            {
+                m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+                int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(PostToAnalyse);
+                m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+            }
+            catch (Exception e)
+            {
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture {1} Advanced:{0}", e.Message, Environment.NewLine));
+            }
         }
 
         public void SetAndPreviewPostToAnalyze(string i_PostMessage)
@@ -98,7 +112,7 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post\n Advanced:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post{1} Advanced:{0}", e.Message, Environment.NewLine));
             }
         }
 
@@ -114,7 +128,7 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.\n Advanced:{0}", e.Message));
+                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.{1}Advanced:{0}", e.Message, Environment.NewLine));
             }
         }
     }

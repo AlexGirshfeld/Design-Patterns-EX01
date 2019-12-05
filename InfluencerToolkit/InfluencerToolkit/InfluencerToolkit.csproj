@@ -52,9 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LikesComparer.cs" />
-    <Compile Include="PostToAnalyzeHolder.cs" />
-    <Compile Include="SortedPerUserLikesList.cs" />
+    <Compile Include="FetcherHolder.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FormInfluencerToolkit.cs">
@@ -77,6 +75,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

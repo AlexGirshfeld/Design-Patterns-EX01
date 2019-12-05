@@ -62,6 +62,7 @@ namespace InfluencerToolkit
             var loginThread = new Thread(loginUser);
             loginThread.SetApartmentState(ApartmentState.STA);
             loginThread.Start();
+            loginThread.Join();
             UIDataPopulator.PopulateUI();
         }
 
