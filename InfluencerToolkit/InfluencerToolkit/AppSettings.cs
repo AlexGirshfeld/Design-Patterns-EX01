@@ -8,7 +8,7 @@ namespace InfluencerToolkit
 {
     public class AppSettings
     {
-        public static string m_SettingsFilePath = @"C:\Users\Public\InfluencerAppSettings.xml";
+        public static readonly string r_SettingsFilePath = @"C:\Users\Public\InfluencerAppSettings.xml";
         
         public Point LastWindowLocation { get; set; }
         
@@ -29,9 +29,9 @@ namespace InfluencerToolkit
         public static AppSettings LoadFromFileOrInit()
         {
             AppSettings storedAppSettings = new AppSettings();
-            if (File.Exists(m_SettingsFilePath))
+            if (File.Exists(r_SettingsFilePath))
             {
-                using (Stream stream = new FileStream(m_SettingsFilePath, FileMode.Open))
+                using (Stream stream = new FileStream(r_SettingsFilePath, FileMode.Open))
                 {
                     XmlSerializer serializer = new XmlSerializer(storedAppSettings.GetType());
                     storedAppSettings = serializer.Deserialize(stream) as AppSettings;
@@ -48,10 +48,10 @@ namespace InfluencerToolkit
 
         public void SaveToFile()
         {
-            FileIOPermission fileIOPerm = new FileIOPermission(FileIOPermissionAccess.Write, m_SettingsFilePath);
-            if (File.Exists(m_SettingsFilePath))
+            FileIOPermission fileIOPerm = new FileIOPermission(FileIOPermissionAccess.Write, r_SettingsFilePath);
+            if (File.Exists(r_SettingsFilePath))
             {
-                using (Stream stream = new FileStream(m_SettingsFilePath, FileMode.Truncate))
+                using (Stream stream = new FileStream(r_SettingsFilePath, FileMode.Truncate))
                 {
                     XmlSerializer serializer = new XmlSerializer(this.GetType());
                     serializer.Serialize(stream, this);
@@ -59,7 +59,7 @@ namespace InfluencerToolkit
             }
             else
             {
-                 using (Stream stream = new FileStream(m_SettingsFilePath, FileMode.CreateNew))
+                 using (Stream stream = new FileStream(r_SettingsFilePath, FileMode.CreateNew))
                  {
                      XmlSerializer serializer = new XmlSerializer(this.GetType());
                      serializer.Serialize(stream, this);

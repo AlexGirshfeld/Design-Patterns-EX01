@@ -7,7 +7,7 @@ namespace InfluencerToolkit
 {
     public class UIPopulator
     {
-        private FormInfluencerToolkit m_FormToPopulate;
+        private readonly FormInfluencerToolkit r_FormToPopulate;
         private FetcherHolder m_FetcherHolder;
         private InfluenceAnalyser m_influenceAnalyser;
 
@@ -15,8 +15,8 @@ namespace InfluencerToolkit
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
-            m_FormToPopulate = i_Topopulate;
-            m_FetcherHolder = new FetcherHolder(this.m_FormToPopulate);
+            r_FormToPopulate = i_Topopulate;
+            m_FetcherHolder = new FetcherHolder(this.r_FormToPopulate);
             m_influenceAnalyser = null; 
         }
 
@@ -31,7 +31,7 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0} Advanced:{1}", Environment.NewLine, e.Message));
+                r_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in showing your details:{0} Advanced:{1}", Environment.NewLine, e.Message));
             }
         }
 
@@ -39,10 +39,10 @@ namespace InfluencerToolkit
         {
             try
             {
-                User userToPreview = m_FormToPopulate.LoginResult.LoggedInUser.Friends.Find(x => x.Name == i_UserName);
+                User userToPreview = r_FormToPopulate.LoginResult.LoggedInUser.Friends.Find(x => x.Name == i_UserName);
                 if (userToPreview == null)
                 {
-                    m_FormToPopulate.DisplayErrorDialog("Couldn't find the friend to preview his profile image");
+                    r_FormToPopulate.DisplayErrorDialog("Couldn't find the friend to preview his profile image");
                 }
                 else
                 {
@@ -51,19 +51,19 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong calculating the influence grade grade {0} Advanced:{1}", Environment.NewLine, e.Message));
+                r_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong calculating the influence grade grade {0} Advanced:{1}", Environment.NewLine, e.Message));
             }
         }
      
         public void PopulateSortedUserList()
         {
-            PostsDataAggregator postsDataAggregator = new PostsDataAggregator(this.m_FormToPopulate.LoginResult.LoggedInUser);
+            PostsDataAggregator postsDataAggregator = new PostsDataAggregator(this.r_FormToPopulate.LoginResult.LoggedInUser);
             SortedList<User, int> sortedListOfUsersByLikes = postsDataAggregator.UsersSortedByLikes();
             foreach (KeyValuePair<User, int> userLikesPair in sortedListOfUsersByLikes)
             {
                 ListViewItem item = new ListViewItem(userLikesPair.Key.UserName);
                 item.SubItems.Add(userLikesPair.Value.ToString());
-                this.m_FormToPopulate.UserNameLikesListView.Items.Add(item);
+                this.r_FormToPopulate.UserNameLikesListView.Items.Add(item);
             }
         }
 
@@ -71,13 +71,13 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+                m_influenceAnalyser = new InfluenceAnalyser(this.r_FormToPopulate.LoginResult.LoggedInUser);
                 int postInfluenceLevel = m_influenceAnalyser.GetPostInfluenceLevel(PostToAnalyse);
-                m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+                r_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong calculating the influence grade grade {0} Advanced:{1}", Environment.NewLine, e.Message));
+                r_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong calculating the influence grade grade {0} Advanced:{1}", Environment.NewLine, e.Message));
             }
         }
 
@@ -85,13 +85,13 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_influenceAnalyser = new InfluenceAnalyser(this.m_FormToPopulate.LoginResult.LoggedInUser);
+                m_influenceAnalyser = new InfluenceAnalyser(this.r_FormToPopulate.LoginResult.LoggedInUser);
                 int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(PostToAnalyse);
-                m_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
+                r_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture {1} Advanced:{0}", e.Message, Environment.NewLine));
+                r_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your friends profile picture {1} Advanced:{0}", e.Message, Environment.NewLine));
             }
         }
 
@@ -99,10 +99,10 @@ namespace InfluencerToolkit
         {
             try
             {
-                Post postToPreviewAndAnalyze = m_FetcherHolder.FetchSetCurrentPostToAnalyze(i_PostMessage, m_FormToPopulate.LoginResult.LoggedInUser);
+                Post postToPreviewAndAnalyze = m_FetcherHolder.FetchSetCurrentPostToAnalyze(i_PostMessage, r_FormToPopulate.LoginResult.LoggedInUser);
                 if (postToPreviewAndAnalyze == null)
                 {
-                    m_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
+                    r_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
                 }
                 else
                 {
@@ -112,7 +112,7 @@ namespace InfluencerToolkit
             }
             catch (Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post{1} Advanced:{0}", e.Message, Environment.NewLine));
+                r_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in previewing your post{1} Advanced:{0}", e.Message, Environment.NewLine));
             }
         }
 
@@ -120,7 +120,7 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_FormToPopulate.TextBoxPostAnalyzerPreview.Text = string.Format(
+                r_FormToPopulate.TextBoxPostAnalyzerPreview.Text = string.Format(
                                     @"POSTED AT:{0}{1}CONTENT:{2}",
                                     i_Post?.CreatedTime?.ToString(),
                                     System.Environment.NewLine,
@@ -128,7 +128,7 @@ namespace InfluencerToolkit
             }
             catch(Exception e)
             {
-                m_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.{1}Advanced:{0}", e.Message, Environment.NewLine));
+                r_FormToPopulate.DisplayErrorDialog(string.Format("Something went wrong in displaying the preview for the selected post.{1}Advanced:{0}", e.Message, Environment.NewLine));
             }
         }
     }

@@ -23,6 +23,14 @@ namespace InfluencerToolkit
             }
         }
 
+        public UIPopulator UIPopulator
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public FormInfluencerToolkit()
         {
             CurrentAppSettings = AppSettings.LoadFromFileOrInit();

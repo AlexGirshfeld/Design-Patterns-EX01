@@ -6,16 +6,14 @@ namespace InfluencerToolkit
 {
     public class PostsDataAggregator
     {
-        private User m_user;
         private FacebookObjectCollection<Post> m_currentUserPostsCollection;
-        private int m_avargeCountOfLikesPerPost;
+        private int m_AvargeCountOfLikesPerPost;
         private int m_AvarageNumberOfLikesGivenToMyPostsPerUser;
         private int m_TotalNumberOfLikesRecievedInAllPosts;
 
-        public PostsDataAggregator(User i_user)
+        public PostsDataAggregator(User i_User)
         {
-            this.m_user = i_user;
-            this.m_currentUserPostsCollection = i_user.Posts;
+            m_currentUserPostsCollection = i_User.Posts;
         }
 
         private Dictionary<User, int> AggregateUserLikes()
@@ -38,10 +36,10 @@ namespace InfluencerToolkit
                     }
                 }
 
-                m_avargeCountOfLikesPerPost += post.LikedBy.Count;
+                m_AvargeCountOfLikesPerPost += post.LikedBy.Count;
             }
             
-            m_avargeCountOfLikesPerPost /= m_currentUserPostsCollection.Count;
+            m_AvargeCountOfLikesPerPost /= m_currentUserPostsCollection.Count;
             return m_usersLikesCount;
         }
 
@@ -75,7 +73,7 @@ namespace InfluencerToolkit
             get 
             { 
                 AggregateUserLikes();
-                return m_avargeCountOfLikesPerPost;
+                return m_AvargeCountOfLikesPerPost;
             }
         }
 

@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfluencerToolkit", "InfluencerToolkit\InfluencerToolkit.csproj", "{AB53E271-8554-4B05-928E-2AEF72ABD26F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF2DB022-F7E5-4A8C-9A8F-3665404F8F53}"
+	ProjectSection(SolutionItems) = preProject
+		..\A20 EX01 Alex Girshfeld 317093862 Tal Goldstein 204505267 .docx = ..\A20 EX01 Alex Girshfeld 317093862 Tal Goldstein 204505267 .docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
