@@ -37,7 +37,7 @@ namespace InfluencerToolkit
             InitializeComponent();
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
-            this.checkBoxRememberUser.Checked = CurrentAppSettings.RememberUser;
+            appSettingsBindingSource.DataSource = CurrentAppSettings;
             UIDataPopulator = new UIPopulator(this);
         }
 
@@ -54,7 +54,7 @@ namespace InfluencerToolkit
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-            if (checkBoxRememberUser.Checked)
+            if (CurrentAppSettings.RememberUser)
             {
                 CurrentAppSettings.SaveToFile();
             }
@@ -148,15 +148,21 @@ namespace InfluencerToolkit
             UIDataPopulator.SetAndPreviewPostToAnalyze(ListBoxPosts.SelectedItem.ToString());
         }
 
-        private void checkBoxRememberUser_CheckedChanged(object sender, EventArgs e)
-        {
-            CurrentAppSettings.RememberUser = checkBoxRememberUser.Checked;
-        }
 
         private void FormInfluencerToolkit_ResizeEnd(object sender, EventArgs e)
         {
             CurrentAppSettings.LastWindowSize = this.Size;
             CurrentAppSettings.LastWindowLocation = this.Location;
+        }
+
+        private void appSettingsBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rememberUserCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
