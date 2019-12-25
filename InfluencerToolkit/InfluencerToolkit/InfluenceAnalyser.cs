@@ -7,33 +7,18 @@ namespace InfluencerToolkit
 {
     public class InfluenceAnalyser
     {
-        private User m_User;
+        private User m_user;
         private PostsDataAggregator m_PostsDataAggregator;
         private SortedList<User, int> m_UsersSortedByLikes;
     
         public InfluenceAnalyser(User i_User)
         {
-            this.m_User = i_User;
-            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
+            this.m_user = i_User;
+            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_user);
             this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes();
         }
 
-        public int GetPostInfluenceLevel(Post i_Post)
-        {
-            int postInfluenceLevel = 0;
-            if (this.m_User.Posts.Contains(i_Post))
-            {
-                postInfluenceLevel = AnalysePostInfluenceLevel(i_Post);
-            } 
-            else
-            {  
-                throw new Exception("The post you requested was not found!");
-            }
-
-            return postInfluenceLevel;
-        }
-
-        private int AnalysePostInfluenceLevel(Post i_Post)
+        internal int AnalysePostInfluenceLevel(Post i_Post)
         {
             int postInfluenceLevel = 0;
 
@@ -75,12 +60,7 @@ namespace InfluencerToolkit
             return postInfluenceLevel;
         }
 
-        public int GetPostInfluencePreserving(Post i_Post)
-        {
-            return (int)(quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(qualityInfluencePreservationFactor(i_Post) * 30);
-        }
-
-        private float qualityInfluencePreservationFactor(Post i_Post)
+        internal float qualityInfluencePreservationFactor(Post i_Post)
         {
             float postInfluencePreservation = 0;
             foreach (KeyValuePair<User, int> userLikesPair in m_UsersSortedByLikes)
@@ -94,7 +74,7 @@ namespace InfluencerToolkit
             return postInfluencePreservation;
         }
         
-        private float quantitiveInfluencePreservationFactor(Post i_Post)
+        internal float quantitiveInfluencePreservationFactor(Post i_Post)
         {
             float quantitiveInfluencePreservationFactor = 0f;
             if (m_PostsDataAggregator.AvarageCountOfLikesPerPost != 0)

@@ -133,8 +133,8 @@ namespace InfluencerToolkit
         private void AnalyzePostInfluencePreservationButton_Click(object sender, EventArgs e)
         {
             UIDataPopulator.ShowInfluencePreservationGrade();
-            InfluenceAnalyserFacade influenceAnalyser = new InfluenceAnalyserFacade(this.LoginResult.LoggedInUser);
-            int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.PostToAnalyse);
+            InfluenceAnalyserFacade m_influenceAnalyser = new InfluenceAnalyserFacade(this.LoginResult.LoggedInUser);
+            int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.PostToAnalyse);
             GradeTextBox.Text = postInfluenceLevel.ToString();
         }
 
