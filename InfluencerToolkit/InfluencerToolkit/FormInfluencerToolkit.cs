@@ -60,7 +60,7 @@ namespace InfluencerToolkit
             }
             else
             {
-                CurrentAppSettings = AppSettings.GetDefaultSettings(); 
+                CurrentAppSettings = AppSettings.GetDefaultSettings();
                 CurrentAppSettings.SaveToFile();
             }
         }
@@ -75,8 +75,8 @@ namespace InfluencerToolkit
         }
 
         private void loginUser()
-        { 
-            string[] permissions = 
+        {
+            string[] permissions =
                     {
                 "public_profile",
                 "user_birthday",
@@ -109,7 +109,7 @@ namespace InfluencerToolkit
 
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 DisplayErrorDialog(string.Format("Something went wrong in the login process, please try again {0}Advanced:{1}", Environment.NewLine, e.Message));
             }
@@ -122,7 +122,7 @@ namespace InfluencerToolkit
 
         private void SortUserLikesButton_Click(object sender, EventArgs e)
         {
-            UIDataPopulator.PopulateSortedUserList(); 
+            UIDataPopulator.PopulateSortedUserList();
         }
 
         private void AnalyzePostInfluenceExpansionButton_Click(object sender, EventArgs e)
@@ -133,7 +133,7 @@ namespace InfluencerToolkit
         private void AnalyzePostInfluencePreservationButton_Click(object sender, EventArgs e)
         {
             UIDataPopulator.ShowInfluencePreservationGrade();
-            InfluenceAnalyser influenceAnalyser = new InfluenceAnalyser(this.LoginResult.LoggedInUser);
+            InfluenceAnalyserFacade influenceAnalyser = new InfluenceAnalyserFacade(this.LoginResult.LoggedInUser);
             int postInfluenceLevel = influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.PostToAnalyse);
             GradeTextBox.Text = postInfluenceLevel.ToString();
         }
