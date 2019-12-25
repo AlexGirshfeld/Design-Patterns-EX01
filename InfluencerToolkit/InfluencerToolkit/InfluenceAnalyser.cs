@@ -7,14 +7,14 @@ namespace InfluencerToolkit
 {
     public class InfluenceAnalyser
     {
-        private User m_user;
+        private User m_User;
         private PostsDataAggregator m_PostsDataAggregator;
         private SortedList<User, int> m_UsersSortedByLikes;
     
         public InfluenceAnalyser(User i_User)
         {
-            this.m_user = i_User;
-            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_user);
+            this.m_User = i_User;
+            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
             this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes();
         }
 

@@ -7,8 +7,8 @@ namespace InfluencerToolkit
     public class InfluenceAnalyserFacade
     {
         private User m_User;
+        private PostsDataAggregator m_PostsDataAggregator;
         private InfluenceAnalyser m_InfluenceAnalyser;
-        internal PostsDataAggregator m_PostsDataAggregator;
 
         public InfluenceAnalyserFacade(User i_User) 
         {
