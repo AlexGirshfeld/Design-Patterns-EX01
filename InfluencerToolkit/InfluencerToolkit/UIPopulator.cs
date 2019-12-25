@@ -9,7 +9,7 @@ namespace InfluencerToolkit
     {
         private readonly FormInfluencerToolkit r_FormToPopulate;
         private FetcherHolder m_FetcherHolder;
-        private InfluenceAnalyser m_influenceAnalyser;
+        private InfluenceAnalyserFacade m_influenceAnalyserFacade;
 
         public Post PostToAnalyse { get; private set; }
 
@@ -17,7 +17,6 @@ namespace InfluencerToolkit
         {
             r_FormToPopulate = i_Topopulate;
             m_FetcherHolder = new FetcherHolder(this.r_FormToPopulate);
-            m_influenceAnalyser = null; 
         }
 
         public void PopulateUI()
@@ -57,8 +56,7 @@ namespace InfluencerToolkit
      
         public void PopulateSortedUserList()
         {
-            PostsDataAggregator postsDataAggregator = new PostsDataAggregator(this.r_FormToPopulate.LoginResult.LoggedInUser);
-            SortedList<User, int> sortedListOfUsersByLikes = postsDataAggregator.UsersSortedByLikes();
+            SortedList<User, int> sortedListOfUsersByLikes = this.m_influenceAnalyserFacade.m_postsDataAggregator.UsersSortedByLikes();
             foreach (KeyValuePair<User, int> userLikesPair in sortedListOfUsersByLikes)
             {
                 ListViewItem item = new ListViewItem(userLikesPair.Key.UserName);
@@ -71,8 +69,8 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_influenceAnalyser = new InfluenceAnalyser(this.r_FormToPopulate.LoginResult.LoggedInUser);
-                int postInfluenceLevel = m_influenceAnalyser.GetPostInfluenceLevel(PostToAnalyse);
+                m_influenceAnalyserFacade = new InfluenceAnalyserFacade(this.r_FormToPopulate.LoginResult.LoggedInUser);
+                int postInfluenceLevel = m_influenceAnalyserFacade.GetPostInfluenceLevel(PostToAnalyse);
                 r_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
             }
             catch (Exception e)
@@ -85,8 +83,8 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_influenceAnalyser = new InfluenceAnalyser(this.r_FormToPopulate.LoginResult.LoggedInUser);
-                int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(PostToAnalyse);
+                m_influenceAnalyserFacade = new InfluenceAnalyserFacade(this.r_FormToPopulate.LoginResult.LoggedInUser);
+                int postInfluenceLevel = m_influenceAnalyserFacade.GetPostInfluencePreserving(PostToAnalyse);
                 r_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
             }
             catch (Exception e)
