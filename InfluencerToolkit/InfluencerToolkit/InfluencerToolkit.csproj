@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FetcherHolder.cs" />
+    <Compile Include="InfluenceAnalyserFacade.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FormInfluencerToolkit.cs">
