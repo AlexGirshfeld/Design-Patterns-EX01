@@ -68,36 +68,5 @@ namespace InfluencerToolkit
             return m_usersSortedByLikes;
         }
 
-        public int AvarageCountOfLikesPerPost
-        {
-            get 
-            { 
-                AggregateUserLikes();
-                return m_AvargeCountOfLikesPerPost;
-            }
-        }
-
-        public int AvarageCountOfLikesPerFriend
-        {
-            get
-            {
-                m_AvarageNumberOfLikesGivenToMyPostsPerUser = calculateAvarageNumberOfLikesGivenPerFriend(AggregateUserLikes());
-                return m_AvarageNumberOfLikesGivenToMyPostsPerUser;
-            }
-        }
-
-        public int TotalLikes
-        {
-            get
-            {
-                AggregateUserLikes();
-                return m_TotalNumberOfLikesRecievedInAllPosts;
-            }
-        }
-
-        public SortedList<User, int> UsersSortedByLikes()
-        {
-            return SortUsersByLikesCount();
-        }
     }
 }
