@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="PostsDataAggregator.cs" />
     <Compile Include="InfluenceAnalyser.cs" />
+    <Compile Include="InfluenceAnalyserFacade.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
