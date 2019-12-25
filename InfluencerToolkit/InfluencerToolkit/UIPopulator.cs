@@ -56,7 +56,7 @@ namespace InfluencerToolkit
      
         public void PopulateSortedUserList()
         {
-            SortedList<User, int> sortedListOfUsersByLikes = this.m_influenceAnalyserFacade.m_postsDataAggregator.UsersSortedByLikes();
+            SortedList<User, int> sortedListOfUsersByLikes = this.m_influenceAnalyserFacade.m_PostsDataAggregator.UsersSortedByLikes();
             foreach (KeyValuePair<User, int> userLikesPair in sortedListOfUsersByLikes)
             {
                 ListViewItem item = new ListViewItem(userLikesPair.Key.UserName);

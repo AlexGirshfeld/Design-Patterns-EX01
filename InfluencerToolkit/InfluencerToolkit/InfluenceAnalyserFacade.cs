@@ -6,23 +6,23 @@ namespace InfluencerToolkit
 {
     public class InfluenceAnalyserFacade
     {
-        private User m_user;
-        private InfluenceAnalyser m_influenceAnalyser;
-        internal PostsDataAggregator m_postsDataAggregator;
+        private User m_User;
+        private InfluenceAnalyser m_InfluenceAnalyser;
+        internal PostsDataAggregator m_PostsDataAggregator;
 
-        public InfluenceAnalyserFacade(User i_user) 
+        public InfluenceAnalyserFacade(User i_User) 
         {
-            this.m_user = i_user;
-            this.m_influenceAnalyser = new InfluenceAnalyser(this.m_user);
-            this.m_postsDataAggregator = new PostsDataAggregator(this.m_user);
+            this.m_User = i_User;
+            this.m_InfluenceAnalyser = new InfluenceAnalyser(this.m_User);
+            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
         }
 
         public int GetPostInfluenceLevel(Post i_Post)
         {
             int postInfluenceLevel = 0;
-            if (this.m_user.Posts.Contains(i_Post))
+            if (this.m_User.Posts.Contains(i_Post))
             {
-                postInfluenceLevel = this.m_influenceAnalyser.AnalysePostInfluenceLevel(i_Post);
+                postInfluenceLevel = this.m_InfluenceAnalyser.AnalysePostInfluenceLevel(i_Post);
             }
             else
             {
@@ -34,15 +34,15 @@ namespace InfluencerToolkit
 
         public int GetPostInfluencePreserving(Post i_Post)
         {
-            return (int)(this.m_influenceAnalyser.quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(this.m_influenceAnalyser.qualityInfluencePreservationFactor(i_Post) * 30);
+            return (int)(this.m_InfluenceAnalyser.quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(this.m_InfluenceAnalyser.qualityInfluencePreservationFactor(i_Post) * 30);
         }
 
         public int AvarageCountOfLikesPerPost
         {
             get
             {
-                this.m_postsDataAggregator.AggregateUserLikes();
-                return this.m_postsDataAggregator.m_AvargeCountOfLikesPerPost;
+                this.m_PostsDataAggregator.AggregateUserLikes();
+                return this.m_PostsDataAggregator.m_AvargeCountOfLikesPerPost;
             }
         }
 
@@ -50,8 +50,8 @@ namespace InfluencerToolkit
         {
             get
             {
-                this.m_postsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser = this.m_postsDataAggregator.calculateAvarageNumberOfLikesGivenPerFriend(this.m_postsDataAggregator.AggregateUserLikes());
-                return this.m_postsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+                this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser = this.m_PostsDataAggregator.calculateAvarageNumberOfLikesGivenPerFriend(this.m_PostsDataAggregator.AggregateUserLikes());
+                return this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser;
             }
         }
 
@@ -59,14 +59,14 @@ namespace InfluencerToolkit
         {
             get
             {
-                this.m_postsDataAggregator.AggregateUserLikes();
-                return this.m_postsDataAggregator.m_TotalNumberOfLikesRecievedInAllPosts;
+                this.m_PostsDataAggregator.AggregateUserLikes();
+                return this.m_PostsDataAggregator.m_TotalNumberOfLikesRecievedInAllPosts;
             }
         }
 
         public SortedList<User, int> UsersSortedByLikes()
         {
-            return this.m_postsDataAggregator.SortUsersByLikesCount();
+            return this.m_PostsDataAggregator.SortUsersByLikesCount();
         }
     }
 }
