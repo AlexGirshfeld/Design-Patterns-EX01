@@ -7,9 +7,9 @@ namespace InfluencerToolkit
     public class PostsDataAggregator
     {
         private FacebookObjectCollection<Post> m_CurrentUserPostsCollection;
-        internal int m_AvargeCountOfLikesPerPost;
-        internal int m_AvarageNumberOfLikesGivenToMyPostsPerUser;
-        internal int m_TotalNumberOfLikesRecievedInAllPosts;
+        private int m_AvargeCountOfLikesPerPost;
+        public int m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+        private int m_TotalNumberOfLikesRecievedInAllPosts;
 
         public PostsDataAggregator(User i_User)
         {
