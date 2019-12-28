@@ -16,7 +16,19 @@ namespace InfluencerToolkit
             m_CurrentUserPostsCollection = i_User.Posts;
         }
 
-        internal Dictionary<User, int> AggregateUserLikes()
+        public int TotalNumberOfLikesRecievedInAllPosts 
+        {
+            get { return this.m_TotalNumberOfLikesRecievedInAllPosts; }
+            private set { this.m_TotalNumberOfLikesRecievedInAllPosts = value;  }
+        }
+        public int AvarageNumberOfLikesGivenToMyPostsPerUser
+        {
+            get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }
+            private set { this.m_AvarageNumberOfLikesGivenToMyPostsPerUser = value; }
+        }
+
+
+        public Dictionary<User, int> AggregateUserLikes()
         {
             Dictionary<User, int> m_usersLikesCount = new Dictionary<User, int>();
             m_TotalNumberOfLikesRecievedInAllPosts = 0;
@@ -43,7 +55,7 @@ namespace InfluencerToolkit
             return m_usersLikesCount;
         }
 
-        internal int calculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
+        public int CalculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
         {
             int avarageLikes = 0;
             foreach(KeyValuePair<User, int> userLikesPair in i_UserLikesDict)
@@ -54,7 +66,7 @@ namespace InfluencerToolkit
             return avarageLikes / i_UserLikesDict.Count;
         }
 
-        internal SortedList<User, int> SortUsersByLikesCount()
+        public SortedList<User, int> SortUsersByLikesCount()
         {
             SortedList<User, int> m_usersSortedByLikes = new SortedList<User, int>();
             Dictionary<User, int> m_dictionaryToSort = AggregateUserLikes();

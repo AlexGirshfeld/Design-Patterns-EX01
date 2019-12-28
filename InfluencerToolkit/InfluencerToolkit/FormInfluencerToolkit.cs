@@ -14,6 +14,7 @@ namespace InfluencerToolkit
         public LoginResult LoginResult { get; set; }
 
         public UIPopulator UIDataPopulator { get; set; }
+        
 
         public string AppID
         {
@@ -134,9 +135,9 @@ namespace InfluencerToolkit
         private void AnalyzePostInfluencePreservationButton_Click(object sender, EventArgs e)
         {
             UIDataPopulator.ShowInfluencePreservationGrade();
-            InfluenceAnalyserFacade m_influenceAnalyser = new InfluenceAnalyserFacade(this.LoginResult.LoggedInUser);
+/*            InfluenceAnalyserFacade m_influenceAnalyser = new InfluenceAnalyserFacade(this.LoginResult.LoggedInUser);
             int postInfluenceLevel = m_influenceAnalyser.GetPostInfluencePreserving(UIDataPopulator.PostToAnalyse);
-            GradeTextBox.Text = postInfluenceLevel.ToString();
+            GradeTextBox.Text = postInfluenceLevel.ToString();*/
         }
 
         private void UserNameLikesListView_SelectedIndexChanged(object sender, EventArgs e)

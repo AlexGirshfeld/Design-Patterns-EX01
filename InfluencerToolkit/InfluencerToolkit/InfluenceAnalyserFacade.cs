@@ -42,7 +42,7 @@ namespace InfluencerToolkit
             get
             {
                 this.m_PostsDataAggregator.AggregateUserLikes();
-                return this.m_PostsDataAggregator.m_AvargeCountOfLikesPerPost;
+                return this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser;
             }
         }
 
@@ -50,8 +50,8 @@ namespace InfluencerToolkit
         {
             get
             {
-                this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser = this.m_PostsDataAggregator.calculateAvarageNumberOfLikesGivenPerFriend(this.m_PostsDataAggregator.AggregateUserLikes());
-                return this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+                this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser = this.m_PostsDataAggregator.CalculateAvarageNumberOfLikesGivenPerFriend(m_PostsDataAggregator.AggregateUserLikes());
+                return this.m_PostsDataAggregator.AvarageNumberOfLikesGivenToMyPostsPerUser;
             }
         }
 
@@ -60,7 +60,7 @@ namespace InfluencerToolkit
             get
             {
                 this.m_PostsDataAggregator.AggregateUserLikes();
-                return this.m_PostsDataAggregator.m_TotalNumberOfLikesRecievedInAllPosts;
+                return this.m_PostsDataAggregator.TotalNumberOfLikesRecievedInAllPosts;
             }
         }
 

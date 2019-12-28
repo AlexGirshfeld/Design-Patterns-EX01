@@ -15,7 +15,7 @@ namespace InfluencerToolkit
         {
             this.m_User = i_User;
             this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
-            this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes();
+            this.m_UsersSortedByLikes = this.m_PostsDataAggregator.SortUsersByLikesCount();
         }
 
         internal int AnalysePostInfluenceLevel(Post i_Post)
