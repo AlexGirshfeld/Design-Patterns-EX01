@@ -11,7 +11,7 @@ namespace InfluencerToolkit
         private FetcherHolder m_FetcherHolder;
         private InfluenceAnalyserFacade m_InfluenceAnalyserFacade;
 
-        public Post PostToAnalyse { get; private set; }
+        public Post PostToAnalyse { get; internal set; }
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
@@ -113,7 +113,7 @@ namespace InfluencerToolkit
             }
         }
 
-        private void displayPostToPreview(Post i_Post)
+        public void displayPostToPreview(Post i_Post)
         {
             try
             {

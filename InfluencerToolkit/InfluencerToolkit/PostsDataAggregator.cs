@@ -16,22 +16,7 @@ namespace InfluencerToolkit
             m_CurrentUserPostsCollection = i_User.Posts;
         }
 
-        public int TotalNumberOfLikesRecievedInAllPosts 
-        {
-            get {
-                AggregateUserLikes();
-                return this.m_TotalNumberOfLikesRecievedInAllPosts;
-            }
-            internal set { this.m_TotalNumberOfLikesRecievedInAllPosts = value;  }
-        }
-        public int AvarageNumberOfLikesGivenToMyPostsPerUser
-        {
-            get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }
-            internal set { this.m_AvarageNumberOfLikesGivenToMyPostsPerUser = value; }
-        }
-
-
-        public Dictionary<User, int> AggregateUserLikes()
+        private Dictionary<User, int> AggregateUserLikes()
         {
             Dictionary<User, int> m_usersLikesCount = new Dictionary<User, int>();
             m_TotalNumberOfLikesRecievedInAllPosts = 0;
@@ -58,7 +43,7 @@ namespace InfluencerToolkit
             return m_usersLikesCount;
         }
 
-        public int CalculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
+        private int CalculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
         {
             int avarageLikes = 0;
             foreach(KeyValuePair<User, int> userLikesPair in i_UserLikesDict)
@@ -104,6 +89,22 @@ namespace InfluencerToolkit
         public SortedList<User, int> UsersSortedByLikes
         {
             get { return SortUsersByLikesCount(); }
+        }
+
+        public int TotalNumberOfLikesRecievedInAllPosts
+        {
+            get
+            {
+                AggregateUserLikes();
+                return this.m_TotalNumberOfLikesRecievedInAllPosts;
+            }
+            internal set { this.m_TotalNumberOfLikesRecievedInAllPosts = value; }
+        }
+
+        public int AvarageNumberOfLikesGivenToMyPostsPerUser
+        {
+            get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }
+            internal set { this.m_AvarageNumberOfLikesGivenToMyPostsPerUser = value; }
         }
     }
 
