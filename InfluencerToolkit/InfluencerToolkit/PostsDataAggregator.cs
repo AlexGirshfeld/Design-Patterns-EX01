@@ -73,7 +73,7 @@ namespace InfluencerToolkit
             get
             {
                 AggregateUserLikes();
-                return m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+                return m_AvargeCountOfLikesPerPost;
             }
         }
 
