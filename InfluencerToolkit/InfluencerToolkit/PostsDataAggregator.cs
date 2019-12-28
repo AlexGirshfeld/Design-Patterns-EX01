@@ -18,13 +18,16 @@ namespace InfluencerToolkit
 
         public int TotalNumberOfLikesRecievedInAllPosts 
         {
-            get { return this.m_TotalNumberOfLikesRecievedInAllPosts; }
-            private set { this.m_TotalNumberOfLikesRecievedInAllPosts = value;  }
+            get {
+                AggregateUserLikes();
+                return this.m_TotalNumberOfLikesRecievedInAllPosts;
+            }
+            internal set { this.m_TotalNumberOfLikesRecievedInAllPosts = value;  }
         }
         public int AvarageNumberOfLikesGivenToMyPostsPerUser
         {
             get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }
-            private set { this.m_AvarageNumberOfLikesGivenToMyPostsPerUser = value; }
+            internal set { this.m_AvarageNumberOfLikesGivenToMyPostsPerUser = value; }
         }
 
 
@@ -66,7 +69,7 @@ namespace InfluencerToolkit
             return avarageLikes / i_UserLikesDict.Count;
         }
 
-        public SortedList<User, int> SortUsersByLikesCount()
+        private SortedList<User, int> SortUsersByLikesCount()
         {
             SortedList<User, int> m_usersSortedByLikes = new SortedList<User, int>();
             Dictionary<User, int> m_dictionaryToSort = AggregateUserLikes();
@@ -80,5 +83,29 @@ namespace InfluencerToolkit
             return m_usersSortedByLikes;
         }
 
+        public int AvarageCountOfLikesPerPost
+        {
+            get
+            {
+                AggregateUserLikes();
+                return m_AvarageNumberOfLikesGivenToMyPostsPerUser;
+            }
+        }
+
+        public int AvarageCountOfLikesPerFriend
+        {
+            get
+            {
+                AvarageNumberOfLikesGivenToMyPostsPerUser = CalculateAvarageNumberOfLikesGivenPerFriend(AggregateUserLikes());
+                return AvarageNumberOfLikesGivenToMyPostsPerUser;
+            }
+        }
+
+        public SortedList<User, int> UsersSortedByLikes
+        {
+            get { return SortUsersByLikesCount(); }
+        }
     }
+
 }
+

@@ -15,7 +15,27 @@ namespace InfluencerToolkit
         {
             this.m_User = i_User;
             this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
-            this.m_UsersSortedByLikes = this.m_PostsDataAggregator.SortUsersByLikesCount();
+            this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes;
+        }
+
+        public int GetPostInfluenceLevel(Post i_Post)
+        {
+            int postInfluenceLevel = 0;
+            if (this.m_User.Posts.Contains(i_Post))
+            {
+                postInfluenceLevel = AnalysePostInfluenceLevel(i_Post);
+            }
+            else
+            {
+                throw new Exception("The post you requested was not found!");
+            }
+
+            return postInfluenceLevel;
+        }
+
+        public int GetPostInfluencePreserving(Post i_Post)
+        {
+            return (int)(quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(qualityInfluencePreservationFactor(i_Post) * 30);
         }
 
         internal int AnalysePostInfluenceLevel(Post i_Post)
@@ -67,7 +87,7 @@ namespace InfluencerToolkit
             {
                 if (i_Post.LikedBy.Contains(userLikesPair.Key))
                 {
-                    postInfluencePreservation += userLikesPair.Value / this.m_PostsDataAggregator.TotalLikes;
+                    postInfluencePreservation += userLikesPair.Value / this.m_PostsDataAggregator.TotalNumberOfLikesRecievedInAllPosts;
                 }
             }
 
