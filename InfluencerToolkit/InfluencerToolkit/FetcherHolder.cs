@@ -71,10 +71,6 @@ namespace InfluencerToolkit
 
         public void FetchAvatarAndTitle()
         {
-            //BeforeMultithreadRefactor
-            //r_FormToPopulate.Text = string.Format("Welcome {0} {1}", r_FormToPopulate.LoginResult.LoggedInUser.FirstName, r_FormToPopulate.LoginResult.LoggedInUser.LastName);
-            //r_FormToPopulate.PictureBoxProfile.ImageLocation = r_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
-            //r_FormToPopulate.PictureBoxProfile.LoadAsync(r_FormToPopulate.PictureBoxProfile.ImageLocation);
             r_FormToPopulate.PictureBoxProfile.ImageLocation = r_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
             r_FormToPopulate.PictureBoxProfile.LoadAsync(r_FormToPopulate.PictureBoxProfile.ImageLocation);
             r_FormToPopulate.Invoke(new Action( () => r_FormToPopulate.Text = string.Format("Welcome {0} {1}", r_FormToPopulate.LoginResult.LoggedInUser.FirstName, r_FormToPopulate.LoginResult.LoggedInUser.LastName)));
