@@ -33,13 +33,7 @@ namespace InfluencerToolkit
         }
 
         public void FetchAlbums()
-        {/*
-            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.DisplayMember = "Name"));
-            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
-            foreach (Album album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
-            {
-                r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Add(album)));
-            }*/
+        {
             r_FormToPopulate.albumBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
         }
         public void FetchPosts()

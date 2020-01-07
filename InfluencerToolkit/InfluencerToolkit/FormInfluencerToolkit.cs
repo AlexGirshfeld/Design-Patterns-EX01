@@ -146,7 +146,7 @@ namespace InfluencerToolkit
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UIDataPopulator.SetAndPreviewPostToAnalyze(ListBoxPosts.SelectedItem.ToString());
+            UIDataPopulator.SetAndPreviewPostToAnalyze((ListBoxPosts.SelectedItem as Post).Message);
         }
 
 
