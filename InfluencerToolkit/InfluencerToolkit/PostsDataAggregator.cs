@@ -16,7 +16,7 @@ namespace InfluencerToolkit
             m_CurrentUserPostsCollection = i_User.Posts;
         }
 
-        private Dictionary<User, int> AggregateUserLikes()
+        private Dictionary<User, int> aggregateUserLikes()
         {
             Dictionary<User, int> m_usersLikesCount = new Dictionary<User, int>();
             m_TotalNumberOfLikesRecievedInAllPosts = 0;
@@ -43,7 +43,7 @@ namespace InfluencerToolkit
             return m_usersLikesCount;
         }
 
-        private int CalculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
+        private int calculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
         {
             int avarageLikes = 0;
             foreach(KeyValuePair<User, int> userLikesPair in i_UserLikesDict)
@@ -57,7 +57,7 @@ namespace InfluencerToolkit
         private SortedList<User, int> SortUsersByLikesCount()
         {
             SortedList<User, int> m_usersSortedByLikes = new SortedList<User, int>();
-            Dictionary<User, int> m_dictionaryToSort = AggregateUserLikes();
+            Dictionary<User, int> m_dictionaryToSort = aggregateUserLikes();
             m_dictionaryToSort.OrderBy(x => x.Value);
 
             foreach(KeyValuePair<User, int> userLikesCount in m_dictionaryToSort)
@@ -72,19 +72,11 @@ namespace InfluencerToolkit
         {
             get
             {
-                AggregateUserLikes();
+                aggregateUserLikes();
                 return m_AvargeCountOfLikesPerPost;
             }
         }
 
-        public int AvarageCountOfLikesPerFriend
-        {
-            get
-            {
-                AvarageNumberOfLikesGivenToMyPostsPerUser = CalculateAvarageNumberOfLikesGivenPerFriend(AggregateUserLikes());
-                return AvarageNumberOfLikesGivenToMyPostsPerUser;
-            }
-        }
 
         public SortedList<User, int> UsersSortedByLikes
         {
@@ -95,7 +87,7 @@ namespace InfluencerToolkit
         {
             get
             {
-                AggregateUserLikes();
+                aggregateUserLikes();
                 return this.m_TotalNumberOfLikesRecievedInAllPosts;
             }
             internal set { this.m_TotalNumberOfLikesRecievedInAllPosts = value; }
@@ -103,9 +95,15 @@ namespace InfluencerToolkit
 
         public int AvarageNumberOfLikesGivenToMyPostsPerUser
         {
-            get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }
+            /*get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }*/
+            get
+            {
+                AvarageNumberOfLikesGivenToMyPostsPerUser = calculateAvarageNumberOfLikesGivenPerFriend(aggregateUserLikes());
+                return AvarageNumberOfLikesGivenToMyPostsPerUser;
+            }
             internal set { this.m_AvarageNumberOfLikesGivenToMyPostsPerUser = value; }
         }
+
     }
 
 }

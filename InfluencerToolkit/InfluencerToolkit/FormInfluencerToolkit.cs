@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
@@ -46,9 +47,21 @@ namespace InfluencerToolkit
             base.OnShown(e);
             if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
-                LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
-                UIDataPopulator = new UIPopulator(this);
-                UIDataPopulator.PopulateUI();
+                try
+                {
+                    LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
+
+                }
+                catch(Exception exception)
+                {
+                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message));    
+                }
+                finally
+                {
+                    UIDataPopulator = new UIPopulator(this);
+                    UIDataPopulator.PopulateUI();
+                }
+
             }
         }
 

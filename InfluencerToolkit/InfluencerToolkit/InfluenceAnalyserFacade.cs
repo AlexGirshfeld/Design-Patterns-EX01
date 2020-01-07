@@ -27,21 +27,6 @@ namespace InfluencerToolkit
             return this.m_InfluenceAnalyser.GetPostInfluencePreserving(i_Post);
         }
 
-        public int AvarageCountOfLikesPerPost()
-        {
-            return this.m_PostsDataAggregator.AvarageCountOfLikesPerPost;
-        }
-
-        public int AvarageCountOfLikesPerUser()
-        {
-            return this.m_PostsDataAggregator.AvarageNumberOfLikesGivenToMyPostsPerUser;
-        }
-
-        public int TotalNumberOfLikesRecievedInAllPosts()
-        {
-            return this.m_PostsDataAggregator.TotalNumberOfLikesRecievedInAllPosts;
-        }
-
         public SortedList<User, int> UsersSortedByLikes()
         {
             return this.m_PostsDataAggregator.UsersSortedByLikes;
