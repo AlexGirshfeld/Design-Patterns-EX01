@@ -10,9 +10,11 @@ namespace InfluencerToolkit
 {
     public partial class FormInfluencerToolkit : Form
     {
+        private LoginResult m_LoginResult;
+
         public AppSettings CurrentAppSettings { get; set; }
 
-        public LoginResult LoginResult { get; set; }
+        public CachedLoginResult LoginResult { get; set; }
 
         public UIPopulator UIDataPopulator { get; set; }
         
@@ -49,8 +51,7 @@ namespace InfluencerToolkit
             {
                 try
                 {
-                    LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
-
+                    getLoginResultAndPopulateProxy(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 }
                 catch(Exception exception)
                 {
@@ -77,6 +78,12 @@ namespace InfluencerToolkit
                 CurrentAppSettings = AppSettings.GetDefaultSettings();
                 CurrentAppSettings.SaveToFile();
             }
+        }
+
+        private void getLoginResultAndPopulateProxy(LoginResult i_LoginResult)
+        {
+            this.m_LoginResult = i_LoginResult;
+            LoginResult = new CachedLoginResult(i_LoginResult);
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -115,13 +122,12 @@ namespace InfluencerToolkit
             {
                 if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
                 {
-                    LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
+                    getLoginResultAndPopulateProxy(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 }
                 else
                 {
-                    LoginResult = FacebookService.Login(AppID, permissions);
+                    getLoginResultAndPopulateProxy(FacebookService.Login(AppID, permissions));
                 }
-
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
                 UIDataPopulator = new UIPopulator(this);
 
@@ -178,7 +184,5 @@ namespace InfluencerToolkit
         {
 
         }
-
- 
     }
 }

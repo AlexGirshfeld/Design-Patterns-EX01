@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedLoginResult.cs" />
     <Compile Include="FetcherHolder.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />
