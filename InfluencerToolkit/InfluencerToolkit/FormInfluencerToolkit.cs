@@ -39,7 +39,6 @@ namespace InfluencerToolkit
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
             appSettingsBindingSource.DataSource = CurrentAppSettings;
-            UIDataPopulator = new UIPopulator(this);
         }
 
         protected override void OnShown(EventArgs e)
@@ -48,6 +47,7 @@ namespace InfluencerToolkit
             if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
                 LoginResult = FacebookService.Connect(CurrentAppSettings.LastAccesToken);
+                UIDataPopulator = new UIPopulator(this);
                 UIDataPopulator.PopulateUI();
             }
         }
@@ -110,6 +110,7 @@ namespace InfluencerToolkit
                 }
 
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
+                UIDataPopulator = new UIPopulator(this);
             }
             catch (Exception e)
             {
