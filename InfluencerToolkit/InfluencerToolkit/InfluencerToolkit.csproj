@@ -48,13 +48,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FetcherHolder.cs" />
-    <Compile Include="InfluenceAnalyserFacade.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FormInfluencerToolkit.cs">

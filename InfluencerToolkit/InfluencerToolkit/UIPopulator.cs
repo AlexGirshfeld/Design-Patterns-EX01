@@ -11,12 +11,13 @@ namespace InfluencerToolkit
         private FetcherHolder m_FetcherHolder;
         private InfluenceAnalyserFacade m_InfluenceAnalyserFacade;
 
-        public Post PostToAnalyse { get; private set; }
+        public Post PostToAnalyse { get; internal set; }
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
             r_FormToPopulate = i_Topopulate;
             m_FetcherHolder = new FetcherHolder(this.r_FormToPopulate);
+            m_InfluenceAnalyserFacade = new InfluenceAnalyserFacade(this.r_FormToPopulate.LoginResult.LoggedInUser);
         }
 
         public void PopulateUI()
@@ -69,7 +70,6 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_InfluenceAnalyserFacade = new InfluenceAnalyserFacade(this.r_FormToPopulate.LoginResult.LoggedInUser);
                 int postInfluenceLevel = m_InfluenceAnalyserFacade.GetPostInfluenceLevel(PostToAnalyse);
                 r_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
             }
@@ -83,7 +83,6 @@ namespace InfluencerToolkit
         {
             try
             {
-                m_InfluenceAnalyserFacade = new InfluenceAnalyserFacade(this.r_FormToPopulate.LoginResult.LoggedInUser);
                 int postInfluenceLevel = m_InfluenceAnalyserFacade.GetPostInfluencePreserving(PostToAnalyse);
                 r_FormToPopulate.GradeTextBox.Text = postInfluenceLevel.ToString();
             }
@@ -114,7 +113,7 @@ namespace InfluencerToolkit
             }
         }
 
-        private void displayPostToPreview(Post i_Post)
+        public void displayPostToPreview(Post i_Post)
         {
             try
             {

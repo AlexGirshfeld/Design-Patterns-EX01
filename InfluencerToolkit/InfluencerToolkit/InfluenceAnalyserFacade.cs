@@ -19,54 +19,32 @@ namespace InfluencerToolkit
 
         public int GetPostInfluenceLevel(Post i_Post)
         {
-            int postInfluenceLevel = 0;
-            if (this.m_User.Posts.Contains(i_Post))
-            {
-                postInfluenceLevel = this.m_InfluenceAnalyser.AnalysePostInfluenceLevel(i_Post);
-            }
-            else
-            {
-                throw new Exception("The post you requested was not found!");
-            }
-
-            return postInfluenceLevel;
+            return this.m_InfluenceAnalyser.GetPostInfluenceLevel(i_Post);
         }
 
         public int GetPostInfluencePreserving(Post i_Post)
         {
-            return (int)(this.m_InfluenceAnalyser.quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(this.m_InfluenceAnalyser.qualityInfluencePreservationFactor(i_Post) * 30);
+            return this.m_InfluenceAnalyser.GetPostInfluencePreserving(i_Post);
         }
 
-        public int AvarageCountOfLikesPerPost
+        public int AvarageCountOfLikesPerPost()
         {
-            get
-            {
-                this.m_PostsDataAggregator.AggregateUserLikes();
-                return this.m_PostsDataAggregator.m_AvargeCountOfLikesPerPost;
-            }
+            return this.m_PostsDataAggregator.AvarageCountOfLikesPerPost;
         }
 
-        public int AvarageCountOfLikesPerFriend
+        public int AvarageCountOfLikesPerUser()
         {
-            get
-            {
-                this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser = this.m_PostsDataAggregator.calculateAvarageNumberOfLikesGivenPerFriend(this.m_PostsDataAggregator.AggregateUserLikes());
-                return this.m_PostsDataAggregator.m_AvarageNumberOfLikesGivenToMyPostsPerUser;
-            }
+            return this.m_PostsDataAggregator.AvarageNumberOfLikesGivenToMyPostsPerUser;
         }
 
-        public int TotalLikes
+        public int TotalNumberOfLikesRecievedInAllPosts()
         {
-            get
-            {
-                this.m_PostsDataAggregator.AggregateUserLikes();
-                return this.m_PostsDataAggregator.m_TotalNumberOfLikesRecievedInAllPosts;
-            }
+            return this.m_PostsDataAggregator.TotalNumberOfLikesRecievedInAllPosts;
         }
 
         public SortedList<User, int> UsersSortedByLikes()
         {
-            return this.m_PostsDataAggregator.SortUsersByLikesCount();
+            return this.m_PostsDataAggregator.UsersSortedByLikes;
         }
     }
 }

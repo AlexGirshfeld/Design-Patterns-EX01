@@ -15,10 +15,30 @@ namespace InfluencerToolkit
         {
             this.m_User = i_User;
             this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
-            this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes();
+            this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes;
         }
 
-        internal int AnalysePostInfluenceLevel(Post i_Post)
+        internal int GetPostInfluenceLevel(Post i_Post)
+        {
+            int postInfluenceLevel = 0;
+            if (this.m_User.Posts.Contains(i_Post))
+            {
+                postInfluenceLevel = AnalysePostInfluenceLevel(i_Post);
+            }
+            else
+            {
+                throw new Exception("The post you requested was not found!");
+            }
+
+            return postInfluenceLevel;
+        }
+
+        internal int GetPostInfluencePreserving(Post i_Post)
+        {
+            return (int)(quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(qualityInfluencePreservationFactor(i_Post) * 30);
+        }
+
+        private int AnalysePostInfluenceLevel(Post i_Post)
         {
             int postInfluenceLevel = 0;
 
@@ -60,33 +80,33 @@ namespace InfluencerToolkit
             return postInfluenceLevel;
         }
 
-        internal float qualityInfluencePreservationFactor(Post i_Post)
+        private float qualityInfluencePreservationFactor(Post i_Post)
         {
             float postInfluencePreservation = 0;
             foreach (KeyValuePair<User, int> userLikesPair in m_UsersSortedByLikes)
             {
                 if (i_Post.LikedBy.Contains(userLikesPair.Key))
                 {
-                    postInfluencePreservation += userLikesPair.Value / this.m_PostsDataAggregator.TotalLikes;
+                    postInfluencePreservation += userLikesPair.Value / this.m_PostsDataAggregator.TotalNumberOfLikesRecievedInAllPosts;
                 }
             }
 
             return postInfluencePreservation;
         }
         
-        internal float quantitiveInfluencePreservationFactor(Post i_Post)
+        private float quantitiveInfluencePreservationFactor(Post i_Post)
         {
-            float quantitiveInfluencePreservationFactor = 0f;
+            float m_quantitiveInfluencePreservationFactor = 0f;
             if (m_PostsDataAggregator.AvarageCountOfLikesPerPost != 0)
             {
-                quantitiveInfluencePreservationFactor = i_Post.LikedBy.Count / m_PostsDataAggregator.AvarageCountOfLikesPerPost;
-                if (quantitiveInfluencePreservationFactor > 1)
+                m_quantitiveInfluencePreservationFactor = i_Post.LikedBy.Count / m_PostsDataAggregator.AvarageCountOfLikesPerPost;
+                if (m_quantitiveInfluencePreservationFactor > 1)
                 {
-                    quantitiveInfluencePreservationFactor = 1f;
+                    m_quantitiveInfluencePreservationFactor = 1f;
                 }
             }
 
-            return quantitiveInfluencePreservationFactor;
+            return m_quantitiveInfluencePreservationFactor;
         }
     }
 }
