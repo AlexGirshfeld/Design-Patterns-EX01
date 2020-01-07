@@ -77,6 +77,9 @@
     </Compile>
     <None Include="AppSettings.datasource" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="FacebookWrapper.ObjectModel.Album.datasource" />
+    <None Include="FacebookWrapper.ObjectModel.Post.datasource" />
+    <None Include="FacebookWrapper.ObjectModel.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

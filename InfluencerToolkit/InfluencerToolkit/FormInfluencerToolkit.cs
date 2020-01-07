@@ -111,6 +111,7 @@ namespace InfluencerToolkit
 
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
                 UIDataPopulator = new UIPopulator(this);
+
             }
             catch (Exception e)
             {
@@ -164,5 +165,7 @@ namespace InfluencerToolkit
         {
 
         }
+
+ 
     }
 }

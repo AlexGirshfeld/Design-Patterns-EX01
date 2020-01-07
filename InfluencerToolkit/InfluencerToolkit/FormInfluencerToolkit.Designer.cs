@@ -30,8 +30,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInfluencerToolkit));
             System.Windows.Forms.Label rememberUserLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInfluencerToolkit));
             this.loginButton = new System.Windows.Forms.Button();
             this.PictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.ListBoxAlbums = new System.Windows.Forms.ListBox();
@@ -68,13 +68,26 @@
             this.appSettingsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.rememberUserCheckBox = new System.Windows.Forms.CheckBox();
             this.appSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.imageSmallPictureBox1 = new System.Windows.Forms.PictureBox();
             rememberUserLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingNavigator)).BeginInit();
             this.appSettingsBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // rememberUserLabel
+            // 
+            rememberUserLabel.AutoSize = true;
+            rememberUserLabel.Location = new System.Drawing.Point(12, 101);
+            rememberUserLabel.Name = "rememberUserLabel";
+            rememberUserLabel.Size = new System.Drawing.Size(115, 17);
+            rememberUserLabel.TabIndex = 23;
+            rememberUserLabel.Text = "Remember User:";
             // 
             // loginButton
             // 
@@ -98,12 +111,14 @@
             // 
             // ListBoxAlbums
             // 
+            this.ListBoxAlbums.DataSource = this.albumBindingSource;
+            this.ListBoxAlbums.DisplayMember = "Name";
             this.ListBoxAlbums.FormattingEnabled = true;
             this.ListBoxAlbums.ItemHeight = 16;
             this.ListBoxAlbums.Location = new System.Drawing.Point(16, 161);
             this.ListBoxAlbums.Margin = new System.Windows.Forms.Padding(4);
             this.ListBoxAlbums.Name = "ListBoxAlbums";
-            this.ListBoxAlbums.Size = new System.Drawing.Size(159, 244);
+            this.ListBoxAlbums.Size = new System.Drawing.Size(159, 84);
             this.ListBoxAlbums.TabIndex = 4;
             // 
             // ListBoxPosts
@@ -205,7 +220,7 @@
             this.TextBoxPostAnalyzerPreview.Margin = new System.Windows.Forms.Padding(4);
             this.TextBoxPostAnalyzerPreview.Multiline = true;
             this.TextBoxPostAnalyzerPreview.Name = "TextBoxPostAnalyzerPreview";
-            this.TextBoxPostAnalyzerPreview.Size = new System.Drawing.Size(487, 117);
+            this.TextBoxPostAnalyzerPreview.Size = new System.Drawing.Size(214, 117);
             this.TextBoxPostAnalyzerPreview.TabIndex = 15;
             // 
             // GradeLabel
@@ -304,7 +319,7 @@
             this.appSettingsBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.appSettingsBindingNavigator.Name = "appSettingsBindingNavigator";
             this.appSettingsBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.appSettingsBindingNavigator.Size = new System.Drawing.Size(1176, 27);
+            this.appSettingsBindingNavigator.Size = new System.Drawing.Size(1265, 27);
             this.appSettingsBindingNavigator.TabIndex = 23;
             this.appSettingsBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -360,6 +375,7 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -402,15 +418,6 @@
             this.appSettingsBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.appSettingsBindingNavigatorSaveItem.Text = "Save Data";
             // 
-            // rememberUserLabel
-            // 
-            rememberUserLabel.AutoSize = true;
-            rememberUserLabel.Location = new System.Drawing.Point(12, 101);
-            rememberUserLabel.Name = "rememberUserLabel";
-            rememberUserLabel.Size = new System.Drawing.Size(115, 17);
-            rememberUserLabel.TabIndex = 23;
-            rememberUserLabel.Text = "Remember User:";
-            // 
             // rememberUserCheckBox
             // 
             this.rememberUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.appSettingsBindingSource, "RememberUser", true));
@@ -425,11 +432,25 @@
             this.appSettingsBindingSource.DataSource = typeof(InfluencerToolkit.AppSettings);
             this.appSettingsBindingSource.CurrentChanged += new System.EventHandler(this.appSettingsBindingSource_CurrentChanged);
             // 
+            // albumBindingSource
+            // 
+            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
+            // 
+            // imageSmallPictureBox1
+            // 
+            this.imageSmallPictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumBindingSource, "ImageSmall", true));
+            this.imageSmallPictureBox1.Location = new System.Drawing.Point(37, 324);
+            this.imageSmallPictureBox1.Name = "imageSmallPictureBox1";
+            this.imageSmallPictureBox1.Size = new System.Drawing.Size(112, 81);
+            this.imageSmallPictureBox1.TabIndex = 26;
+            this.imageSmallPictureBox1.TabStop = false;
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1176, 702);
+            this.ClientSize = new System.Drawing.Size(1265, 702);
+            this.Controls.Add(this.imageSmallPictureBox1);
             this.Controls.Add(rememberUserLabel);
             this.Controls.Add(this.rememberUserCheckBox);
             this.Controls.Add(this.appSettingsBindingNavigator);
@@ -461,6 +482,8 @@
             this.appSettingsBindingNavigator.ResumeLayout(false);
             this.appSettingsBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -504,5 +527,7 @@
         private System.Windows.Forms.ToolStripButton appSettingsBindingNavigatorSaveItem;
         public System.Windows.Forms.BindingSource appSettingsBindingSource;
         private System.Windows.Forms.CheckBox rememberUserCheckBox;
+        private System.Windows.Forms.PictureBox imageSmallPictureBox1;
+        public System.Windows.Forms.BindingSource albumBindingSource;
     }
 }

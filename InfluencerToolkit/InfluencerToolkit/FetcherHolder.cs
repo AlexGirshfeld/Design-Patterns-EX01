@@ -22,7 +22,7 @@ namespace InfluencerToolkit
             return postToReturn;
         }
 
-        public void FetchAlbums()
+        public void FetchAlbumsDeprecated()
         {
             r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.DisplayMember = "Name"));
             r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
@@ -32,7 +32,17 @@ namespace InfluencerToolkit
             }
         }
 
-       public void FetchPosts()
+        public void FetchAlbums()
+        {/*
+            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.DisplayMember = "Name"));
+            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
+            foreach (Album album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
+            {
+                r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Add(album)));
+            }*/
+            r_FormToPopulate.albumBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
+        }
+        public void FetchPosts()
         {
             r_FormToPopulate.ListBoxPosts.Invoke(new Action(() => r_FormToPopulate.ListBoxPosts.DisplayMember = "Message"));
             r_FormToPopulate.ListBoxPosts.Invoke(new Action(() => r_FormToPopulate.ListBoxPosts.Items.Clear()));
@@ -44,7 +54,7 @@ namespace InfluencerToolkit
                     {
                         r_FormToPopulate.ListBoxPosts.Invoke(new Action(() => r_FormToPopulate.ListBoxPosts.Items.Add(post)));
                     }
-                }
+                } 
             }
             catch (Exception Exception)
             {
