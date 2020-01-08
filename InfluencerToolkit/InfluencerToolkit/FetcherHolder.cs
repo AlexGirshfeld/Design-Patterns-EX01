@@ -26,7 +26,7 @@ namespace InfluencerToolkit
         {
             r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.DisplayMember = "Name"));
             r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
-            foreach (Album album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
+            foreach (AlbumAdapter album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
             {
                 r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Add(album)));
             }
@@ -42,7 +42,7 @@ namespace InfluencerToolkit
             r_FormToPopulate.ListBoxPosts.Invoke(new Action(() => r_FormToPopulate.ListBoxPosts.Items.Clear()));
             try
             {
-                foreach (Post post in r_FormToPopulate.LoginResult.LoggedInUser.Posts)
+                foreach (PostAdapter post in r_FormToPopulate.LoginResult.LoggedInUser.Posts)
                 {
                     if (post.Message != null)
                     {
@@ -62,7 +62,7 @@ namespace InfluencerToolkit
             r_FormToPopulate.ListBoxFriends.Invoke(new Action(() => r_FormToPopulate.ListBoxFriends.Items.Clear()));
             try
             {
-                foreach (User friend in r_FormToPopulate.LoginResult.LoggedInUser.Friends)
+                foreach (UserAdapter friend in r_FormToPopulate.LoginResult.LoggedInUser.Friends)
                 {
                     r_FormToPopulate.ListBoxFriends.Invoke(new Action( () => r_FormToPopulate.ListBoxFriends.Items.Add(friend)));
                 }
@@ -81,9 +81,9 @@ namespace InfluencerToolkit
             r_FormToPopulate.Invoke(new Action( () => r_FormToPopulate.Text = string.Format("Welcome {0} {1}", r_FormToPopulate.LoginResult.LoggedInUser.FirstName, r_FormToPopulate.LoginResult.LoggedInUser.LastName)));
         }
 
-        public void DisplayPreviewProfilePicture(User i_UserToDisplay)
+        public void DisplayPreviewProfilePicture(UserAdapter i_UserToDisplay)
         {
-            r_FormToPopulate.PictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
+            //r_FormToPopulate.PictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
         }
     }
 }

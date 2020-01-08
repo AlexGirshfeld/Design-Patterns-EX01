@@ -46,7 +46,7 @@ namespace InfluencerToolkit
                 }
                 else
                 {
-                    m_FetcherHolder.DisplayPreviewProfilePicture(userToPreview);
+                    m_FetcherHolder.FetchAvatarAndTitle();
                 }
             }
             catch (Exception e)
