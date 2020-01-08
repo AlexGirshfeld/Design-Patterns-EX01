@@ -51,7 +51,7 @@ namespace InfluencerToolkit
             {
                 retImage = Bitmap.FromStream(stream);
             }
-            retImage;
+            return retImage;
         }
 
         public static explicit operator User(UserAdapter v)
