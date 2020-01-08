@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
-    public class CachedLoginResult
+    public class CachedLoginResultAdapter
     {
-        private LoginResult m_LoginResult;
-       // private LoginResultCacher m_Cacher;
-
-        public CachedLoginResult(LoginResult i_LoginResult)
+        private LoginResultAdapter m_LoginResult;
+        
+        public CachedLoginResultAdapter(LoginResultAdapter i_LoginResult)
         {
             m_LoginResult = i_LoginResult;
-            LogingResultCacher.s_Instance.SaveToFile(m_LoginResult.LoggedInUser);
+            
+            //LogingResultCacher.s_Instance.SaveToFile();
         }
 
-        public String AccessToken {
+        public string AccessToken {
             get
             {
                 string retVal = null;
@@ -37,37 +34,19 @@ namespace InfluencerToolkit
             }
         }
 
-        public String ErrorMessage {
-            get
-            {
-                string retVal = null;
-                if(m_LoginResult == null)
-                {
-                    //m_LoginResult = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
-                    retVal = m_LoginResult.ErrorMessage;
-                }
-                else
-                {
-                    retVal = m_LoginResult.ErrorMessage;
-                }
-
-                return retVal;
-            }
-        }
-        public User LoggedInUser
+        public UserAdapter LoggedInUser
         {
             get
             {
-                User retVal = null;
+                UserAdapter retVal = null;
                 if (m_LoginResult == null)
                 {
-                    retVal = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
+                    //retVal = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
                 }
                 else
                 {
                     retVal = m_LoginResult.LoggedInUser;
                 }
-
                 return retVal;
             }
 

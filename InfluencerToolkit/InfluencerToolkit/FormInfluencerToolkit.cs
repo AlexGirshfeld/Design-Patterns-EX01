@@ -10,11 +10,11 @@ namespace InfluencerToolkit
 {
     public partial class FormInfluencerToolkit : Form
     {
-        private LoginResult m_LoginResult;
+        private LoginResultAdapter m_LoginResult;
 
         public AppSettings CurrentAppSettings { get; set; }
 
-        public CachedLoginResult LoginResult { get; set; }
+        public CachedLoginResultAdapter LoginResult { get; set; }
 
         public UIPopulator UIDataPopulator { get; set; }
         
@@ -49,7 +49,7 @@ namespace InfluencerToolkit
             base.OnShown(e);
             if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
-                getLoginResultAndPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
+                getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 try
                 {
                     
@@ -79,20 +79,21 @@ namespace InfluencerToolkit
             if (CurrentAppSettings.RememberUser)
             {
                 CurrentAppSettings.SaveToFile();
-                getLoginResultAndPopulateCache(m_LoginResult);
+                getAndAdaptLoginResultAndThenPopulateCache(m_LoginResult);
             }
             else
             {
                 CurrentAppSettings = AppSettings.GetDefaultSettings();
                 CurrentAppSettings.SaveToFile();
-                getLoginResultAndPopulateCache(null);
+                getAndAdaptLoginResultAndThenPopulateCache(null);
             }
         }
 
-    private void getLoginResultAndPopulateCache(LoginResult i_LoginResult)
+        private void getAndAdaptLoginResultAndThenPopulateCache(LoginResult i_LoginResult)
         {
+            m_LoginResult = new LoginResultAdapter(i_LoginResult);
             this.m_LoginResult = i_LoginResult;
-            LoginResult = new CachedLoginResult(i_LoginResult);
+            LoginResult = new CachedLoginResultAdapter(i_LoginResult);
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -131,11 +132,11 @@ namespace InfluencerToolkit
             {
                 if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
                 {
-                    getLoginResultAndPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
+                    getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 }
                 else
                 {
-                    getLoginResultAndPopulateCache(FacebookService.Login(AppID, permissions));
+                    getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Login(AppID, permissions));
                 }
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
                 UIDataPopulator = new UIPopulator(this);
