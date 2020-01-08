@@ -13,8 +13,7 @@ namespace InfluencerToolkit
         public CachedLoginResultAdapter(LoginResultAdapter i_LoginResult)
         {
             m_LoginResult = i_LoginResult;
-            m_LoginResult = i_LoginResult;
-            //LogingResultCacher.s_Instance.SaveToFile();
+            LogingResultAdapterCacher.s_Instance.SaveToFile(m_LoginResult);
         }
 
         public string AccessToken {
@@ -23,7 +22,7 @@ namespace InfluencerToolkit
                 string retVal = null;
                 if (m_LoginResult == null)
                 {
-                    //m_LoginResult = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
+                    m_LoginResult = LogingResultAdapterCacher.s_Instance.LoadCachedLoginResultFromDisc();
                     retVal = m_LoginResult.AccessToken;
                 }
                 else
@@ -39,14 +38,15 @@ namespace InfluencerToolkit
             get
             {
                 UserAdapter retVal = m_LoginResult.LoggedInUser;
-               /* if (m_LoginResult == null)
+                if (m_LoginResult == null)
                 {
-                    //retVal = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
+                    m_LoginResult = LogingResultAdapterCacher.s_Instance.LoadCachedLoginResultFromDisc();
+                    retVal = m_LoginResult.LoggedInUser;
                 }
                 else
                 {
                     retVal = m_LoginResult.LoggedInUser;
-                }*/
+                }
                 return retVal;
             }
 

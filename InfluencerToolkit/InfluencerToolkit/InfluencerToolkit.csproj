@@ -54,13 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumAdapter.cs" />
-    <Compile Include="CachedLoginResult.cs" />
+    <Compile Include="CachedLoginResultAdapter.cs" />
     <Compile Include="CollectionAdapter.cs" />
     <Compile Include="FetcherHolder.cs" />
     <Compile Include="GenFBAdapter.cs" />
     <Compile Include="IFacebookObjAdapter.cs" />
     <Compile Include="LoginResultAdapter.cs" />
-    <Compile Include="LoginResultCacher.cs" />
+    <Compile Include="LoginResultAdapterCacher.cs" />
     <Compile Include="PostAdapter.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />

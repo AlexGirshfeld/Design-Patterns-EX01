@@ -8,6 +8,7 @@ using System.Net;
 
 namespace InfluencerToolkit
 {
+    [Serializable]
     public class UserAdapter : IFacebookObjAdapter
     {
         public string FirstName { get; set; }

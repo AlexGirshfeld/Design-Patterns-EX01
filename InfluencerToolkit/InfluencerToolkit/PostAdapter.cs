@@ -6,6 +6,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
+    [Serializable]
     public class PostAdapter : IFacebookObjAdapter
     {
         public Post m_Post;

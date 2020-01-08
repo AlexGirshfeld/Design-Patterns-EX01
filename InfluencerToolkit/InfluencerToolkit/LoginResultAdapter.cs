@@ -1,9 +1,12 @@
 ﻿
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
+using System;
+
 namespace InfluencerToolkit
 {
-    public class LoginResultAdapter
+    [Serializable]
+    public class LoginResultAdapter 
     {
         public UserAdapter LoggedInUser { get; set; }
         public string AccessToken { get; set;}
@@ -19,7 +22,7 @@ namespace InfluencerToolkit
 
         public void adaptLoginResult(LoginResult i_LoginResult)
         {
-            if (LoggedInUser != null)
+            if (i_LoginResult.LoggedInUser != null)
             {
                 this.LoggedInUser = new UserAdapter(i_LoginResult.LoggedInUser);
                 this.AccessToken = i_LoginResult.AccessToken;

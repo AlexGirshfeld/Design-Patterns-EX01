@@ -6,6 +6,7 @@ using FacebookWrapper.ObjectModel;
 using System.Drawing;
 namespace InfluencerToolkit
 {
+    [Serializable]
     public class AlbumAdapter : IFacebookObjAdapter
     {
         public Post m_Post;

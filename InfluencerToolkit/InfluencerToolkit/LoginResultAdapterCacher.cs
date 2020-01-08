@@ -14,7 +14,7 @@ namespace InfluencerToolkit
 
 	public sealed class LogingResultAdapterCacher
 	{
-		public static readonly string r_CacheFilePath = @"C:\Users\Public\LogingInResultCache.xml";
+		public static readonly string r_CacheFilePath = @"C:\Users\Public\LogingInResultCache.bin";
 		private bool m_ThereIsCachedLoginResultOnDisc;
 		public readonly static LogingResultAdapterCacher s_Instance = new LogingResultAdapterCacher();
 
