@@ -6,7 +6,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
-    public class PostAdapter
+    public class PostAdapter : IFacebookObjAdapter
     {
         public Post m_Post;
         public string Name { get; set; }
@@ -15,20 +15,33 @@ namespace InfluencerToolkit
 
         public List<UserAdapter> LikedBy { get; set; }
 
-        private PostAdapter()
+        public PostAdapter()
+        {    
+        }
+
+        public void AdaptFaceBookObj(FacebookObject i_PostToAdapt)
         {
             
         }
 
         public void AdaptPostForCaching(Post i_Post)
         {
-            this.Name = i_Post.Name;
-            this.Message = i_Post.Message;
-            //this.LikedBy = i_Post.LikedBy;
+ 
         }
 
+        public void AdaptFacebookObj(FacebookObject i_PostToAdapt)
+        {
+            if (i_PostToAdapt is Post)
+            {
+                this.Name = i_PostToAdapt.Name;
+                this.Message = i_PostToAdapt.Message;
+                this.LikedBy = CollectionAdapter.AdaptCollection<UserAdapter,User>(i_PostToAdapt.LikedBy);
+            }
+            else
+            {
+                throw new Exception("trying to adapt into a  PostAdapter an object that is not a Facebook Post");
+            }
 
-
-
+        }
     }
 }
