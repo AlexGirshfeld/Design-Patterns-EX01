@@ -12,29 +12,28 @@ using System.Runtime.Serialization;
 namespace InfluencerToolkit
 {
 
-	public sealed class LogingResultCacher
+	public sealed class LogingResultAdapterCacher
 	{
 		public static readonly string r_CacheFilePath = @"C:\Users\Public\LogingInResultCache.xml";
 		private bool m_ThereIsCachedLoginResultOnDisc;
-		public readonly static LogingResultCacher s_Instance = new LogingResultCacher();
+		public readonly static LogingResultAdapterCacher s_Instance = new LogingResultAdapterCacher();
 
-		private LogingResultCacher()
+		private LogingResultAdapterCacher()
 		{
 		}
 
-		public User LoadCachedLoginResultFromDisc()
+		public LoginResultAdapter LoadCachedLoginResultFromDisc()
 		{
-			User retVal = null;
+			LoginResultAdapter retVal = null;
 			if (File.Exists(r_CacheFilePath))
 			{
 				using (Stream stream = new FileStream(r_CacheFilePath, FileMode.Open))
 				{
-					//IFormatter formatter = new BinaryFormatter();
-					//retVal = (LoginResult)formatter.Deserialize(stream);
+					IFormatter formatter = new BinaryFormatter();
+					retVal = (LoginResultAdapter)formatter.Deserialize(stream);
 					XmlSerializer serializer = new XmlSerializer(retVal.GetType());
-					retVal = serializer.Deserialize(stream) as User;
+					//retVal = serializer.Deserialize(stream) as User;
 					//retVal = formatter.Deserialize(stream) as LoginResult;
-
 				}
 			}
 			return retVal;
@@ -128,7 +127,7 @@ namespace InfluencerToolkit
 
 			xOver.Add(typeof(User), "Friends", attrs);
 			xOver.Add(typeof(User), "Names", attrs);
-			XmlSerializer xSer = new XmlSerializer(typeof(PostAdapter), xOver);
+			XmlSerializer xSer = new XmlSerializer(typeof(LoginResultAdapter), xOver);
 			return xSer;
 		}
 
