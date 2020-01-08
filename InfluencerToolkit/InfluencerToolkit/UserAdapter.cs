@@ -54,6 +54,9 @@ namespace InfluencerToolkit
             retImage;
         }
 
-
+        public static explicit operator User(UserAdapter v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

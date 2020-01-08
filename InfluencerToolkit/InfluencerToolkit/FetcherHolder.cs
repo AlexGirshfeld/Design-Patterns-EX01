@@ -16,9 +16,9 @@ namespace InfluencerToolkit
             r_FormToPopulate = i_Form;
         }
 
-        public Post FetchSetCurrentPostToAnalyze(string i_PostMessage, User i_User)
+        public PostAdapter FetchSetCurrentPostToAnalyze(string i_PostMessage, UserAdapter i_User)
         {
-            Post postToReturn = i_User.Posts.Find(x => x.Message == i_PostMessage);
+            PostAdapter postToReturn = i_User.Posts.Find(x => x.Message == i_PostMessage);
             return postToReturn;
         }
 

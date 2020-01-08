@@ -6,24 +6,24 @@ namespace InfluencerToolkit
 {
     public class PostsDataAggregator
     {
-        private FacebookObjectCollection<Post> m_CurrentUserPostsCollection;
+        private List<PostAdapter> m_CurrentUserPostsCollection;
         private int m_AvargeCountOfLikesPerPost;
         public int m_AvarageNumberOfLikesGivenToMyPostsPerUser;
         private int m_TotalNumberOfLikesRecievedInAllPosts;
 
-        public PostsDataAggregator(User i_User)
+        public PostsDataAggregator(UserAdapter i_UserAdapter)
         {
-            m_CurrentUserPostsCollection = i_User.Posts;
+            m_CurrentUserPostsCollection = i_UserAdapter.Posts;
         }
 
-        private Dictionary<User, int> aggregateUserLikes()
+        private Dictionary<UserAdapter, int> aggregateUserLikes()
         {
-            Dictionary<User, int> m_usersLikesCount = new Dictionary<User, int>();
+            Dictionary<UserAdapter, int> m_usersLikesCount = new Dictionary<UserAdapter, int>();
             m_TotalNumberOfLikesRecievedInAllPosts = 0;
 
-            foreach(Post post in this.m_CurrentUserPostsCollection)
+            foreach(PostAdapter post in this.m_CurrentUserPostsCollection)
             {
-                foreach(User user in post.LikedBy)
+                foreach(UserAdapter user in post.LikedBy)
                 {
                     m_TotalNumberOfLikesRecievedInAllPosts++;
                     if (m_usersLikesCount.ContainsKey(user))
@@ -43,10 +43,10 @@ namespace InfluencerToolkit
             return m_usersLikesCount;
         }
 
-        private int calculateAvarageNumberOfLikesGivenPerFriend(Dictionary<User, int> i_UserLikesDict)
+        private int calculateAvarageNumberOfLikesGivenPerFriend(Dictionary<UserAdapter, int> i_UserLikesDict)
         {
             int avarageLikes = 0;
-            foreach(KeyValuePair<User, int> userLikesPair in i_UserLikesDict)
+            foreach(KeyValuePair<UserAdapter, int> userLikesPair in i_UserLikesDict)
             {
                 avarageLikes += userLikesPair.Value;
             }
@@ -54,13 +54,13 @@ namespace InfluencerToolkit
             return avarageLikes / i_UserLikesDict.Count;
         }
 
-        private SortedList<User, int> SortUsersByLikesCount()
+        private SortedList<UserAdapter, int> SortUsersByLikesCount()
         {
-            SortedList<User, int> m_usersSortedByLikes = new SortedList<User, int>();
-            Dictionary<User, int> m_dictionaryToSort = aggregateUserLikes();
+            SortedList<UserAdapter, int> m_usersSortedByLikes = new SortedList<UserAdapter, int>();
+            Dictionary<UserAdapter, int> m_dictionaryToSort = aggregateUserLikes();
             m_dictionaryToSort.OrderBy(x => x.Value);
 
-            foreach(KeyValuePair<User, int> userLikesCount in m_dictionaryToSort)
+            foreach(KeyValuePair<UserAdapter, int> userLikesCount in m_dictionaryToSort)
             {
                 m_usersSortedByLikes.Add(userLikesCount.Key, userLikesCount.Value);
             }
@@ -78,7 +78,7 @@ namespace InfluencerToolkit
         }
 
 
-        public SortedList<User, int> UsersSortedByLikes
+        public SortedList<UserAdapter, int> UsersSortedByLikes
         {
             get { return SortUsersByLikesCount(); }
         }

@@ -11,7 +11,7 @@ namespace InfluencerToolkit
         private FetcherHolder m_FetcherHolder;
         private InfluenceAnalyserFacade m_InfluenceAnalyserFacade;
 
-        public Post PostToAnalyse { get; internal set; }
+        public PostAdapter PostToAnalyse { get; internal set; }
 
         public UIPopulator(FormInfluencerToolkit i_Topopulate)
         {
@@ -39,7 +39,7 @@ namespace InfluencerToolkit
         {
             try
             {
-                User userToPreview = r_FormToPopulate.LoginResult.LoggedInUser.Friends.Find(x => x.Name == i_UserName);
+                UserAdapter userToPreview = r_FormToPopulate.LoginResult.LoggedInUser.Friends.Find(x => x.Name == i_UserName);
                 if (userToPreview == null)
                 {
                     r_FormToPopulate.DisplayErrorDialog("Couldn't find the friend to preview his profile image");
@@ -57,10 +57,10 @@ namespace InfluencerToolkit
      
         public void PopulateSortedUserList()
         {
-            SortedList<User, int> sortedListOfUsersByLikes = this.m_InfluenceAnalyserFacade.UsersSortedByLikes();
-            foreach (KeyValuePair<User, int> userLikesPair in sortedListOfUsersByLikes)
+            SortedList<UserAdapter, int> sortedListOfUsersByLikes = this.m_InfluenceAnalyserFacade.UsersSortedByLikes();
+            foreach (KeyValuePair<UserAdapter, int> userLikesPair in sortedListOfUsersByLikes)
             {
-                ListViewItem item = new ListViewItem(userLikesPair.Key.UserName);
+                ListViewItem item = new ListViewItem(userLikesPair.Key.FirstName);
                 item.SubItems.Add(userLikesPair.Value.ToString());
                 this.r_FormToPopulate.UserNameLikesListView.Items.Add(item);
             }
@@ -96,7 +96,7 @@ namespace InfluencerToolkit
         {
             try
             {
-                Post postToPreviewAndAnalyze = m_FetcherHolder.FetchSetCurrentPostToAnalyze(i_PostMessage, r_FormToPopulate.LoginResult.LoggedInUser);
+                PostAdapter postToPreviewAndAnalyze = m_FetcherHolder.FetchSetCurrentPostToAnalyze(i_PostMessage, r_FormToPopulate.LoginResult.LoggedInUser);
                 if (postToPreviewAndAnalyze == null)
                 {
                     r_FormToPopulate.DisplayErrorDialog("Couldn't find the post to preview");
@@ -104,7 +104,7 @@ namespace InfluencerToolkit
                 else
                 {
                     PostToAnalyse = postToPreviewAndAnalyze;
-                    displayPostToPreview(postToPreviewAndAnalyze);
+                    displayPostToPreview(postToPreviewAndAnalyze.m_Post);
                 }
             }
             catch (Exception e)

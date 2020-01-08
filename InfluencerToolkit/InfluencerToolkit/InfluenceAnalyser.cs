@@ -7,18 +7,18 @@ namespace InfluencerToolkit
 {
     public class InfluenceAnalyser
     {
-        private User m_User;
+        private UserAdapter m_User;
         private PostsDataAggregator m_PostsDataAggregator;
-        private SortedList<User, int> m_UsersSortedByLikes;
+        private SortedList<UserAdapter, int> m_UsersSortedByLikes;
     
-        public InfluenceAnalyser(User i_User)
+        public InfluenceAnalyser(UserAdapter i_User)
         {
             this.m_User = i_User;
             this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
             this.m_UsersSortedByLikes = this.m_PostsDataAggregator.UsersSortedByLikes;
         }
 
-        internal int GetPostInfluenceLevel(Post i_Post)
+        internal int GetPostInfluenceLevel(PostAdapter i_Post)
         {
             int postInfluenceLevel = 0;
             if (this.m_User.Posts.Contains(i_Post))
@@ -33,12 +33,12 @@ namespace InfluencerToolkit
             return postInfluenceLevel;
         }
 
-        internal int GetPostInfluencePreserving(Post i_Post)
+        internal int GetPostInfluencePreserving(PostAdapter i_Post)
         {
             return (int)(quantitiveInfluencePreservationFactor(i_Post) * 70) + (int)(qualityInfluencePreservationFactor(i_Post) * 30);
         }
 
-        private int AnalysePostInfluenceLevel(Post i_Post)
+        private int AnalysePostInfluenceLevel(PostAdapter i_Post)
         {
             int postInfluenceLevel = 0;
 
@@ -49,7 +49,7 @@ namespace InfluencerToolkit
             }
 
             int previouslyInfluencedUsersCount = 0;
-            foreach (KeyValuePair<User, int> userLikesPair in this.m_UsersSortedByLikes)
+            foreach (KeyValuePair<UserAdapter, int> userLikesPair in this.m_UsersSortedByLikes)
             {
                 if(i_Post.LikedBy.Contains(userLikesPair.Key))
                 {
@@ -80,10 +80,10 @@ namespace InfluencerToolkit
             return postInfluenceLevel;
         }
 
-        private float qualityInfluencePreservationFactor(Post i_Post)
+        private float qualityInfluencePreservationFactor(PostAdapter i_Post)
         {
             float postInfluencePreservation = 0;
-            foreach (KeyValuePair<User, int> userLikesPair in m_UsersSortedByLikes)
+            foreach (KeyValuePair<UserAdapter, int> userLikesPair in m_UsersSortedByLikes)
             {
                 if (i_Post.LikedBy.Contains(userLikesPair.Key))
                 {
@@ -94,7 +94,7 @@ namespace InfluencerToolkit
             return postInfluencePreservation;
         }
         
-        private float quantitiveInfluencePreservationFactor(Post i_Post)
+        private float quantitiveInfluencePreservationFactor(PostAdapter i_Post)
         {
             float m_quantitiveInfluencePreservationFactor = 0f;
             if (m_PostsDataAggregator.AvarageCountOfLikesPerPost != 0)

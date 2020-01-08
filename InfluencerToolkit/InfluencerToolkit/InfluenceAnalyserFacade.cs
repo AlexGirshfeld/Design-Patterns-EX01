@@ -6,28 +6,28 @@ namespace InfluencerToolkit
 {
     public class InfluenceAnalyserFacade
     {
-        private User m_User;
+        private UserAdapter m_UserAdapter;
         private PostsDataAggregator m_PostsDataAggregator;
         private InfluenceAnalyser m_InfluenceAnalyser;
 
-        public InfluenceAnalyserFacade(User i_User) 
+        public InfluenceAnalyserFacade(UserAdapter i_UserAdapter) 
         {
-            this.m_User = i_User;
-            this.m_InfluenceAnalyser = new InfluenceAnalyser(this.m_User);
-            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_User);
+            this.m_UserAdapter = i_UserAdapter;
+            this.m_InfluenceAnalyser = new InfluenceAnalyser(this.m_UserAdapter);
+            this.m_PostsDataAggregator = new PostsDataAggregator(this.m_UserAdapter);
         }
 
-        public int GetPostInfluenceLevel(Post i_Post)
+        public int GetPostInfluenceLevel(PostAdapter i_Post)
         {
             return this.m_InfluenceAnalyser.GetPostInfluenceLevel(i_Post);
         }
 
-        public int GetPostInfluencePreserving(Post i_Post)
+        public int GetPostInfluencePreserving(PostAdapter i_Post)
         {
             return this.m_InfluenceAnalyser.GetPostInfluencePreserving(i_Post);
         }
 
-        public SortedList<User, int> UsersSortedByLikes()
+        public SortedList<UserAdapter, int> UsersSortedByLikes()
         {
             return this.m_PostsDataAggregator.UsersSortedByLikes;
         }
