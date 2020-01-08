@@ -55,7 +55,7 @@ namespace InfluencerToolkit
                 }
                 catch(Exception exception)
                 {
-                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message));
+                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message)); 
                     this.LoginResult = new CachedLoginResultAdapter();
                 }
                 finally

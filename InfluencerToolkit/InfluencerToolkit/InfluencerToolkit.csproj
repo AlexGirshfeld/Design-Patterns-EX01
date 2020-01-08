@@ -85,9 +85,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="AlbumAdapter.datasource" />
     <None Include="AppSettings.datasource" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="FacebookWrapper.ObjectModel.Album.datasource" />
     <None Include="FacebookWrapper.ObjectModel.Post.datasource" />
     <None Include="FacebookWrapper.ObjectModel.User.datasource" />
     <None Include="Properties\Settings.settings">

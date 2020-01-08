@@ -32,9 +32,12 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label rememberUserLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInfluencerToolkit));
+            System.Windows.Forms.Label imageSmallLabel;
+            System.Windows.Forms.Label nameLabel;
             this.loginButton = new System.Windows.Forms.Button();
             this.PictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.ListBoxAlbums = new System.Windows.Forms.ListBox();
+            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ListBoxPosts = new System.Windows.Forms.ListBox();
             this.ListBoxFriends = new System.Windows.Forms.ListBox();
             this.SortUserLikesButton = new System.Windows.Forms.Button();
@@ -55,6 +58,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.appSettingsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.appSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -67,17 +71,22 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.appSettingsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.rememberUserCheckBox = new System.Windows.Forms.CheckBox();
-            this.appSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.albumBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.imageSmallPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.albumAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.imageSmallPictureBox = new System.Windows.Forms.PictureBox();
+            this.nameListBox = new System.Windows.Forms.ListBox();
             rememberUserLabel = new System.Windows.Forms.Label();
+            imageSmallLabel = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingNavigator)).BeginInit();
             this.appSettingsBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumAdapterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // rememberUserLabel
@@ -120,6 +129,10 @@
             this.ListBoxAlbums.Name = "ListBoxAlbums";
             this.ListBoxAlbums.Size = new System.Drawing.Size(159, 84);
             this.ListBoxAlbums.TabIndex = 4;
+            // 
+            // albumBindingSource
+            // 
+            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
             // 
             // ListBoxPosts
             // 
@@ -332,6 +345,11 @@
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
+            // appSettingsBindingSource
+            // 
+            this.appSettingsBindingSource.DataSource = typeof(InfluencerToolkit.AppSettings);
+            this.appSettingsBindingSource.CurrentChanged += new System.EventHandler(this.appSettingsBindingSource_CurrentChanged);
+            // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
@@ -375,7 +393,6 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -427,15 +444,6 @@
             this.rememberUserCheckBox.TabIndex = 24;
             this.rememberUserCheckBox.UseVisualStyleBackColor = true;
             // 
-            // appSettingsBindingSource
-            // 
-            this.appSettingsBindingSource.DataSource = typeof(InfluencerToolkit.AppSettings);
-            this.appSettingsBindingSource.CurrentChanged += new System.EventHandler(this.appSettingsBindingSource_CurrentChanged);
-            // 
-            // albumBindingSource
-            // 
-            this.albumBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Album);
-            // 
             // imageSmallPictureBox1
             // 
             this.imageSmallPictureBox1.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumBindingSource, "ImageSmall", true));
@@ -445,11 +453,58 @@
             this.imageSmallPictureBox1.TabIndex = 26;
             this.imageSmallPictureBox1.TabStop = false;
             // 
+            // albumAdapterBindingSource
+            // 
+            this.albumAdapterBindingSource.DataSource = typeof(InfluencerToolkit.AlbumAdapter);
+            // 
+            // imageSmallLabel
+            // 
+            imageSmallLabel.AutoSize = true;
+            imageSmallLabel.Location = new System.Drawing.Point(438, 455);
+            imageSmallLabel.Name = "imageSmallLabel";
+            imageSmallLabel.Size = new System.Drawing.Size(88, 17);
+            imageSmallLabel.TabIndex = 26;
+            imageSmallLabel.Text = "Image Small:";
+            // 
+            // imageSmallPictureBox
+            // 
+            this.imageSmallPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumAdapterBindingSource, "ImageSmall", true));
+            this.imageSmallPictureBox.Location = new System.Drawing.Point(532, 455);
+            this.imageSmallPictureBox.Name = "imageSmallPictureBox";
+            this.imageSmallPictureBox.Size = new System.Drawing.Size(120, 50);
+            this.imageSmallPictureBox.TabIndex = 27;
+            this.imageSmallPictureBox.TabStop = false;
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(438, 511);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(49, 17);
+            nameLabel.TabIndex = 28;
+            nameLabel.Text = "Name:";
+            // 
+            // nameListBox
+            // 
+            this.nameListBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.albumAdapterBindingSource, "Name", true));
+            this.nameListBox.DataSource = this.albumAdapterBindingSource;
+            this.nameListBox.DisplayMember = "Name";
+            this.nameListBox.FormattingEnabled = true;
+            this.nameListBox.ItemHeight = 16;
+            this.nameListBox.Location = new System.Drawing.Point(532, 511);
+            this.nameListBox.Name = "nameListBox";
+            this.nameListBox.Size = new System.Drawing.Size(120, 84);
+            this.nameListBox.TabIndex = 29;
+            // 
             // FormInfluencerToolkit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 702);
+            this.Controls.Add(imageSmallLabel);
+            this.Controls.Add(this.imageSmallPictureBox);
+            this.Controls.Add(nameLabel);
+            this.Controls.Add(this.nameListBox);
             this.Controls.Add(this.imageSmallPictureBox1);
             this.Controls.Add(rememberUserLabel);
             this.Controls.Add(this.rememberUserCheckBox);
@@ -477,13 +532,15 @@
             this.Text = "Influencers Toolkit";
             this.ResizeEnd += new System.EventHandler(this.FormInfluencerToolkit_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingNavigator)).EndInit();
             this.appSettingsBindingNavigator.ResumeLayout(false);
             this.appSettingsBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumAdapterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -529,5 +586,8 @@
         private System.Windows.Forms.CheckBox rememberUserCheckBox;
         private System.Windows.Forms.PictureBox imageSmallPictureBox1;
         public System.Windows.Forms.BindingSource albumBindingSource;
+        private System.Windows.Forms.PictureBox imageSmallPictureBox;
+        private System.Windows.Forms.ListBox nameListBox;
+        public System.Windows.Forms.BindingSource albumAdapterBindingSource;
     }
 }

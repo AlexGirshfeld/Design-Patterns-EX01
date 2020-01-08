@@ -35,6 +35,7 @@ namespace InfluencerToolkit
         public void FetchAlbums()
         {
             r_FormToPopulate.albumBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
+            r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
         }
         public void FetchPosts()
         {
