@@ -20,12 +20,10 @@ namespace InfluencerToolkit
         public AlbumAdapter()
         {
         }
-
-        public void AdaptFaceBookObj(FacebookObject i_AlbumToAdapt)
+        public AlbumAdapter(Album i_Album)
         {
-
+            AdaptFacebookObj(i_Album);
         }
-
 
         public void AdaptFacebookObj(FacebookObject i_AlbumToAdapt)
         {

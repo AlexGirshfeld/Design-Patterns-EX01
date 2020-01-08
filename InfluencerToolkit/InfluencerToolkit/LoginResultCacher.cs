@@ -31,7 +31,7 @@ namespace InfluencerToolkit
 				{
 					IFormatter formatter = new BinaryFormatter();
 					retVal = (LoginResultAdapter)formatter.Deserialize(stream);
-					XmlSerializer serializer = new XmlSerializer(retVal.GetType());
+					//XmlSerializer serializer = new XmlSerializer(retVal.GetType());
 					//retVal = serializer.Deserialize(stream) as User;
 					//retVal = formatter.Deserialize(stream) as LoginResult;
 				}
@@ -39,7 +39,7 @@ namespace InfluencerToolkit
 			return retVal;
 		}
 
-		public void SaveToFile(User i_LoginResultToStore)
+		public void SaveToFile(LoginResultAdapter i_LoginResultToStore)
 		{
 			FileIOPermission fileIOPerm = new FileIOPermission(FileIOPermissionAccess.Write, r_CacheFilePath);
 			if (File.Exists(r_CacheFilePath))
@@ -47,22 +47,22 @@ namespace InfluencerToolkit
 
 				using (Stream stream = new FileStream(r_CacheFilePath, FileMode.Truncate))
 				{
-					//IFormatter formatter = new BinaryFormatter();
+					IFormatter formatter = new BinaryFormatter();
 					//XmlSerializer serializer = new XmlSerializer(i_LoginResultToStore.GetType());
 					//XmlSerializer serializer = CreateOverrider();
 					//serializer.Serialize(stream, i_LoginResultToStore);
-					//formatter.Serialize(stream, i_LoginResultToStore);
+					formatter.Serialize(stream, i_LoginResultToStore);
 				}
 			}
 			else
 			{
 				using (Stream stream = new FileStream(r_CacheFilePath, FileMode.CreateNew))
 				{
-					//IFormatter formatter = new BinaryFormatter();
+					IFormatter formatter = new BinaryFormatter();
 					//XmlSerializer serializer = new XmlSerializer(i_LoginResultToStore.GetType());
 					//XmlSerializer serializer = CreateOverrider();
 					//serializer.Serialize(stream, i_LoginResultToStore);
-					//formatter.Serialize(stream, i_LoginResultToStore);
+					formatter.Serialize(stream, i_LoginResultToStore);
 				}
 			}
 		}

@@ -13,7 +13,7 @@ namespace InfluencerToolkit
         public CachedLoginResultAdapter(LoginResultAdapter i_LoginResult)
         {
             m_LoginResult = i_LoginResult;
-            
+            m_LoginResult = i_LoginResult;
             //LogingResultCacher.s_Instance.SaveToFile();
         }
 
@@ -38,15 +38,15 @@ namespace InfluencerToolkit
         {
             get
             {
-                UserAdapter retVal = null;
-                if (m_LoginResult == null)
+                UserAdapter retVal = m_LoginResult.LoggedInUser;
+               /* if (m_LoginResult == null)
                 {
                     //retVal = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
                 }
                 else
                 {
                     retVal = m_LoginResult.LoggedInUser;
-                }
+                }*/
                 return retVal;
             }
 
