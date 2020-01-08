@@ -18,24 +18,18 @@ namespace InfluencerToolkit
         public PostAdapter()
         {    
         }
-
-        public void AdaptFaceBookObj(FacebookObject i_PostToAdapt)
+        public PostAdapter(Post i_Post)
         {
-            
-        }
-
-        public void AdaptPostForCaching(Post i_Post)
-        {
- 
+            AdaptFacebookObj(i_Post);
         }
 
         public void AdaptFacebookObj(FacebookObject i_PostToAdapt)
         {
             if (i_PostToAdapt is Post)
             {
-                this.Name = i_PostToAdapt.Name;
-                this.Message = i_PostToAdapt.Message;
-                this.LikedBy = CollectionAdapter.AdaptCollection<UserAdapter,User>(i_PostToAdapt.LikedBy);
+                this.Name = (i_PostToAdapt as Post).Name;
+                this.Message = (i_PostToAdapt as Post).Message;
+                this.LikedBy = CollectionAdapter.AdaptCollection<UserAdapter,User>((i_PostToAdapt as Post).LikedBy);
             }
             else
             {

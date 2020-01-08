@@ -2,10 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using FacebookWrapper.ObjectModel;
+using System.Drawing;
 namespace InfluencerToolkit
 {
-    class AlbumAdapter
+    public class AlbumAdapter : IFacebookObjAdapter
     {
+        public Post m_Post;
+        public string Name { get; set; }
+
+        public string Message { get; set; }
+
+        public Image ImageSmall { get; set;}
+
+        public List<UserAdapter> LikedBy { get; set; }
+
+        public AlbumAdapter()
+        {
+        }
+
+        public void AdaptFaceBookObj(FacebookObject i_AlbumToAdapt)
+        {
+
+        }
+
+
+        public void AdaptFacebookObj(FacebookObject i_AlbumToAdapt)
+        {
+            if (i_AlbumToAdapt is Album)
+            {
+                this.Name = (i_AlbumToAdapt as Album).Name;
+                this.Message = (i_AlbumToAdapt as Album).Message;
+                this.LikedBy = CollectionAdapter.AdaptCollection<UserAdapter, User>((i_AlbumToAdapt as Album).LikedBy);
+                this.ImageSmall = (i_AlbumToAdapt as Album).ImageSmall;
+            }
+            else
+            {
+                throw new Exception("trying to adapt into a  AlbumAdatper an object that is not a Facebook album");
+            }
+
+        }
     }
 }

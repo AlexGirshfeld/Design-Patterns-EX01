@@ -50,8 +50,8 @@ namespace InfluencerToolkit
 				{
 					//IFormatter formatter = new BinaryFormatter();
 					//XmlSerializer serializer = new XmlSerializer(i_LoginResultToStore.GetType());
-					XmlSerializer serializer = CreateOverrider();
-					serializer.Serialize(stream, i_LoginResultToStore);
+					//XmlSerializer serializer = CreateOverrider();
+					//serializer.Serialize(stream, i_LoginResultToStore);
 					//formatter.Serialize(stream, i_LoginResultToStore);
 				}
 			}
@@ -61,8 +61,8 @@ namespace InfluencerToolkit
 				{
 					//IFormatter formatter = new BinaryFormatter();
 					//XmlSerializer serializer = new XmlSerializer(i_LoginResultToStore.GetType());
-					XmlSerializer serializer = CreateOverrider();
-					serializer.Serialize(stream, i_LoginResultToStore);
+					//XmlSerializer serializer = CreateOverrider();
+					//serializer.Serialize(stream, i_LoginResultToStore);
 					//formatter.Serialize(stream, i_LoginResultToStore);
 				}
 			}
