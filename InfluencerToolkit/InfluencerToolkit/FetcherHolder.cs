@@ -28,7 +28,7 @@ namespace InfluencerToolkit
             r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
             foreach (AlbumAdapter album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
             {
-                r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Add(album)));
+              //  r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Add(album)));
             }
         }
 
@@ -83,7 +83,7 @@ namespace InfluencerToolkit
 
         public void DisplayPreviewProfilePicture(UserAdapter i_UserToDisplay)
         {
-            //r_FormToPopulate.PictureBoxUserPreview.ImageLocation = i_UserToDisplay.PictureNormalURL;
+            r_FormToPopulate.PictureBoxUserPreview.Image = i_UserToDisplay.ImageNormal;
         }
     }
 }

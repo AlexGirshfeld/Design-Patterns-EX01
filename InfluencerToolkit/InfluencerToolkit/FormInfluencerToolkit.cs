@@ -79,7 +79,7 @@ namespace InfluencerToolkit
             if (CurrentAppSettings.RememberUser)
             {
                 CurrentAppSettings.SaveToFile();
-                getAndAdaptLoginResultAndThenPopulateCache(m_LoginResult);
+                getLoginResultAdapterAndPopulateCache(m_LoginResult);
             }
             else
             {
@@ -88,12 +88,16 @@ namespace InfluencerToolkit
                 getAndAdaptLoginResultAndThenPopulateCache(null);
             }
         }
-
         private void getAndAdaptLoginResultAndThenPopulateCache(LoginResult i_LoginResult)
         {
-            m_LoginResult = new LoginResultAdapter(i_LoginResult);
-            this.m_LoginResult = i_LoginResult;
-            LoginResult = new CachedLoginResultAdapter(i_LoginResult);
+            this.m_LoginResult = new LoginResultAdapter(i_LoginResult);
+            LoginResult = new CachedLoginResultAdapter(m_LoginResult);
+        }
+
+        private void getLoginResultAdapterAndPopulateCache(LoginResultAdapter i_LoginResultAdapter)
+        {
+            this.m_LoginResult = i_LoginResultAdapter;
+            LoginResult = new CachedLoginResultAdapter(i_LoginResultAdapter);
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -128,8 +132,8 @@ namespace InfluencerToolkit
                 "publish_to_groups",
                 "groups_access_member_info"
                 };
-            try
-            {
+            //try
+            //{
                 if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
                 {
                     getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
@@ -141,11 +145,11 @@ namespace InfluencerToolkit
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
                 UIDataPopulator = new UIPopulator(this);
 
-            }
-            catch (Exception e)
-            {
-                DisplayErrorDialog(string.Format("Something went wrong in the login process, please try again {0}Advanced:{1}", Environment.NewLine, e.Message));
-            }
+           // }
+           // catch (Exception e)
+            //{
+               // DisplayErrorDialog(string.Format("Something went wrong in the login process, please try again {0}Advanced:{1}", Environment.NewLine, e.Message));
+           // }
         }
 
         public void DisplayErrorDialog(string i_Message)

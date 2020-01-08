@@ -12,7 +12,8 @@ namespace InfluencerToolkit
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Image ProfilePicture { get; set; }
+        public string Name { get; set; }
+        public Image ImageNormal { get; set; }
         public List<PostAdapter> Posts { get; set; }
         public List<AlbumAdapter> Albums { get; set; }
         public List<UserAdapter> Friends { get; set; }
@@ -23,6 +24,10 @@ namespace InfluencerToolkit
         public UserAdapter()
         {
         }
+        public UserAdapter(User i_User)
+        {
+            AdaptFacebookObj(i_User);
+        }
 
         public void AdaptFacebookObj(FacebookObject i_UserToAdapt)
         {
@@ -32,8 +37,9 @@ namespace InfluencerToolkit
                 this.Albums = CollectionAdapter.AdaptCollection<AlbumAdapter, Album>((i_UserToAdapt as User).Albums);
                 this.Friends = CollectionAdapter.AdaptCollection<UserAdapter, User>((i_UserToAdapt as User).Friends);
                 this.FirstName = (i_UserToAdapt as User).FirstName;
+                this.Name = (i_UserToAdapt as User).Name;
                 this.LastName = (i_UserToAdapt as User).LastName;
-                this.ProfilePicture = (i_UserToAdapt as User).ImageNormal;
+                this.ImageNormal = (i_UserToAdapt as User).ImageNormal;
             }
             else
             {

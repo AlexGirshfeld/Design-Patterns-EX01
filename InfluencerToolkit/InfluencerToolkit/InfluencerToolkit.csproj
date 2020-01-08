@@ -59,6 +59,7 @@
     <Compile Include="FetcherHolder.cs" />
     <Compile Include="GenFBAdapter.cs" />
     <Compile Include="IFacebookObjAdapter.cs" />
+    <Compile Include="LoginResultAdapter.cs" />
     <Compile Include="LoginResultCacher.cs" />
     <Compile Include="PostAdapter.cs" />
     <Compile Include="UIPopulator.cs" />
