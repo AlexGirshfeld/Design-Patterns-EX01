@@ -49,9 +49,10 @@ namespace InfluencerToolkit
             base.OnShown(e);
             if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
+                getLoginResultAndPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 try
                 {
-                    getLoginResultAndPopulateProxy(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
+                    
                 }
                 catch(Exception exception)
                 {
@@ -69,18 +70,26 @@ namespace InfluencerToolkit
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+            closingAppSequence();
+
+        }
+        private void closingAppSequence()
+        {
+            
             if (CurrentAppSettings.RememberUser)
             {
                 CurrentAppSettings.SaveToFile();
+                getLoginResultAndPopulateCache(m_LoginResult);
             }
             else
             {
                 CurrentAppSettings = AppSettings.GetDefaultSettings();
                 CurrentAppSettings.SaveToFile();
+                getLoginResultAndPopulateCache(null);
             }
         }
 
-        private void getLoginResultAndPopulateProxy(LoginResult i_LoginResult)
+    private void getLoginResultAndPopulateCache(LoginResult i_LoginResult)
         {
             this.m_LoginResult = i_LoginResult;
             LoginResult = new CachedLoginResult(i_LoginResult);
@@ -122,11 +131,11 @@ namespace InfluencerToolkit
             {
                 if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
                 {
-                    getLoginResultAndPopulateProxy(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
+                    getLoginResultAndPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 }
                 else
                 {
-                    getLoginResultAndPopulateProxy(FacebookService.Login(AppID, permissions));
+                    getLoginResultAndPopulateCache(FacebookService.Login(AppID, permissions));
                 }
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
                 UIDataPopulator = new UIPopulator(this);

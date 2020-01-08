@@ -17,18 +17,17 @@ namespace InfluencerToolkit
         public CachedLoginResult(LoginResult i_LoginResult)
         {
             m_LoginResult = i_LoginResult;
-         //   m_Cacher.cache(i_LoginResult);
+            LogingResultCacher.s_Instance.SaveToFile(m_LoginResult.LoggedInUser);
         }
+
         public String AccessToken {
             get
             {
                 string retVal = null;
                 if (m_LoginResult == null)
                 {
-                    //if (LoginResultCacher.getinstance().CachedAccesstoken)
-                    //{
-                     //   retVal = LoginResultCacher.AccessToken.RetrieveFromCache;
-                    //}
+                    //m_LoginResult = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
+                    retVal = m_LoginResult.AccessToken;
                 }
                 else
                 {
@@ -37,13 +36,15 @@ namespace InfluencerToolkit
                 return retVal;
             }
         }
+
         public String ErrorMessage {
             get
             {
                 string retVal = null;
                 if(m_LoginResult == null)
                 {
-                    throw new Exception("Retrieving error message from cache is not implemented\n");
+                    //m_LoginResult = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
+                    retVal = m_LoginResult.ErrorMessage;
                 }
                 else
                 {
@@ -60,7 +61,7 @@ namespace InfluencerToolkit
                 User retVal = null;
                 if (m_LoginResult == null)
                 {
-                    throw new Exception("Retrieving LoggedInUser from cache is not implemented\n");
+                    retVal = LogingResultCacher.s_Instance.LoadCachedLoginResultFromDisc();
                 }
                 else
                 {

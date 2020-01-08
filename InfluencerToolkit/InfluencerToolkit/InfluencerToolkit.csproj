@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,8 @@
   <ItemGroup>
     <Compile Include="CachedLoginResult.cs" />
     <Compile Include="FetcherHolder.cs" />
+    <Compile Include="LoginResultCacher.cs" />
+    <Compile Include="PostAdapter.cs" />
     <Compile Include="UIPopulator.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="FormInfluencerToolkit.cs">
@@ -64,6 +67,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserAdapter.cs" />
     <EmbeddedResource Include="FormInfluencerToolkit.resx">
       <DependentUpon>FormInfluencerToolkit.cs</DependentUpon>
     </EmbeddedResource>
