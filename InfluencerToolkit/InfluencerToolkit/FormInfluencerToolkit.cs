@@ -49,14 +49,14 @@ namespace InfluencerToolkit
             base.OnShown(e);
             if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken) && CurrentAppSettings.RememberUser)
             {
-                getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 try
                 {
-                    
+                    getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 }
                 catch(Exception exception)
                 {
-                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message));    
+                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message));
+                    this.LoginResult = new CachedLoginResultAdapter();
                 }
                 finally
                 {
@@ -132,8 +132,8 @@ namespace InfluencerToolkit
                 "publish_to_groups",
                 "groups_access_member_info"
                 };
-            //try
-            //{
+            try
+            {
                 if (!string.IsNullOrEmpty(CurrentAppSettings.LastAccesToken))
                 {
                     getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
@@ -145,11 +145,11 @@ namespace InfluencerToolkit
                 CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
                 UIDataPopulator = new UIPopulator(this);
 
-           // }
-           // catch (Exception e)
-            //{
-               // DisplayErrorDialog(string.Format("Something went wrong in the login process, please try again {0}Advanced:{1}", Environment.NewLine, e.Message));
-           // }
+            }
+            catch (Exception e)
+            {
+                DisplayErrorDialog(string.Format("Something went wrong in the login process, please try again {0}Advanced:{1}", Environment.NewLine, e.Message));
+            }
         }
 
         public void DisplayErrorDialog(string i_Message)

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
@@ -9,11 +9,16 @@ namespace InfluencerToolkit
     public class CachedLoginResultAdapter
     {
         private LoginResultAdapter m_LoginResult;
-        
+        public CachedLoginResultAdapter()
+        {
+            m_LoginResult = LogingResultAdapterCacher.s_Instance.LoadCachedLoginResultFromDisc();
+        }
         public CachedLoginResultAdapter(LoginResultAdapter i_LoginResult)
         {
             m_LoginResult = i_LoginResult;
-            LogingResultAdapterCacher.s_Instance.SaveToFile(m_LoginResult);
+            var CachingThread = new Thread(()=> LogingResultAdapterCacher.s_Instance.SaveToFile(m_LoginResult));
+            CachingThread.SetApartmentState(ApartmentState.MTA);
+            CachingThread.Start();;
         }
 
         public string AccessToken {
