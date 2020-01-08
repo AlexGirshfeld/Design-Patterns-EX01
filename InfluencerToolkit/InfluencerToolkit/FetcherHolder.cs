@@ -24,9 +24,9 @@ namespace InfluencerToolkit
 
         public void FetchAlbumsDeprecated()
         {
-            //r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.DisplayMember = "Name"));
-            //r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
-            //foreach (Album album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
+            r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.DisplayMember = "Name"));
+            r_FormToPopulate.ListBoxAlbums.Invoke(new Action( () => r_FormToPopulate.ListBoxAlbums.Items.Clear()));
+            foreach (AlbumAdapter album in r_FormToPopulate.LoginResult.LoggedInUser.Albums)
             {
               //  r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.ListBoxAlbums.Items.Add(album)));
             }
@@ -62,7 +62,7 @@ namespace InfluencerToolkit
             r_FormToPopulate.ListBoxFriends.Invoke(new Action(() => r_FormToPopulate.ListBoxFriends.Items.Clear()));
             try
             {
-                foreach (User friend in r_FormToPopulate.LoginResult.LoggedInUser.Friends)
+                foreach (UserAdapter friend in r_FormToPopulate.LoginResult.LoggedInUser.Friends)
                 {
                     r_FormToPopulate.ListBoxFriends.Invoke(new Action( () => r_FormToPopulate.ListBoxFriends.Items.Add(friend)));
                 }
