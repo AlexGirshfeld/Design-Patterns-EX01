@@ -50,16 +50,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.appSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AppSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rememberUserCheckBox = new System.Windows.Forms.CheckBox();
-            this.albumAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AlbumAdapterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.imageSmallPictureBox = new System.Windows.Forms.PictureBox();
             this.ListBoxAlbums = new System.Windows.Forms.ListBox();
             rememberUserLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.albumAdapterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppSettingsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumAdapterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -259,11 +259,11 @@
             // 
             // appSettingsBindingSource
             // 
-            this.appSettingsBindingSource.DataSource = typeof(InfluencerToolkit.AppSettings);
+            this.AppSettingsBindingSource.DataSource = typeof(InfluencerToolkit.AppSettings);
             // 
             // rememberUserCheckBox
             // 
-            this.rememberUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.appSettingsBindingSource, "RememberUser", true));
+            this.rememberUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.AppSettingsBindingSource, "RememberUser", true));
             this.rememberUserCheckBox.Location = new System.Drawing.Point(133, 98);
             this.rememberUserCheckBox.Name = "rememberUserCheckBox";
             this.rememberUserCheckBox.Size = new System.Drawing.Size(27, 24);
@@ -272,11 +272,11 @@
             // 
             // albumAdapterBindingSource
             // 
-            this.albumAdapterBindingSource.DataSource = typeof(InfluencerToolkit.AlbumAdapter);
+            this.AlbumAdapterBindingSource.DataSource = typeof(InfluencerToolkit.AlbumAdapter);
             // 
             // imageSmallPictureBox
             // 
-            this.imageSmallPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.albumAdapterBindingSource, "ImageSmall", true));
+            this.imageSmallPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.AlbumAdapterBindingSource, "ImageSmall", true));
             this.imageSmallPictureBox.Location = new System.Drawing.Point(16, 315);
             this.imageSmallPictureBox.Name = "imageSmallPictureBox";
             this.imageSmallPictureBox.Size = new System.Drawing.Size(148, 90);
@@ -285,7 +285,7 @@
             // 
             // ListBoxAlbums
             // 
-            this.ListBoxAlbums.DataSource = this.albumAdapterBindingSource;
+            this.ListBoxAlbums.DataSource = this.AlbumAdapterBindingSource;
             this.ListBoxAlbums.DisplayMember = "Name";
             this.ListBoxAlbums.FormattingEnabled = true;
             this.ListBoxAlbums.ItemHeight = 16;
@@ -326,8 +326,8 @@
             this.ResizeEnd += new System.EventHandler(this.FormInfluencerToolkit_ResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserPreview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appSettingsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.albumAdapterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AppSettingsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumAdapterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageSmallPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -355,9 +355,9 @@
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.ListView UserNameLikesListView;
         public System.Windows.Forms.TextBox GradeTextBox;
-        public System.Windows.Forms.BindingSource appSettingsBindingSource;
+        public System.Windows.Forms.BindingSource AppSettingsBindingSource;
         private System.Windows.Forms.CheckBox rememberUserCheckBox;
-        public System.Windows.Forms.BindingSource albumAdapterBindingSource;
+        public System.Windows.Forms.BindingSource AlbumAdapterBindingSource;
         private System.Windows.Forms.PictureBox imageSmallPictureBox;
         public System.Windows.Forms.ListBox ListBoxAlbums;
     }

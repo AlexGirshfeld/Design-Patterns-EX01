@@ -24,7 +24,7 @@ namespace InfluencerToolkit
 
         public void FetchAlbums()
         {
-            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
+            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.AlbumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
         }
 
         public void FetchPosts()

@@ -30,7 +30,7 @@ namespace InfluencerToolkit
             InitializeComponent();
             this.Size = CurrentAppSettings.LastWindowSize;
             this.Location = CurrentAppSettings.LastWindowLocation;
-            appSettingsBindingSource.DataSource = CurrentAppSettings;
+            AppSettingsBindingSource.DataSource = CurrentAppSettings;
         }
 
         protected override void OnShown(EventArgs e)
