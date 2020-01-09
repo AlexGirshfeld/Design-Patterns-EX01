@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper;
@@ -10,14 +8,12 @@ namespace InfluencerToolkit
 {
     public partial class FormInfluencerToolkit : Form
     {
-
         public AppSettings CurrentAppSettings { get; set; }
 
         public CachedLoginResultAdapter LoginResult { get; set; }
 
         public UIPopulator UIDataPopulator { get; set; }
         
-
         public string AppID
         {
             get
@@ -46,9 +42,9 @@ namespace InfluencerToolkit
                 {
                     getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Connect(CurrentAppSettings.LastAccesToken));
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
-                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message)); 
+                    DisplayErrorDialog(string.Format("Something went wrong when trying to connect to Facebook{0} Check your internet connection - meanwhile we you can work with you cached usef profile. {0} PAY ATTAENTION - the data may not be up to date!!!{0}Advanced:{1}", Environment.NewLine, exception.Message));
                     this.LoginResult = new CachedLoginResultAdapter();
                 }
                 finally
@@ -56,7 +52,6 @@ namespace InfluencerToolkit
                     UIDataPopulator = new UIPopulator(this);
                     UIDataPopulator.PopulateUI();
                 }
-
             }
         }
 
@@ -64,8 +59,8 @@ namespace InfluencerToolkit
         {
             base.OnFormClosing(e);
             closingAppSequence();
-
         }
+
         private void closingAppSequence()
         {
             if (CurrentAppSettings.RememberUser)
@@ -79,6 +74,7 @@ namespace InfluencerToolkit
                 getAndAdaptLoginResultAndThenPopulateCache(null);
             }
         }
+
         private void getAndAdaptLoginResultAndThenPopulateCache(LoginResult i_LoginResult)
         {
             LoginResult = new CachedLoginResultAdapter(new LoginResultAdapter(i_LoginResult));
@@ -99,9 +95,6 @@ namespace InfluencerToolkit
             var UIpopulatorThread = new Thread(this.UIDataPopulator.PopulateUI);
             UIpopulatorThread.SetApartmentState(ApartmentState.STA);
             UIpopulatorThread.Start();
-            //UIDataPopulator.PopulateUI();
-
-
         }
 
         private void loginUser()
@@ -174,14 +167,11 @@ namespace InfluencerToolkit
         {
             UIDataPopulator.SetAndPreviewPostToAnalyze((ListBoxPosts.SelectedItem as PostAdapter).Message);
         }
-
-
+        
         private void FormInfluencerToolkit_ResizeEnd(object sender, EventArgs e)
         {
             CurrentAppSettings.LastWindowSize = this.Size;
             CurrentAppSettings.LastWindowLocation = this.Location;
         }
-
-
     }
 }

@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FacebookWrapper.ObjectModel;
 using System.Drawing;
+using FacebookWrapper.ObjectModel;
+
 namespace InfluencerToolkit
 {
     [Serializable]
     public class AlbumAdapter : IFacebookObjAdapter
     {
         public Post m_Post;
+
         public string Name { get; set; }
 
         public string Message { get; set; }
-
-        public Image ImageSmall { get; set;}
+        
+        public Image ImageSmall { get; set; }
 
         public List<UserAdapter> LikedBy { get; set; }
 
         public AlbumAdapter()
         {
         }
+
         public AlbumAdapter(Album i_Album)
         {
             AdaptFacebookObj(i_Album);
@@ -39,7 +40,6 @@ namespace InfluencerToolkit
             {
                 throw new Exception("trying to adapt into a  AlbumAdatper an object that is not a Facebook album");
             }
-
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿
+﻿using System;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
-using System;
 
 namespace InfluencerToolkit
 {
@@ -9,11 +8,13 @@ namespace InfluencerToolkit
     public class LoginResultAdapter 
     {
         public UserAdapter LoggedInUser { get; set; }
-        public string AccessToken { get; set;}
+
+        public string AccessToken { get; set; }
 
         public LoginResultAdapter()
         {           
         }
+
         public LoginResultAdapter(LoginResult i_LoginResult)
         {
             adaptLoginResult(i_LoginResult);

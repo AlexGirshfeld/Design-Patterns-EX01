@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using FacebookWrapper.ObjectModel;
-using System.Security.Permissions;
-using System.Reflection;
-using System.IO;
-using FacebookWrapper;
-using System.Xml.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.IO;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Permissions;
 
 namespace InfluencerToolkit
 {
 	public sealed class LogingResultAdapterCacher
 	{
 		public LoginResultAdapter CurretnLoginResult { get; set; }
-		public static readonly string r_CacheFilePath = @"C:\Users\Public\LogingInResultCache.bin";
-		public readonly static LogingResultAdapterCacher s_Instance = new LogingResultAdapterCacher();
+
+		private static readonly string r_CacheFilePath = @"C:\Users\Public\LogingInResultCache.bin";
+
+		public static readonly LogingResultAdapterCacher s_Instance = new LogingResultAdapterCacher();
 
 		private LogingResultAdapterCacher()
 		{
@@ -32,6 +28,7 @@ namespace InfluencerToolkit
 					retVal = (LoginResultAdapter)formatter.Deserialize(stream);
 				}
 			}
+
 			return retVal;
 		}
 
@@ -51,6 +48,7 @@ namespace InfluencerToolkit
 					{
 						objectToSave = CurretnLoginResult;
 					}
+
 					IFormatter formatter = new BinaryFormatter();
 					formatter.Serialize(stream, objectToSave);
 				}
@@ -65,5 +63,4 @@ namespace InfluencerToolkit
 			}
 		}
 	}
-
 }

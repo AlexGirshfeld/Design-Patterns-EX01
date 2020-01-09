@@ -9,6 +9,5 @@ namespace InfluencerToolkit
    public interface IFacebookObjAdapter
     {
         void AdaptFacebookObj(FacebookObject i_ObjectToAdapt);
-
     }
 }

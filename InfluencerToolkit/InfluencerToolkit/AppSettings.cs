@@ -8,7 +8,7 @@ namespace InfluencerToolkit
 {
     public class AppSettings
     {
-        public static readonly string r_SettingsFilePath = @"C:\Users\Public\InfluencerAppSettings.xml";
+        private static readonly string r_SettingsFilePath = @"C:\Users\Public\InfluencerAppSettings.xml";
         
         public Point LastWindowLocation { get; set; }
         

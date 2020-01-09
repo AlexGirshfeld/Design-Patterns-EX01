@@ -22,15 +22,11 @@ namespace InfluencerToolkit
             return postToReturn;
         }
 
-
-
         public void FetchAlbums()
         {
-            //r_FormToPopulate.albumBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
-            // r_FormToPopulate.albumAdapterBindingSource.Invoke(new Action(() => r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
-            //r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
             r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
         }
+
         public void FetchPosts()
         {
             r_FormToPopulate.ListBoxPosts.Invoke(new Action(() => r_FormToPopulate.ListBoxPosts.DisplayMember = "Message"));
@@ -59,7 +55,7 @@ namespace InfluencerToolkit
             {
                 foreach (UserAdapter friend in r_FormToPopulate.LoginResult.LoggedInUser.Friends)
                 {
-                    r_FormToPopulate.ListBoxFriends.Invoke(new Action( () => r_FormToPopulate.ListBoxFriends.Items.Add(friend)));
+                    r_FormToPopulate.ListBoxFriends.Invoke(new Action(() => r_FormToPopulate.ListBoxFriends.Items.Add(friend)));
                 }
             }
             catch (Exception Exception)
@@ -70,11 +66,8 @@ namespace InfluencerToolkit
 
         public void FetchAvatarAndTitle()
         {
-            //r_FormToPopulate.PictureBoxProfile.ImageLocation = r_FormToPopulate.LoginResult.LoggedInUser.PictureNormalURL;
-            //r_FormToPopulate.PictureBoxProfile.Image = r_FormToPopulate.LoginResult.LoggedInUser.ImageNormal;
-            //r_FormToPopulate.PictureBoxProfile.LoadAsync(r_FormToPopulate.PictureBoxProfile.ImageLocation);
-            r_FormToPopulate.PictureBoxProfile.Invoke(new Action(()=> r_FormToPopulate.PictureBoxProfile.Image = r_FormToPopulate.LoginResult.LoggedInUser.ImageNormal));
-            r_FormToPopulate.Invoke(new Action( () => r_FormToPopulate.Text = string.Format("Welcome {0} {1}", r_FormToPopulate.LoginResult.LoggedInUser.FirstName, r_FormToPopulate.LoginResult.LoggedInUser.LastName)));
+            r_FormToPopulate.PictureBoxProfile.Invoke(new Action(() => r_FormToPopulate.PictureBoxProfile.Image = r_FormToPopulate.LoginResult.LoggedInUser.ImageNormal));
+            r_FormToPopulate.Invoke(new Action(() => r_FormToPopulate.Text = string.Format("Welcome {0} {1}", r_FormToPopulate.LoginResult.LoggedInUser.FirstName, r_FormToPopulate.LoginResult.LoggedInUser.LastName)));
         }
 
         public void DisplayPreviewProfilePicture(UserAdapter i_UserToDisplay)

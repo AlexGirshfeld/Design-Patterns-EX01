@@ -9,10 +9,12 @@ namespace InfluencerToolkit
     public class CachedLoginResultAdapter
     {
         private LoginResultAdapter m_LoginResult;
+
         public CachedLoginResultAdapter()
         {
             m_LoginResult = LogingResultAdapterCacher.s_Instance.LoadCachedLoginResultFromDisc();
         }
+        
         public CachedLoginResultAdapter(LoginResultAdapter i_LoginResult)
         {
             m_LoginResult = i_LoginResult;
@@ -21,10 +23,10 @@ namespace InfluencerToolkit
             var CacheThread = new Thread(LogingResultAdapterCacher.s_Instance.SaveToFile);
             CacheThread.SetApartmentState(ApartmentState.STA);
             CacheThread.Start();
-
         }
 
-        public string AccessToken {
+        public string AccessToken 
+        {
             get
             {
                 string retVal = null;
@@ -37,6 +39,7 @@ namespace InfluencerToolkit
                 {
                     retVal = m_LoginResult.AccessToken;
                 }
+
                 return retVal;
             }
         }
@@ -55,9 +58,9 @@ namespace InfluencerToolkit
                 {
                     retVal = m_LoginResult.LoggedInUser;
                 }
+
                 return retVal;
             }
-
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FacebookWrapper.ObjectModel;
 using System.Drawing;
 using System.Net;
+using FacebookWrapper.ObjectModel;
 
 namespace InfluencerToolkit
 {
@@ -12,16 +10,28 @@ namespace InfluencerToolkit
     public class UserAdapter : IFacebookObjAdapter
     {
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
+
         public string Name { get; set; }
+
         public Image ImageNormal { get; set; }
+
         public List<PostAdapter> Posts { get; set; }
+
         public List<AlbumAdapter> Albums { get; set; }
+
         public List<UserAdapter> Friends { get; set; }
        
-        public  UserAdapter()
+        public UserAdapter()
         {
         }
+
+        public static explicit operator User(UserAdapter vi_UserAdapter)
+        {
+            throw new NotImplementedException();
+        }
+
         public UserAdapter(User i_User)
         {
             AdaptFacebookObj(i_User);
@@ -31,7 +41,7 @@ namespace InfluencerToolkit
         {
             if (i_UserToAdapt is User)
             {
-                this.Posts = CollectionAdapter.AdaptCollection<PostAdapter,Post>((i_UserToAdapt as User).Posts);
+                this.Posts = CollectionAdapter.AdaptCollection<PostAdapter, Post>((i_UserToAdapt as User).Posts);
                 this.Albums = CollectionAdapter.AdaptCollection<AlbumAdapter, Album>((i_UserToAdapt as User).Albums);
                 this.Friends = CollectionAdapter.AdaptCollection<UserAdapter, User>((i_UserToAdapt as User).Friends);
                 this.FirstName = (i_UserToAdapt as User).FirstName;
@@ -55,12 +65,8 @@ namespace InfluencerToolkit
             {
                 retImage = Bitmap.FromStream(stream);
             }
-            return retImage;
-        }
 
-        public static explicit operator User(UserAdapter v)
-        {
-            throw new NotImplementedException();
+            return retImage;
         }
     }
 }
