@@ -96,10 +96,10 @@ namespace InfluencerToolkit
             loginThread.Start();
             loginThread.Join();
             UIDataPopulator = new UIPopulator(this);
-            //var UIpopulatorThread = new Thread(this.UIDataPopulator.PopulateUI);
-            //UIpopulatorThread.SetApartmentState(ApartmentState.STA);
-            //UIpopulatorThread.Start();
-            UIDataPopulator.PopulateUI();
+            var UIpopulatorThread = new Thread(this.UIDataPopulator.PopulateUI);
+            UIpopulatorThread.SetApartmentState(ApartmentState.STA);
+            UIpopulatorThread.Start();
+            //UIDataPopulator.PopulateUI();
 
 
         }

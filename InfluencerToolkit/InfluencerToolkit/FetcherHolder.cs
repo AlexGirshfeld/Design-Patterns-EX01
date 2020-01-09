@@ -28,8 +28,8 @@ namespace InfluencerToolkit
         {
             //r_FormToPopulate.albumBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
             // r_FormToPopulate.albumAdapterBindingSource.Invoke(new Action(() => r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
-            r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
-            //r_FormToPopulate.ListBoxPosts.Invoke(new Action(() => r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
+            //r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums;
+            r_FormToPopulate.ListBoxAlbums.Invoke(new Action(() => r_FormToPopulate.albumAdapterBindingSource.DataSource = r_FormToPopulate.LoginResult.LoggedInUser.Albums));
         }
         public void FetchPosts()
         {

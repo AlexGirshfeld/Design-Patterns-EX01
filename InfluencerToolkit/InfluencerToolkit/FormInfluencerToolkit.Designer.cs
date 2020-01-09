@@ -359,6 +359,6 @@
         private System.Windows.Forms.CheckBox rememberUserCheckBox;
         public System.Windows.Forms.BindingSource albumAdapterBindingSource;
         private System.Windows.Forms.PictureBox imageSmallPictureBox;
-        private System.Windows.Forms.ListBox ListBoxAlbums;
+        public System.Windows.Forms.ListBox ListBoxAlbums;
     }
 }
