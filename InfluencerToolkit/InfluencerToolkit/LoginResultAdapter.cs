@@ -12,8 +12,7 @@ namespace InfluencerToolkit
         public string AccessToken { get; set;}
 
         public LoginResultAdapter()
-        {
-            
+        {           
         }
         public LoginResultAdapter(LoginResult i_LoginResult)
         {
@@ -22,7 +21,7 @@ namespace InfluencerToolkit
 
         public void adaptLoginResult(LoginResult i_LoginResult)
         {
-            if (i_LoginResult.LoggedInUser != null)
+            if (i_LoginResult != null)
             {
                 this.LoggedInUser = new UserAdapter(i_LoginResult.LoggedInUser);
                 this.AccessToken = i_LoginResult.AccessToken;

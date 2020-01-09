@@ -18,11 +18,8 @@ namespace InfluencerToolkit
         public List<PostAdapter> Posts { get; set; }
         public List<AlbumAdapter> Albums { get; set; }
         public List<UserAdapter> Friends { get; set; }
-        
        
-
-
-        public UserAdapter()
+        public  UserAdapter()
         {
         }
         public UserAdapter(User i_User)
