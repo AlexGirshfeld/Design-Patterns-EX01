@@ -104,7 +104,7 @@ namespace InfluencerToolkit
                 else
                 {
                     PostToAnalyse = postToPreviewAndAnalyze;
-                    displayPostToPreview(postToPreviewAndAnalyze.m_Post);
+                    displayPostToPreview(postToPreviewAndAnalyze);
                 }
             }
             catch (Exception e)
@@ -113,7 +113,7 @@ namespace InfluencerToolkit
             }
         }
 
-        public void displayPostToPreview(Post i_Post)
+        public void displayPostToPreview(PostAdapter i_Post)
         {
             try
             {

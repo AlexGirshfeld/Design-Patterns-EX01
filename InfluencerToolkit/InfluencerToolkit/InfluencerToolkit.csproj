@@ -90,6 +90,8 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="FacebookWrapper.ObjectModel.Post.datasource" />
     <None Include="FacebookWrapper.ObjectModel.User.datasource" />
+    <None Include="InfluencerToolkit.Properties.Resources.datasource" />
+    <None Include="InfluencerToolkit.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

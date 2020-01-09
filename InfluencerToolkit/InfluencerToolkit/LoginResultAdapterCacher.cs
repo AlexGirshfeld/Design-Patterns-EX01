@@ -11,11 +11,10 @@ using System.Runtime.Serialization;
 
 namespace InfluencerToolkit
 {
-
 	public sealed class LogingResultAdapterCacher
 	{
+		public LoginResultAdapter CurretnLoginResult { get; set; }
 		public static readonly string r_CacheFilePath = @"C:\Users\Public\LogingInResultCache.bin";
-		private bool m_ThereIsCachedLoginResultOnDisc;
 		public readonly static LogingResultAdapterCacher s_Instance = new LogingResultAdapterCacher();
 
 		private LogingResultAdapterCacher()
@@ -36,16 +35,24 @@ namespace InfluencerToolkit
 			return retVal;
 		}
 
-		public void SaveToFile(LoginResultAdapter i_LoginResultToStore)
+		public void SaveToFile()
 		{
 			FileIOPermission fileIOPerm = new FileIOPermission(FileIOPermissionAccess.Write, r_CacheFilePath);
 			if (File.Exists(r_CacheFilePath))
 			{
-
 				using (Stream stream = new FileStream(r_CacheFilePath, FileMode.Truncate))
 				{
+					LoginResultAdapter objectToSave;
+					if(CurretnLoginResult == null)
+					{
+						objectToSave = new LoginResultAdapter();
+					}
+					else
+					{
+						objectToSave = CurretnLoginResult;
+					}
 					IFormatter formatter = new BinaryFormatter();
-					formatter.Serialize(stream, i_LoginResultToStore);
+					formatter.Serialize(stream, objectToSave);
 				}
 			}
 			else
@@ -53,7 +60,7 @@ namespace InfluencerToolkit
 				using (Stream stream = new FileStream(r_CacheFilePath, FileMode.CreateNew))
 				{
 					IFormatter formatter = new BinaryFormatter();
-					formatter.Serialize(stream, i_LoginResultToStore);
+					formatter.Serialize(stream, CurretnLoginResult);
 				}
 			}
 		}

@@ -15,10 +15,12 @@ namespace InfluencerToolkit
         public string Message { get; set; }
 
         public List<UserAdapter> LikedBy { get; set; }
+        public DateTime? CreatedTime { get; set; }
 
         public PostAdapter()
-        {    
+        {
         }
+
         public PostAdapter(Post i_Post)
         {
             AdaptFacebookObj(i_Post);
@@ -31,6 +33,7 @@ namespace InfluencerToolkit
                 this.Name = (i_PostToAdapt as Post).Name;
                 this.Message = (i_PostToAdapt as Post).Message;
                 this.LikedBy = CollectionAdapter.AdaptCollection<UserAdapter,User>((i_PostToAdapt as Post).LikedBy);
+                this.CreatedTime = (i_PostToAdapt as Post).CreatedTime;
             }
             else
             {

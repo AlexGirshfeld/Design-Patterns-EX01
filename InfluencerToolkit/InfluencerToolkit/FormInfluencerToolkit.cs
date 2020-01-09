@@ -10,7 +10,6 @@ namespace InfluencerToolkit
 {
     public partial class FormInfluencerToolkit : Form
     {
-        private LoginResultAdapter m_LoginResult;
 
         public AppSettings CurrentAppSettings { get; set; }
 
@@ -27,13 +26,7 @@ namespace InfluencerToolkit
             }
         }
 
-        public UIPopulator UIPopulator
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public UIPopulator UIPopulator { get; set; }
 
         public FormInfluencerToolkit()
         {
@@ -75,11 +68,9 @@ namespace InfluencerToolkit
         }
         private void closingAppSequence()
         {
-            
             if (CurrentAppSettings.RememberUser)
             {
                 CurrentAppSettings.SaveToFile();
-                getLoginResultAdapterAndPopulateCache(m_LoginResult);
             }
             else
             {
@@ -90,13 +81,11 @@ namespace InfluencerToolkit
         }
         private void getAndAdaptLoginResultAndThenPopulateCache(LoginResult i_LoginResult)
         {
-            this.m_LoginResult = new LoginResultAdapter(i_LoginResult);
-            LoginResult = new CachedLoginResultAdapter(m_LoginResult);
+            LoginResult = new CachedLoginResultAdapter(new LoginResultAdapter(i_LoginResult));
         }
 
         private void getLoginResultAdapterAndPopulateCache(LoginResultAdapter i_LoginResultAdapter)
         {
-            this.m_LoginResult = i_LoginResultAdapter;
             LoginResult = new CachedLoginResultAdapter(i_LoginResultAdapter);
         }
 
@@ -106,8 +95,13 @@ namespace InfluencerToolkit
             loginThread.SetApartmentState(ApartmentState.STA);
             loginThread.Start();
             loginThread.Join();
-            var UIpopulatorThread = new Thread(UIDataPopulator.PopulateUI);
-            UIpopulatorThread.Start();
+            UIDataPopulator = new UIPopulator(this);
+            //var UIpopulatorThread = new Thread(this.UIDataPopulator.PopulateUI);
+            //UIpopulatorThread.SetApartmentState(ApartmentState.STA);
+            //UIpopulatorThread.Start();
+            UIDataPopulator.PopulateUI();
+
+
         }
 
         private void loginUser()
@@ -142,9 +136,8 @@ namespace InfluencerToolkit
                 {
                     getAndAdaptLoginResultAndThenPopulateCache(FacebookService.Login(AppID, permissions));
                 }
-                CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
-                UIDataPopulator = new UIPopulator(this);
 
+                CurrentAppSettings.LastAccesToken = LoginResult.AccessToken;
             }
             catch (Exception e)
             {
@@ -179,7 +172,7 @@ namespace InfluencerToolkit
 
         private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UIDataPopulator.SetAndPreviewPostToAnalyze((ListBoxPosts.SelectedItem as Post).Message);
+            UIDataPopulator.SetAndPreviewPostToAnalyze((ListBoxPosts.SelectedItem as PostAdapter).Message);
         }
 
 
@@ -189,14 +182,6 @@ namespace InfluencerToolkit
             CurrentAppSettings.LastWindowLocation = this.Location;
         }
 
-        private void appSettingsBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void rememberUserCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
