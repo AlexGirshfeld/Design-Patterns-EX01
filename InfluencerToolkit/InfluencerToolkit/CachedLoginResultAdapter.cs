@@ -18,12 +18,10 @@ namespace InfluencerToolkit
             m_LoginResult = i_LoginResult;
             LogingResultAdapterCacher.s_Instance.CurretnLoginResult = m_LoginResult;
             LogingResultAdapterCacher.s_Instance.SaveToFile();
-<<<<<<< HEAD
             var CacheThread = new Thread(LogingResultAdapterCacher.s_Instance.SaveToFile);
             CacheThread.SetApartmentState(ApartmentState.STA);
             CacheThread.Start();
-=======
->>>>>>> 0f511204a43c6e772ada152662516e116f7e68f0
+
         }
 
         public string AccessToken {
