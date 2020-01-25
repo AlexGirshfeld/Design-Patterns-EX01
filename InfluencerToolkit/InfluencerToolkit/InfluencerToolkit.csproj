@@ -56,7 +56,11 @@
     <Compile Include="AlbumAdapter.cs" />
     <Compile Include="CachedLoginResultAdapter.cs" />
     <Compile Include="CollectionAdapter.cs" />
+    <Compile Include="ctor.cs" />
     <Compile Include="FetcherHolder.cs" />
+    <Compile Include="FilteredList.cs" />
+    <Compile Include="SelectiveEnumarble.cs" />
+    <Compile Include="FilterIterator.cs" />
     <Compile Include="GenFBAdapter.cs" />
     <Compile Include="IFacebookObjAdapter.cs" />
     <Compile Include="LoginResultAdapter.cs" />

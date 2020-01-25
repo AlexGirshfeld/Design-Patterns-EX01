@@ -21,7 +21,16 @@ namespace InfluencerToolkit
             Dictionary<UserAdapter, int> m_usersLikesCount = new Dictionary<UserAdapter, int>();
             m_TotalNumberOfLikesRecievedInAllPosts = 0;
 
-            foreach(PostAdapter post in this.m_CurrentUserPostsCollection)
+            SelectiveEnumarble<PostAdapter> filteredPosts = new  SelectiveEnumarble<PostAdapter>(m_CurrentUserPostsCollection, CheckIfPostsLikedByGreaterThanZero);
+            
+            IEnumerator<PostAdapter> Iterator = filteredPosts.GetEnumerator();
+            int a = 15;
+            while(Iterator.MoveNext())
+            {
+                PostAdapter cur = Iterator.Current;
+            }
+            
+            foreach(PostAdapter post in filteredPosts)
             {
                 foreach(UserAdapter user in post.LikedBy)
                 {
@@ -37,10 +46,16 @@ namespace InfluencerToolkit
                 }
 
                 m_AvargeCountOfLikesPerPost += post.LikedBy.Count;
-            }
+            } 
             
             m_AvargeCountOfLikesPerPost /= m_CurrentUserPostsCollection.Count;
             return m_usersLikesCount;
+        }
+
+        public bool CheckIfPostsLikedByGreaterThanZero(PostAdapter i_Post)
+        {
+           
+            return i_Post == null ? false : i_Post.LikedBy.Count > 0;
         }
 
         private int calculateAvarageNumberOfLikesGivenPerFriend(Dictionary<UserAdapter, int> i_UserLikesDict)
