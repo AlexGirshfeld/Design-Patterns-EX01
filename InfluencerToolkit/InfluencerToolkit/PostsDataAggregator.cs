@@ -110,7 +110,6 @@ namespace InfluencerToolkit
 
         public int AvarageNumberOfLikesGivenToMyPostsPerUser
         {
-            /*get { return this.m_AvarageNumberOfLikesGivenToMyPostsPerUser; }*/
             get
             {
                 AvarageNumberOfLikesGivenToMyPostsPerUser = calculateAvarageNumberOfLikesGivenPerFriend(aggregateUserLikes());
