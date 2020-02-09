@@ -6,12 +6,12 @@ using System.Text;
 
 namespace InfluencerToolkit
 {
-    class FilterIterator <T> : IEnumerator<T>
+    public class FilterIterator<T> : IEnumerator<T>
     {
         private Predicate<T> m_Predicate;
         private IEnumerator<T> m_Iterator;
 
-        public FilterIterator(IEnumerable<T> i_Collection , Predicate<T> i_Predicate)
+        public FilterIterator(IEnumerable<T> i_Collection, Predicate<T> i_Predicate)
         {
             this.m_Predicate = i_Predicate;
             this.m_Iterator = i_Collection.GetEnumerator();
@@ -29,8 +29,11 @@ namespace InfluencerToolkit
         public bool MoveNext()
         {
             bool hasNext = m_Iterator.MoveNext();
-            while ( ( (Current != null) ? !m_Predicate(Current) : false) && hasNext)
-                hasNext = m_Iterator.MoveNext();    
+            while (((Current != null) ? !m_Predicate(Current) : false) && hasNext)
+            {
+                hasNext = m_Iterator.MoveNext();
+            }
+
             return hasNext;
         }
 

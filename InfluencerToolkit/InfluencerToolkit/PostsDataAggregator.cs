@@ -21,10 +21,9 @@ namespace InfluencerToolkit
             Dictionary<UserAdapter, int> m_usersLikesCount = new Dictionary<UserAdapter, int>();
             m_TotalNumberOfLikesRecievedInAllPosts = 0;
 
-            SelectiveEnumarble<PostAdapter> filteredPosts = new  SelectiveEnumarble<PostAdapter>(m_CurrentUserPostsCollection, CheckIfPostsLikedByGreaterThanZero);
+            SelectiveEnumarble<PostAdapter> filteredPosts = new SelectiveEnumarble<PostAdapter>(m_CurrentUserPostsCollection, CheckIfPostsLikedByGreaterThanZero);
             
             IEnumerator<PostAdapter> Iterator = filteredPosts.GetEnumerator();
-            int a = 15;
             while(Iterator.MoveNext())
             {
                 PostAdapter cur = Iterator.Current;
@@ -54,7 +53,6 @@ namespace InfluencerToolkit
 
         public bool CheckIfPostsLikedByGreaterThanZero(PostAdapter i_Post)
         {
-           
             return i_Post == null ? false : i_Post.LikedBy.Count > 0;
         }
 
